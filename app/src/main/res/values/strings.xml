@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Spades</string>
+    <string name="three">3 Players</string>
+    <string name="four">4 Players</string>
+    <string name="player1_name">Name Player 1</string>
+    <string name="player2_name">Name Player 2</string>
+    <string name="player3_name">Name Player 3</string>
+    <string name="player4_name">Name Player 4</string>
+    <string name="next">Start Game</string>
+    <string name="wrong">Wrong</string>
+    <string name="x0">0x</string>
+    <string name="x1">1x</string>
+    <string name="x2">2x</string>
+    <string name="x3">3x</string>
+    <string name="x4">4x</string>
+    <string name="x5">5x</string>
+    <string name="x6">6x</string>
+    <string name="x7">7x</string>
+    <string name="x8">8x</string>
+    <string name="x9">9x</string>
+    <string name="x10">10x</string>
+    <string name="contentDescription">Logo</string>
+    <string name="continue_game">Continue</string>
+</resources>
