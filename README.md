@@ -9,9 +9,13 @@ SpadesScore is a simple android app designed to make tracking scores in the card
 
 ## Screenshots
 
-**Placeholder for screenshots**
+![SpadesScore](https://github.com/user-attachments/assets/f6c3dc0d-3f92-4467-8cc5-71fcf4755ced)
 
-TODO
+- Start screen
+- Enter points after each round
+- Half-time score
+- Final score
+
 
 ## Getting Started
 1. Download the current apk from the latest release.
