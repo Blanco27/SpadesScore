@@ -24,7 +24,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".PlayerNamesActivity" />
-        <activity android:name=".GameActivity" />
         <activity android:name=".ResultScreenActivity" />
+        <activity android:name=".DealCardsActivity" />
+        <activity android:name=".DeclareTricksActivity" />
+        <activity android:name=".ConfirmTicksActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 </manifest>
