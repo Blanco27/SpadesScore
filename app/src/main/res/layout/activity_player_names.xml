@@ -139,14 +139,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/random_dealer_switch"
+            <CheckBox
+                android:id="@+id/random_dealer_checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:scaleX="1.2"
                 android:scaleY="1.2"
-                app:showText="false" />
+                android:buttonTint="@color/checkBoxColor"/>
+
         </LinearLayout>
 
         <Space

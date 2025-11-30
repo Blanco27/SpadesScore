@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="btnMinus" type="id">btnMinus</item>
-    <item name="tvValue" type="id">tvValue</item>
-    <item name="btnPlus" type="id">btnPlus</item>
+    <item name="btnMinus" type="id"/>
+    <item name="tvValue" type="id"/>
+    <item name="btnPlus" type="id"/>
 </resources>

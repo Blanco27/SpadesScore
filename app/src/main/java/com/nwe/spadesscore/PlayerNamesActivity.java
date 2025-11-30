@@ -4,8 +4,8 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -29,7 +29,7 @@ public class PlayerNamesActivity extends SpadesAppCompatActivity {
 
     private TextInputLayout player1_name_input, player2_name_input, player3_name_input, player4_name_input;
 
-    private SwitchCompat random_dealer_switch;
+    private CheckBox random_dealer_checkBox;
     private final SpadesGame spadesGame = SpadesGame.getInstance();
 
     @Override
@@ -43,7 +43,7 @@ public class PlayerNamesActivity extends SpadesAppCompatActivity {
         player2_name_input = findViewById(R.id.player2_name_input);
         player3_name_input = findViewById(R.id.player3_name_input);
         player4_name_input = findViewById(R.id.player4_name_input);
-        random_dealer_switch = findViewById(R.id.random_dealer_switch);
+        random_dealer_checkBox = findViewById(R.id.random_dealer_checkBox);
 
         DEBUG_DELETE_LATER();
     }
@@ -65,9 +65,6 @@ public class PlayerNamesActivity extends SpadesAppCompatActivity {
             player4_name_input.setVisibility(View.GONE);
             findViewById(R.id.player4_space).setVisibility(View.GONE);
         }
-
-        random_dealer_switch.setThumbTintList(ContextCompat.getColorStateList(this, R.color.switchThumbTint));
-        random_dealer_switch.setTrackTintList(ContextCompat.getColorStateList(this, R.color.switchTrackTint));
 
         findViewById(R.id.start_game_button).setOnClickListener(v -> startGame());
     }
@@ -99,7 +96,7 @@ public class PlayerNamesActivity extends SpadesAppCompatActivity {
             }
         }
 
-        spadesGame.setRandomDealer(random_dealer_switch.isChecked());
+        spadesGame.setRandomDealer(random_dealer_checkBox.isChecked());
         spadesGame.startGame();
         Intent switchToDealCardsActivity = new Intent(this, DealCardsActivity.class);
         startActivity(switchToDealCardsActivity);
