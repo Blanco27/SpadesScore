@@ -13,23 +13,23 @@
     <color name="green">#32CD32</color>
 
     <!-- Backgrounds -->
-    <color name="background_button_enabled">#f78864</color>
-    <color name="background_button_disabled">#C1C1C1</color>
-    <color name="background_second">#f2f2f2</color>
-    <color name="background_third">#e6e6e6</color>
+    <color name="background_button_enabled">#4361ee</color>
+    <color name="background_button_disabled">#1a1a1a</color>
+    <color name="background_second">#1a1a1a</color>
+    <color name="background_third">#262626</color>
 
     <!-- Text -->
-    <color name="text_normal">#0d0d0d</color>
-    <color name="text_muted">#4d4d4d</color>
+    <color name="text_normal">#f2f2f2</color>
+    <color name="text_muted">#b3b3b3</color>
     <color name="text_button">@color/white</color>
-    <color name="text_header">#b5179e</color>
+    <color name="text_header">#4895ef</color>
     <color name="warningText">#FF5722</color>
-    <color name="spinnerText">#b5179e</color>
+    <color name="spinnerText">#4cc9f0</color>
     <color name="plusPointsText">@color/green</color>
 
     <!-- Accents -->
     <color name="spinnerAccent">#e3a21a</color>
-    <color name="spinnerAccent_alternative">#e3a21a</color>
+    <color name="spinnerAccent_alternative">#3f37c9</color>
     <color name="checkBoxColor">@color/green</color>
     <color name="checkbox_buttonTint">@color/background_button_enabled</color>
     <color name="switchThumbTint">#e3a21a</color>

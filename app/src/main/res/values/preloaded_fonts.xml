@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/comic_neue</item>
+        <item>@font/comic_neue_light</item>
+        <item>@font/inter</item>
+        <item>@font/patrick_hand</item>
+        <item>@font/patrick_hand_sc</item>
+        <item>@font/roboto</item>
+    </array>
+</resources>

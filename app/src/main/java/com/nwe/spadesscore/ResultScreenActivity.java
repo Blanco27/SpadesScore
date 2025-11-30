@@ -2,7 +2,6 @@ package com.nwe.spadesscore;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +9,7 @@ import android.widget.Space;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -21,6 +20,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The ResultScreenActivity class is responsible for displaying the results of the Spades game
+ * at halftime or the end of the game.
+ * <p>
+ * This activity:
+ * <ul>
+ * <li>Displays a table with scores for all players across all completed rounds.
+ * <li>Highlights the most recent scores with colors and larger text size to indicate rankings.
+ * <li>Disables the back button to prevent unintended navigation.
+ * </ul>
+ * <p>
+ * The class interacts with the SpadesGame singleton to retrieve and update game data.
+ */
 public class ResultScreenActivity extends AppCompatActivity {
 
     SpadesGame spadesGame = SpadesGame.getInstance();
@@ -30,19 +42,12 @@ public class ResultScreenActivity extends AppCompatActivity {
     LinkedList<Space> player4Spaces = new LinkedList<>();
 
     @Override
-    public void onBackPressed() {
-        //Disable going back
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_screen);
 
         for (int i = 0; i < 4; i++) {
-            if (playerTextViews.get(i) == null)
-                playerTextViews.put(i, new LinkedList<>());
+            playerTextViews.computeIfAbsent(i, k -> new LinkedList<>());
         }
 
         findRoundTableRows();
@@ -57,39 +62,44 @@ public class ResultScreenActivity extends AppCompatActivity {
         setPlayerNames();
 
         final Button continueButton = findViewById(R.id.continue_button);
-        continueButton.setOnClickListener(__ -> switchBackToGameActivity());
+        continueButton.setOnClickListener(__ -> switchBackToDealCardsActivity());
 
         applyColorsToLastScoreViews();
 
-        if (spadesGame.getAlreadyRematched()) {
+        if (spadesGame.isSecondHalfOfTheGame()) {
             continueButton.setVisibility(View.GONE);
             Space lowerSpace = findViewById(R.id.lowerSpace);
             lowerSpace.setVisibility(View.GONE);
         }
+
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() { /* disable back */ }
+        });
     }
 
     private void applyColorsToLastScoreViews() {
         Map<Integer, Integer> scores = new HashMap<>();
-        for (int i = 0; i < spadesGame.getPlayerCount() ; i++) {
+        for (int i = 0; i < spadesGame.getPlayerCount(); i++) {
             scores.put(i, spadesGame.getScoreListForPlayer(i).getLast());
         }
 
         List<ScoreObj> scoreList = new ArrayList<>();
-        for ( Integer playerNumber : scores.keySet() )
-        {
-            scoreList.add( new ScoreObj(  scores.get( playerNumber ),playerNumber ) );
+        for (Integer playerNumber : scores.keySet()) {
+            scoreList.add(new ScoreObj(scores.get(playerNumber), playerNumber));
         }
-        Collections.sort( scoreList, Comparator.comparing( ScoreObj::getScore ) );
-        Collections.reverse( scoreList );
-        for (ScoreObj scoreObj: scoreList) {
-            playerTextViews.get(scoreObj.getPlayerNumber()).get(spadesGame.getCurrentRound()-2).setTextColor(getColorForPlace(scoreList.indexOf(scoreObj)+1));
-            playerTextViews.get(scoreObj.getPlayerNumber()).get(spadesGame.getCurrentRound()-2).setTextSize(30f);
+        scoreList.sort(Comparator.comparing(ScoreObj::getScore));
+        Collections.reverse(scoreList);
+        for (ScoreObj scoreObj : scoreList) {
+            playerTextViews.get(scoreObj.getPlayerNumber()).get(spadesGame.getCurrentRound() - 2).setTextColor(getColorForPlace(scoreList.indexOf(scoreObj) + 1));
+            playerTextViews.get(scoreObj.getPlayerNumber()).get(spadesGame.getCurrentRound() - 2).setTextSize(30f);
         }
 
     }
 
-    private int getColorForPlace(final int place){
-        switch (place){
+    private int getColorForPlace(final int place) {
+        switch (place) {
             case 1:
                 return Color.parseColor("#ffd700");
             case 2:
@@ -302,14 +312,14 @@ public class ResultScreenActivity extends AppCompatActivity {
         roundRows.add(findViewById(R.id.round20Scores));
     }
 
-    private void switchBackToGameActivity() {
-        SpadesGame.getInstance().startRematch();
-        Intent switchBackToGameActivity = new Intent(this, GameActivity.class);
-        startActivity(switchBackToGameActivity);
+    private void switchBackToDealCardsActivity() {
+        SpadesGame.getInstance().startSecondHalf();
+        Intent switchDealCardsActivity = new Intent(this, DealCardsActivity.class);
+        startActivity(switchDealCardsActivity);
     }
 }
 
-class ScoreObj{
+class ScoreObj {
     public Integer getScore() {
         return score;
     }
@@ -321,8 +331,8 @@ class ScoreObj{
     final Integer score;
     final Integer playerNumber;
 
-    ScoreObj(final int score,final Integer playerNumber){
-        this.score=score;
-        this.playerNumber=playerNumber;
+    ScoreObj(final int score, final Integer playerNumber) {
+        this.score = score;
+        this.playerNumber = playerNumber;
     }
 }

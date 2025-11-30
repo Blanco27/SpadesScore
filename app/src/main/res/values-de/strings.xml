@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Spades</string>
+    <string name="three">3 Spieler</string>
+    <string name="four">4 Spieler</string>
+    <string name="player1_name">Name Spieler 1</string>
+    <string name="player2_name">Name Spieler 2</string>
+    <string name="player3_name">Name Spieler 3</string>
+    <string name="player4_name">Name Spieler 4</string>
+    <string name="next">Spiel starten</string>
+    <string name="x0">0</string>
+    <string name="x1">1</string>
+    <string name="x2">2</string>
+    <string name="x3">3</string>
+    <string name="x4">4</string>
+    <string name="x5">5</string>
+    <string name="x6">6</string>
+    <string name="x7">7</string>
+    <string name="x8">8</string>
+    <string name="x9">9</string>
+    <string name="x10">10</string>
+    <string name="contentDescription">Logo</string>
+    <string name="continue_game">Weiter</string>
+    <string name="start">Nächste Runde</string>
+    <string name="declare_how_many_tricks_they_expect_to_win">Anzahl erwarteter Stiche</string>
+    <string name="confirm_ticks">Stiche bestätigen</string>
+    <string name="done">Weiter</string>
+    <string name="minus">-</string>
+    <string name="number_of_players">Anzahl Spieler</string>
+    <string name="language">Sprache</string>
+    <string name="english">Englisch</string>
+    <string name="deutsch">Deutsch</string>
+    <string name="_0">0</string>
+    <string name="plus">+</string>
+    <string name="player_must_deal_cards">%s muss austeilen</string>
+    <string name="round">Runde %d</string>
+    <string name="trick">Stich</string>
+    <string name="tricks">Stiche</string>
+    <string name="combined_trick_prediction">%d/%d %s</string>
+    <string name="points_added">+%d Punkte</string>
+    <string name="set_player_names">Spielernamen festlegen</string>
+    <string name="random_first_dealer">Zufälliger erster Dealer</string>
+    <string name="image_of_playing_cards">Bild von Spielkarten</string>
+    <string-array name="spinner_entries_1_10">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+</resources>

@@ -7,18 +7,50 @@
     <string name="player3_name">Name Player 3</string>
     <string name="player4_name">Name Player 4</string>
     <string name="next">Start Game</string>
-    <string name="wrong">Wrong</string>
-    <string name="x0">0x</string>
-    <string name="x1">1x</string>
-    <string name="x2">2x</string>
-    <string name="x3">3x</string>
-    <string name="x4">4x</string>
-    <string name="x5">5x</string>
-    <string name="x6">6x</string>
-    <string name="x7">7x</string>
-    <string name="x8">8x</string>
-    <string name="x9">9x</string>
-    <string name="x10">10x</string>
+    <string name="x0">0</string>
+    <string name="x1">1</string>
+    <string name="x2">2</string>
+    <string name="x3">3</string>
+    <string name="x4">4</string>
+    <string name="x5">5</string>
+    <string name="x6">6</string>
+    <string name="x7">7</string>
+    <string name="x8">8</string>
+    <string name="x9">9</string>
+    <string name="x10">10</string>
     <string name="contentDescription">Logo</string>
     <string name="continue_game">Continue</string>
+    <string name="start">Start Next Round</string>
+    <string name="declare_how_many_tricks_they_expect_to_win">Declare how many tricks\nthey expect to win</string>
+    <string name="confirm_ticks">Confirm ticks</string>
+    <string name="done">Done</string>
+    <string name="minus">-</string>
+    <string name="number_of_players">Number of Players</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="deutsch">German</string>
+    <string name="_0">0</string>
+    <string name="plus">+</string>
+    <string name="player_must_deal_cards">%s must deal cards</string>
+    <string name="round">Round %d</string>
+    <string name="trick">Trick</string>
+    <string name="tricks">Tricks</string>
+    <string name="combined_trick_prediction">%d/%d %s</string>
+    <string name="points_added">+%d Points</string>
+    <string name="set_player_names">Set player names</string>
+    <string name="random_first_dealer">Random first Dealer</string>
+    <string name="image_of_playing_cards">Image of playing cards</string>
+    <string-array name="spinner_entries_1_10">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 </resources>

@@ -36,10 +36,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
                     android:textAllCaps="false"
-                    android:textSize="22sp"
+                    android:textColor="@color/text_muted"
+                    android:textSize="24sp"
                     android:typeface="sans"
                     tools:text="Player 1" />
 
@@ -53,9 +54,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:textSize="22sp"
+                    android:textColor="@color/text_muted"
+                    android:textSize="24sp"
                     tools:text="Player 2" />
 
                 <Space
@@ -68,9 +70,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:textSize="22sp"
+                    android:textColor="@color/text_muted"
+                    android:textSize="24sp"
                     tools:text="Player 3" />
 
                 <Space
@@ -85,9 +88,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:textSize="22sp"
+                    android:textColor="@color/text_muted"
+                    android:textSize="24sp"
                     tools:text="Player 4" />
             </TableRow>
 
@@ -102,8 +106,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="0" />
 
                 <Space
@@ -116,8 +122,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="5" />
 
                 <Space
@@ -130,8 +138,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="6" />
 
                 <Space
@@ -145,8 +155,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="0" />
             </TableRow>
 
@@ -161,8 +173,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="6" />
 
                 <Space
@@ -175,8 +189,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="5" />
 
                 <Space
@@ -189,8 +205,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="11" />
 
                 <Space
@@ -204,8 +222,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="5" />
             </TableRow>
 
@@ -220,8 +240,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="12" />
 
                 <Space
@@ -234,8 +256,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="11" />
 
                 <Space
@@ -248,8 +272,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="11" />
 
                 <Space
@@ -263,8 +289,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="10" />
             </TableRow>
 
@@ -279,8 +307,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="19" />
 
                 <Space
@@ -293,8 +323,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="16" />
 
                 <Space
@@ -307,8 +339,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="11" />
 
                 <Space
@@ -322,8 +356,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="16" />
             </TableRow>
 
@@ -338,8 +374,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="24" />
 
                 <Space
@@ -352,8 +390,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="16" />
 
                 <Space
@@ -366,8 +406,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="19" />
 
                 <Space
@@ -381,8 +423,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="21" />
             </TableRow>
 
@@ -397,8 +441,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="24" />
 
                 <Space
@@ -411,8 +457,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="21" />
 
                 <Space
@@ -425,8 +473,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="19" />
 
                 <Space
@@ -440,8 +490,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="28" />
             </TableRow>
 
@@ -456,8 +508,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="30" />
 
                 <Space
@@ -470,8 +524,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="26" />
 
                 <Space
@@ -484,8 +540,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="25" />
 
                 <Space
@@ -499,8 +557,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="34" />
             </TableRow>
 
@@ -515,8 +575,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="35" />
 
                 <Space
@@ -529,8 +591,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="28" />
 
                 <Space
@@ -543,8 +607,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="32" />
 
                 <Space
@@ -558,8 +624,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:fontFamily="casual"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="39" />
             </TableRow>
 
@@ -574,8 +642,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="35" />
 
                 <Space
@@ -588,8 +658,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="34" />
 
                 <Space
@@ -602,8 +674,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="37" />
 
                 <Space
@@ -617,8 +691,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="39" />
             </TableRow>
 
@@ -633,8 +709,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="41" />
 
                 <Space
@@ -647,8 +725,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="34" />
 
                 <Space
@@ -661,8 +741,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="42" />
 
                 <Space
@@ -676,8 +758,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="45" />
             </TableRow>
 
@@ -692,8 +776,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="47" />
 
                 <Space
@@ -706,8 +792,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="40" />
 
                 <Space
@@ -720,8 +808,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="47" />
 
                 <Space
@@ -735,8 +825,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="52" />
             </TableRow>
 
@@ -751,8 +843,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="53" />
 
                 <Space
@@ -765,8 +859,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="45" />
 
                 <Space
@@ -779,8 +875,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="53" />
 
                 <Space
@@ -794,8 +892,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="57" />
             </TableRow>
 
@@ -810,8 +910,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="53" />
 
                 <Space
@@ -824,8 +926,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="50" />
 
                 <Space
@@ -838,8 +942,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="53" />
 
                 <Space
@@ -853,8 +959,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="57" />
             </TableRow>
 
@@ -869,8 +977,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="60" />
 
                 <Space
@@ -883,8 +993,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="56" />
 
                 <Space
@@ -897,8 +1009,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="58" />
 
                 <Space
@@ -912,8 +1026,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="63" />
             </TableRow>
 
@@ -928,8 +1044,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="60" />
 
                 <Space
@@ -942,8 +1060,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="62" />
 
                 <Space
@@ -956,8 +1076,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="63" />
 
                 <Space
@@ -971,8 +1093,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="70" />
             </TableRow>
 
@@ -987,8 +1111,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="66" />
 
                 <Space
@@ -1001,8 +1127,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="67" />
 
                 <Space
@@ -1015,8 +1143,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="63" />
 
                 <Space
@@ -1030,8 +1160,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="75" />
             </TableRow>
 
@@ -1046,8 +1178,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="72" />
 
                 <Space
@@ -1060,8 +1194,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="73" />
 
                 <Space
@@ -1074,8 +1210,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="70" />
 
                 <Space
@@ -1089,8 +1227,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="75" />
             </TableRow>
 
@@ -1105,8 +1245,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="77" />
 
                 <Space
@@ -1119,8 +1261,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="79" />
 
                 <Space
@@ -1133,8 +1277,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="70" />
 
                 <Space
@@ -1148,8 +1294,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="81" />
             </TableRow>
 
@@ -1164,8 +1312,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="82" />
 
                 <Space
@@ -1178,8 +1328,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="79" />
 
                 <Space
@@ -1192,8 +1344,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="75" />
 
                 <Space
@@ -1207,8 +1361,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="86" />
             </TableRow>
 
@@ -1223,8 +1379,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="82" />
 
                 <Space
@@ -1237,8 +1395,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="84" />
 
                 <Space
@@ -1251,8 +1411,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="79" />
 
                 <Space
@@ -1266,8 +1428,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="casual"
+                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
+                    android:textColor="@color/text_muted"
+                    android:textSize="16sp"
                     tools:text="91" />
             </TableRow>
         </TableLayout>
@@ -1283,9 +1447,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.05"
-            android:fontFamily="casual"
+            android:background="@drawable/button_background"
+            android:elevation="3dp"
+            android:fontFamily="@font/patrick_hand"
             android:text="@string/continue_game"
-            tools:ignore="TextContrastCheck" />
+            android:textColor="@color/text_button"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
 
         <Space
             android:layout_width="match_parent"

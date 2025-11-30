@@ -20,44 +20,202 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5" />
+            android:layout_weight="4" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_weight="65"
+            android:layout_weight="20"
             android:contentDescription="@string/contentDescription"
             app:srcCompat="@drawable/spades_logo" />
 
-        <Button
-            android:id="@+id/button_player3"
+        <!-- PLAYER SELECTION TITLE -->
+        <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:fontFamily="casual"
-            android:text="@string/three"
-            tools:ignore="TextContrastCheck" />
+            android:layout_weight="3" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/patrick_hand"
+            android:gravity="center"
+            android:text="@string/number_of_players"
+            android:textColor="@color/text_normal"
+            android:textSize="28sp" />
+
+        <!-- PLAYER BUTTONS -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+
+            <Button
+                android:id="@+id/btn3Players"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/option_button"
+                android:elevation="3dp"
+                android:fontFamily="@font/patrick_hand"
+                android:text="@string/three"
+                android:textColor="@color/text_button"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1" />
+
+            <Button
+                android:id="@+id/btn4Players"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/option_button"
+                android:elevation="3dp"
+                android:fontFamily="@font/patrick_hand"
+                android:text="@string/four"
+                android:textColor="@color/text_button"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+        </LinearLayout>
+
+        <!-- PLAYER SELECTION TITLE -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:fontFamily="@font/patrick_hand"
+            android:gravity="center"
+            android:text="@string/language"
+            android:textColor="@color/text_normal"
+            android:textSize="28sp" />
+
+        <!-- LANGUAGE TITLE -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+
+            <Button
+                android:id="@+id/btnLanguageEnglish"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/option_button"
+                android:elevation="3dp"
+                android:fontFamily="@font/patrick_hand"
+                android:text="@string/english"
+                android:textColor="@color/text_button"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1" />
+
+            <Button
+                android:id="@+id/btnLanguageGerman"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/option_button"
+                android:elevation="3dp"
+                android:fontFamily="@font/patrick_hand"
+                android:text="@string/deutsch"
+                android:textColor="@color/text_button"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2" />
+        </LinearLayout>
+
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:layout_weight="6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25" />
 
         <Button
-            android:id="@+id/button_player4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:fontFamily="casual"
-            android:text="@string/four"
-            tools:ignore="TextContrastCheck" />
+            android:id="@+id/start_game_button"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="2"
+            android:background="@drawable/button_background"
+            android:elevation="3dp"
+            android:fontFamily="@font/patrick_hand"
+            android:text="@string/next"
+            android:textColor="@color/text_button"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25" />
+
+    </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="15" />
+            android:layout_weight="8" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
