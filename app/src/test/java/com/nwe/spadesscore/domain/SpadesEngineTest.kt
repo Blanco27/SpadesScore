@@ -129,4 +129,46 @@ class SpadesEngineTest {
         assertEquals(1, SpadesEngine.amountOfCards(second.copy(currentRound = 16)))
         assertEquals(1, SpadesEngine.amountOfCards(second.copy(currentRound = 20)))
     }
+
+    @Test
+    fun fullFourPlayerGame_runsBothHalvesAndReachesResultScreen() {
+        var state = SpadesEngine.newGame(4, names, 0)
+
+        for (round in 1..8) {
+            assertEquals(round, SpadesEngine.amountOfCards(state))
+            state = SpadesEngine.setTickPredictions(state, listOf(0, 0, 0, 0))
+            state = SpadesEngine.confirmTricks(state, listOf(true, true, true, true))
+        }
+        assertTrue(state.showResultScreen)
+        assertEquals(9, state.currentRound)
+        assertEquals(9, state.scores[0].size)
+
+        state = SpadesEngine.startSecondHalf(state)
+        assertEquals(16, state.amountOfRounds)
+
+        for (round in 9..16) {
+            assertEquals(16 - round + 1, SpadesEngine.amountOfCards(state))
+            state = SpadesEngine.setTickPredictions(state, listOf(0, 0, 0, 0))
+            state = SpadesEngine.confirmTricks(state, listOf(false, false, false, false))
+        }
+        assertTrue(state.showResultScreen)
+        assertEquals(17, state.currentRound)
+        assertEquals(17, state.scores[0].size)
+    }
+
+    @Test
+    fun fullThreePlayerGame_hasTenRoundsPerHalf() {
+        var state = SpadesEngine.newGame(3, listOf("A", "B", "C"), 0)
+        assertEquals(10, state.amountOfRounds)
+
+        for (round in 1..10) {
+            state = SpadesEngine.setTickPredictions(state, listOf(1, 1, 1, 1))
+            state = SpadesEngine.confirmTricks(state, listOf(true, true, true, true))
+        }
+        assertTrue(state.showResultScreen)
+
+        state = SpadesEngine.startSecondHalf(state)
+        assertEquals(20, state.amountOfRounds)
+        assertEquals(10, SpadesEngine.amountOfCards(state.copy(currentRound = 11)))
+    }
 }
