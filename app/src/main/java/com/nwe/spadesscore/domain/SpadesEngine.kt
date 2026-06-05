@@ -33,6 +33,8 @@ object SpadesEngine {
      * screen once the half is over. Only the first `playerCount` players are scored.
      */
     fun confirmTricks(state: GameState, made: List<Boolean>): GameState {
+        require(made.size >= state.playerCount) { "made must cover at least playerCount players" }
+        require(state.tickPredictions.size >= state.playerCount) { "setTickPredictions must be called before confirmTricks" }
         val updatedScores = state.scores.mapIndexed { player, history ->
             val previousTotal = history.last()
             val newTotal =

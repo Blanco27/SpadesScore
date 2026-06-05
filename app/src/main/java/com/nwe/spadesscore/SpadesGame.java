@@ -5,6 +5,8 @@ import android.content.Context;
 import com.nwe.spadesscore.domain.GameState;
 import com.nwe.spadesscore.domain.SpadesEngine;
 
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class SpadesGame {
     private Languages languages;
 
     // Immutable in-progress game state (null until startGame())
+    @Nullable
     private GameState state;
 
     private final Random random = new Random();
