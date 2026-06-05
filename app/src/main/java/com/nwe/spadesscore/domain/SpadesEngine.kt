@@ -64,4 +64,13 @@ object SpadesEngine {
     fun amountOfCards(state: GameState): Int =
         if (!state.secondHalf) state.currentRound
         else max(1, state.amountOfRounds - state.currentRound + 1)
+
+    /**
+     * Player indices ranked by their latest cumulative score, highest first.
+     * Ties are broken by player index (ascending). Used to colour the final standings.
+     */
+    fun rankingForLastRound(state: GameState): List<Int> =
+        (0 until state.playerCount).sortedWith(
+            compareByDescending<Int> { state.scores[it].last() }.thenBy { it }
+        )
 }

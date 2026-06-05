@@ -101,6 +101,22 @@ class SpadesEngineTest {
     }
 
     @Test
+    fun rankingForLastRound_ordersByScoreDescThenIndex() {
+        val state = SpadesEngine.newGame(4, names, 0).copy(
+            scores = listOf(listOf(0, 20), listOf(0, 25), listOf(0, 20), listOf(0, 10))
+        )
+        assertEquals(listOf(1, 0, 2, 3), SpadesEngine.rankingForLastRound(state))
+    }
+
+    @Test
+    fun rankingForLastRound_threePlayers_ignoresFourth() {
+        val state = SpadesEngine.newGame(3, listOf("A", "B", "C"), 0).copy(
+            scores = listOf(listOf(0, 5), listOf(0, 9), listOf(0, 7))
+        )
+        assertEquals(listOf(1, 2, 0), SpadesEngine.rankingForLastRound(state))
+    }
+
+    @Test
     fun startSecondHalf_doublesRoundsAndCountsDown() {
         val firstHalfEnd = SpadesEngine.newGame(4, names, 0).copy(currentRound = 9, showResultScreen = true)
         val second = SpadesEngine.startSecondHalf(firstHalfEnd)
