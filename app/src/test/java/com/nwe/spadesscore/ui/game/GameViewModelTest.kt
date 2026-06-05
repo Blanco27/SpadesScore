@@ -45,6 +45,17 @@ class GameViewModelTest {
     }
 
     @Test
+    fun startGame_threePlayers_hasTenRounds() {
+        val vm = vm()
+        vm.selectPlayerCount(3)
+        vm.startGame(listOf("A", "B", "C"), randomDealer = false)
+        val game = vm.uiState.value.game!!
+        assertEquals(3, game.playerCount)
+        assertEquals(10, game.amountOfRounds)
+        assertEquals(1, game.currentRound)
+    }
+
+    @Test
     fun startGame_randomDealer_startingPlayerWithinRange() {
         val vm = vm()
         vm.selectPlayerCount(4)

@@ -35,10 +35,9 @@ class GameViewModel(private val random: Random = Random()) : ViewModel() {
 
     fun selectLanguage(language: Languages) = _uiState.update { it.copy(language = language) }
 
-    fun startGame(names: List<String>, randomDealer: Boolean) {
-        val count = _uiState.value.playerCount
-        val start = if (randomDealer) SpadesEngine.randomStartingPlayer(count, random) else 0
-        _uiState.update { it.copy(game = SpadesEngine.newGame(count, names, start)) }
+    fun startGame(names: List<String>, randomDealer: Boolean) = _uiState.update {
+        val start = if (randomDealer) SpadesEngine.randomStartingPlayer(it.playerCount, random) else 0
+        it.copy(game = SpadesEngine.newGame(it.playerCount, names, start))
     }
 
     fun setPredictions(predictions: List<Int>) =
