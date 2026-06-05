@@ -35,9 +35,9 @@ class GameViewModel(private val random: Random = Random()) : ViewModel() {
 
     fun selectLanguage(language: Languages) = _uiState.update { it.copy(language = language) }
 
-    fun startGame(names: List<String>, randomDealer: Boolean) = _uiState.update {
-        val start = if (randomDealer) SpadesEngine.randomStartingPlayer(it.playerCount, random) else 0
-        it.copy(game = SpadesEngine.newGame(it.playerCount, names, start))
+    fun startGame(names: List<String>, randomDealer: Boolean) {
+        val start = if (randomDealer) SpadesEngine.randomStartingPlayer(_uiState.value.playerCount, random) else 0
+        _uiState.update { it.copy(game = SpadesEngine.newGame(it.playerCount, names, start)) }
     }
 
     fun setPredictions(predictions: List<Int>) =
@@ -50,11 +50,6 @@ class GameViewModel(private val random: Random = Random()) : ViewModel() {
         _uiState.update { it.copy(game = SpadesEngine.startSecondHalf(requireGame(it.game))) }
 
     fun newGame() = _uiState.update { it.copy(game = null) }
-
-    fun amountOfCards(): Int = SpadesEngine.amountOfCards(requireGame(_uiState.value.game))
-
-    /** Ungültig, wenn die Summe der Ansagen der möglichen Stichzahl entspricht (heutige Regel). */
-    fun isPredictionSumValid(sum: Int): Boolean = sum != amountOfCards()
 
     private fun requireGame(game: GameState?): GameState =
         requireNotNull(game) { "No game in progress" }

@@ -58,7 +58,7 @@ fun DealCardsScreen(
             )
             Spacer(Modifier.height(8.dp))
             Text(
-                "${SpadesEngine.amountOfCards(game)}x",
+                stringResource(R.string.amount_of_cards, SpadesEngine.amountOfCards(game)),
                 style = MaterialTheme.typography.displaySmall,
                 color = MaterialTheme.colorScheme.primary
             )

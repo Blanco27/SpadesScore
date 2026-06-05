@@ -107,17 +107,6 @@ class GameViewModelTest {
     }
 
     @Test
-    fun isPredictionSumValid_falseWhenSumEqualsPossibleCards() {
-        val vm = vm()
-        vm.selectPlayerCount(4)
-        vm.startGame(listOf("A", "B", "C", "D"), randomDealer = false)
-        // Runde 1, erste Hälfte -> amountOfCards == currentRound == 1
-        assertFalse(vm.isPredictionSumValid(1))
-        assertTrue(vm.isPredictionSumValid(0))
-        assertTrue(vm.isPredictionSumValid(2))
-    }
-
-    @Test
     fun newGame_clearsGame() {
         val vm = vm()
         vm.selectPlayerCount(4)

@@ -57,4 +57,5 @@
     <string name="name_too_long_error">Maximum 10 characters</string>
     <string name="new_game">New Game</string>
     <string name="result_title">Result</string>
+    <string name="amount_of_cards">%dx</string>
 </resources>
