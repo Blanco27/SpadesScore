@@ -13,11 +13,11 @@ Use the Gradle wrapper (`./gradlew` on Unix, `.\gradlew.bat` on Windows). Min SD
 - Build debug APK: `.\gradlew.bat assembleDebug`
 - Install on a connected device/emulator: `.\gradlew.bat installDebug`
 - Unit tests (JVM): `.\gradlew.bat test`
-- Single unit test: `.\gradlew.bat test --tests "com.nwe.spadesscore.ExampleUnitTest"`
+- Single unit test: `.\gradlew.bat testDebugUnitTest --tests "com.nwe.spadesscore.domain.SpadesEngineTest"` (the lifecycle `test` task rejects `--tests`; use `testDebugUnitTest` for a single class)
 - Instrumented tests (needs device/emulator): `.\gradlew.bat connectedAndroidTest`
 - Lint: `.\gradlew.bat lint`
 
-Note: `test`/`androidTest` currently contain only the Android Studio template stubs — there is no real test coverage yet.
+Note: JVM unit tests cover the pure domain core (`SpadesEngineTest`) and the `GameViewModel` (`GameViewModelTest`). `androidTest` still holds only the Android Studio template stub.
 
 ## Architecture
 
@@ -41,12 +41,12 @@ setup (player count 3/4, language EN/DE)
 
 **Shared host:** All screens are stateless `@Composable` functions under `ui/game/` (and `ui/setup/SetupScreen`), hosted by the single `MainActivity` NavHost and driven by the shared `GameViewModel`. There is no Activity base class anymore.
 
-## Game rules encoded in `SpadesGame` (important when touching scoring)
+## Game rules encoded in `SpadesEngine` (important when touching scoring)
 
 - Rounds per half = `floor(32 / playerCount)` (so 8 for 4 players, 10 for 3). `startSecondHalf()` doubles `amountOfRounds`.
-- Cards dealt per round: counts **up** in the first half (`currentRound`), counts **down** in the second half (`amountOfRounds - currentRound + 1`).
-- Scoring (`confirmTickPredictions`): if a player made their prediction, they gain `prediction + 5`; otherwise their score is unchanged (the previous total is re-appended so every round has a score entry).
-- `setRandomDealer(true)` picks a random starting `currentPlayer`; the dealer rotates `(currentPlayer + 1) % playerCount` each round.
+- Cards dealt per round (`amountOfCards`): counts **up** in the first half (`currentRound`), counts **down** in the second half (`amountOfRounds - currentRound + 1`).
+- Scoring (`confirmTricks`): if a player made their prediction, they gain `prediction + 5`; otherwise their score is unchanged (the previous total is re-appended so every round has a score entry).
+- A random starting `currentPlayer` can be chosen at game start (`randomStartingPlayer`, surfaced as the "random dealer" checkbox); the dealer then rotates `(currentPlayer + 1) % playerCount` each round.
 
 ## 3-player vs 4-player handling
 
@@ -58,5 +58,5 @@ The result table is **data-driven** from `GameState.scores` (`ui/game/ResultScre
 
 ## Localization
 
-English/German via the `Languages` enum. `MainActivity.setLocale()` mutates the configuration and calls `recreate()`. German strings are in `res/values-de/strings.xml`. User-facing copy should go through `getString(R.string.…)`, not literals — though a few dialogs in `PlayerNamesActivity` currently hardcode English.
+English/German via the `Languages` enum (held in `GameUiState`, changeable only on the setup screen). `MainActivity.applyLocale()`/`changeLanguage()` mutate the configuration and call `recreate()`. German strings are in `res/values-de/strings.xml`. User-facing copy goes through `getString(R.string.…)`, not literals — including the now-localized in-screen name validation.
 
