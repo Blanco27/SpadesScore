@@ -39,4 +39,54 @@ class SpadesEngineTest {
         assertEquals(5, SpadesEngine.amountOfCards(state.copy(currentRound = 5)))
         assertEquals(8, SpadesEngine.amountOfCards(state.copy(currentRound = 8)))
     }
+
+    @Test
+    fun confirmTricks_madeAddsPredictionPlusFive_missedRepeatsTotal() {
+        var state = SpadesEngine.newGame(4, names, 0)
+        state = SpadesEngine.setTickPredictions(state, listOf(3, 2, 1, 0))
+        state = SpadesEngine.confirmTricks(state, listOf(true, false, true, false))
+
+        assertEquals(listOf(0, 8), state.scores[0])
+        assertEquals(listOf(0, 0), state.scores[1])
+        assertEquals(listOf(0, 6), state.scores[2])
+        assertEquals(listOf(0, 0), state.scores[3])
+        assertEquals(2, state.currentRound)
+        assertEquals(1, state.currentPlayer)
+        assertFalse(state.showResultScreen)
+    }
+
+    @Test
+    fun confirmTricks_accumulatesAcrossRounds() {
+        var state = SpadesEngine.newGame(4, names, 0)
+        state = SpadesEngine.setTickPredictions(state, listOf(1, 1, 1, 1))
+        state = SpadesEngine.confirmTricks(state, listOf(true, true, true, true))
+        state = SpadesEngine.setTickPredictions(state, listOf(2, 2, 2, 2))
+        state = SpadesEngine.confirmTricks(state, listOf(true, false, true, false))
+
+        assertEquals(listOf(0, 6, 13), state.scores[0])
+        assertEquals(listOf(0, 6, 6), state.scores[1])
+        assertEquals(3, state.currentRound)
+        assertEquals(2, state.currentPlayer)
+    }
+
+    @Test
+    fun confirmTricks_threePlayers_ignoresFourthSlot() {
+        var state = SpadesEngine.newGame(3, listOf("A", "B", "C"), 0)
+        state = SpadesEngine.setTickPredictions(state, listOf(2, 2, 2, 2))
+        state = SpadesEngine.confirmTricks(state, listOf(true, true, true, true))
+
+        assertEquals(3, state.scores.size)
+        assertEquals(listOf(0, 7), state.scores[0])
+        assertEquals(1, state.currentPlayer)
+    }
+
+    @Test
+    fun confirmTricks_lastRoundOfHalf_flagsResultScreen() {
+        var state = SpadesEngine.newGame(4, names, 0).copy(currentRound = 8)
+        state = SpadesEngine.setTickPredictions(state, listOf(0, 0, 0, 0))
+        state = SpadesEngine.confirmTricks(state, listOf(false, false, false, false))
+
+        assertEquals(9, state.currentRound)
+        assertTrue(state.showResultScreen)
+    }
 }
