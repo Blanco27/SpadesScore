@@ -4,6 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.util.Random
 
 class SpadesEngineTest {
 
@@ -77,6 +78,8 @@ class SpadesEngineTest {
 
         assertEquals(3, state.scores.size)
         assertEquals(listOf(0, 7), state.scores[0])
+        assertEquals(listOf(0, 7), state.scores[1])
+        assertEquals(listOf(0, 7), state.scores[2])
         assertEquals(1, state.currentPlayer)
     }
 
@@ -92,12 +95,12 @@ class SpadesEngineTest {
 
     @Test
     fun randomStartingPlayer_isDeterministicForSeededRng_andInRange() {
-        val first = SpadesEngine.randomStartingPlayer(4, java.util.Random(42))
-        val second = SpadesEngine.randomStartingPlayer(4, java.util.Random(42))
+        val first = SpadesEngine.randomStartingPlayer(4, Random(42))
+        val second = SpadesEngine.randomStartingPlayer(4, Random(42))
 
         assertEquals(first, second)
         assertTrue(first in 0 until 4)
-        assertTrue(SpadesEngine.randomStartingPlayer(3, java.util.Random(7)) in 0 until 3)
+        assertTrue(SpadesEngine.randomStartingPlayer(3, Random(7)) in 0 until 3)
     }
 
     @Test
