@@ -37,6 +37,7 @@ fun ConfirmTricksScreen(
     modifier: Modifier = Modifier
 ) {
     val made = remember(game) { mutableStateListOf<Boolean>().apply { repeat(game.playerCount) { add(false) } } }
+    if (game.tickPredictions.size < game.playerCount) return
 
     Column(
         modifier = modifier

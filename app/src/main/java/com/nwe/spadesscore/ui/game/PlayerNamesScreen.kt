@@ -39,7 +39,7 @@ fun PlayerNamesScreen(
 ) {
     val names = remember(playerCount) { mutableStateListOf<String>().apply { repeat(playerCount) { add("") } } }
     val errors = remember(playerCount) { mutableStateListOf<Int?>().apply { repeat(playerCount) { add(null) } } }
-    var randomDealer by remember { mutableStateOf(false) }
+    var randomDealer by remember(playerCount) { mutableStateOf(false) }
 
     Column(
         modifier = modifier
