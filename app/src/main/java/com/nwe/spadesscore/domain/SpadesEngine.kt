@@ -22,4 +22,9 @@ object SpadesEngine {
             scores = List(playerCount) { listOf(0) },
             tickPredictions = emptyList()
         )
+
+    /** Cards dealt this round: counts up in the first half, down in the second (min 1). */
+    fun amountOfCards(state: GameState): Int =
+        if (!state.secondHalf) state.currentRound
+        else max(1, state.amountOfRounds - state.currentRound + 1)
 }

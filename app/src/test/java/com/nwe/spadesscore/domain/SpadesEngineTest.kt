@@ -30,4 +30,13 @@ class SpadesEngineTest {
         assertEquals(10, state.amountOfRounds)
         assertEquals(3, state.scores.size)
     }
+
+    @Test
+    fun amountOfCards_firstHalf_countsUpWithRound() {
+        val state = SpadesEngine.newGame(4, names, 0)
+
+        assertEquals(1, SpadesEngine.amountOfCards(state))
+        assertEquals(5, SpadesEngine.amountOfCards(state.copy(currentRound = 5)))
+        assertEquals(8, SpadesEngine.amountOfCards(state.copy(currentRound = 8)))
+    }
 }
