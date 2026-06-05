@@ -140,6 +140,6 @@ class MainActivity : AppCompatActivity() {
 
 /** Vorwärts-Navigation ohne sichtbaren Back-Stack (Wizard). */
 private fun NavHostController.navTo(route: String) = navigate(route) {
-    popUpTo(graph.startDestinationId) { inclusive = true }
+    popUpTo(graph.id) { inclusive = true }
     launchSingleTop = true
 }
