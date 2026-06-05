@@ -91,6 +91,16 @@ class SpadesEngineTest {
     }
 
     @Test
+    fun randomStartingPlayer_isDeterministicForSeededRng_andInRange() {
+        val first = SpadesEngine.randomStartingPlayer(4, java.util.Random(42))
+        val second = SpadesEngine.randomStartingPlayer(4, java.util.Random(42))
+
+        assertEquals(first, second)
+        assertTrue(first in 0 until 4)
+        assertTrue(SpadesEngine.randomStartingPlayer(3, java.util.Random(7)) in 0 until 3)
+    }
+
+    @Test
     fun startSecondHalf_doublesRoundsAndCountsDown() {
         val firstHalfEnd = SpadesEngine.newGame(4, names, 0).copy(currentRound = 9, showResultScreen = true)
         val second = SpadesEngine.startSecondHalf(firstHalfEnd)

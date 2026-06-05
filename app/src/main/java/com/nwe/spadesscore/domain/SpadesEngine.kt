@@ -49,6 +49,9 @@ object SpadesEngine {
         )
     }
 
+    /** Random round-1 dealer in [0, playerCount). RNG is injected for deterministic tests. */
+    fun randomStartingPlayer(playerCount: Int, rng: Random): Int = rng.nextInt(playerCount)
+
     /** Doubles the round budget and switches to the descending second half. */
     fun startSecondHalf(state: GameState): GameState =
         state.copy(
