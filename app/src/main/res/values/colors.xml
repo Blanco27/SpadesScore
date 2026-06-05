@@ -34,4 +34,5 @@
     <color name="checkbox_buttonTint">@color/background_button_enabled</color>
     <color name="switchThumbTint">#e3a21a</color>
     <color name="switchTrackTint">#5b420b</color>
+    <color name="window_background">#FDFDF6</color>
 </resources>
