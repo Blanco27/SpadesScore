@@ -89,4 +89,18 @@ class SpadesEngineTest {
         assertEquals(9, state.currentRound)
         assertTrue(state.showResultScreen)
     }
+
+    @Test
+    fun startSecondHalf_doublesRoundsAndCountsDown() {
+        val firstHalfEnd = SpadesEngine.newGame(4, names, 0).copy(currentRound = 9, showResultScreen = true)
+        val second = SpadesEngine.startSecondHalf(firstHalfEnd)
+
+        assertEquals(16, second.amountOfRounds)
+        assertTrue(second.secondHalf)
+        assertFalse(second.showResultScreen)
+
+        assertEquals(8, SpadesEngine.amountOfCards(second))
+        assertEquals(1, SpadesEngine.amountOfCards(second.copy(currentRound = 16)))
+        assertEquals(1, SpadesEngine.amountOfCards(second.copy(currentRound = 20)))
+    }
 }

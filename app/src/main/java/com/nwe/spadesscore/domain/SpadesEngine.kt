@@ -49,6 +49,14 @@ object SpadesEngine {
         )
     }
 
+    /** Doubles the round budget and switches to the descending second half. */
+    fun startSecondHalf(state: GameState): GameState =
+        state.copy(
+            amountOfRounds = state.amountOfRounds * 2,
+            secondHalf = true,
+            showResultScreen = false
+        )
+
     /** Cards dealt this round: counts up in the first half, down in the second (min 1). */
     fun amountOfCards(state: GameState): Int =
         if (!state.secondHalf) state.currentRound
