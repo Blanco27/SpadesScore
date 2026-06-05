@@ -2,45 +2,38 @@ package com.nwe.spadesscore;
 
 import android.content.Context;
 
+import com.nwe.spadesscore.domain.GameState;
+import com.nwe.spadesscore.domain.SpadesEngine;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 /**
- * The SpadesGame class is a singleton that manages the core game logic and state
- * for a Spades card game. It acts as the central data structure for the game.
+ * Thin singleton adapter around the pure {@link SpadesEngine} / {@link GameState} core.
  * <p>
- * This class:
- * <ul>
- * <li>Tracks the number of players, their names, scores, and trick predictions.
- * <li>Manages the current round, the current player, and the total number of rounds.
- * <li>Handles the transition between the first and second halves of the game.
- * <li>Provides methods to start a new game, start the second half, and confirm trick predictions.
- * <li>Calculates the number of cards to deal based on the current round.
- * <li>Determines when to display the result screen at the end of the game.
- * </ul>
+ * Holds the setup inputs (player count, names, starting dealer, language) plus the current
+ * immutable {@link GameState}, and exposes the same API the Activities already use. All
+ * game-rule transitions delegate to {@link SpadesEngine}; this class only adapts types and
+ * formats Context-dependent strings.
  * <p>
- * The SpadesGame class ensures that all game-related data is encapsulated and
- * accessible through its methods, making it easier to manage the game state across
- * different activities in the application.
+ * There is still no persistence – state survives only as long as the process.
  */
 public class SpadesGame {
     private static SpadesGame instance;
+
+    // Setup inputs (set before the game starts)
+    private int playerCount = 4;
+    private String[] playerNames;
+    private int startingPlayer = 0;
     private Languages languages;
 
-    // State
-    private int playerCount = 4;
-    private int currentRound;
-    private int currentPlayer = 0;
-    private int amountOfRounds;
-    private boolean secondHalfOfTheGame = false;
-    private boolean showResultScreen = false;
+    // Immutable in-progress game state (null until startGame())
+    private GameState state;
 
-    // Player information's
-    private String[] playerNames;
-    private final LinkedList<LinkedList<Integer>> scoreMap = new LinkedList<>();
-    private final List<Integer> tickPredictions = new ArrayList<>();
+    private final Random random = new Random();
 
     private SpadesGame() {
     }
@@ -53,47 +46,31 @@ public class SpadesGame {
     }
 
     public void startGame() {
-        scoreMap.clear();
+        final List<String> names = new ArrayList<>();
         for (int i = 0; i < playerCount; i++) {
-            LinkedList<Integer> playerScoreList = new LinkedList<>();
-            playerScoreList.add(0);
-            scoreMap.add(playerScoreList);
+            names.add(playerNames[i]);
         }
-        currentRound = 1;
-        amountOfRounds = (int) Math.floor(32f / playerCount);
-        secondHalfOfTheGame = false;
-        showResultScreen = false;
-        tickPredictions.clear();
+        state = SpadesEngine.INSTANCE.newGame(playerCount, names, startingPlayer);
     }
 
     public void startSecondHalf() {
-        showResultScreen = false;
-        amountOfRounds *= 2;
-        secondHalfOfTheGame = true;
+        state = SpadesEngine.INSTANCE.startSecondHalf(state);
     }
 
     public void setTickPredictions(final int... values) {
-        tickPredictions.clear();
+        final List<Integer> predictions = new ArrayList<>();
         for (final int value : values) {
-            tickPredictions.add(value);
+            predictions.add(value);
         }
+        state = SpadesEngine.INSTANCE.setTickPredictions(state, predictions);
     }
 
     public void confirmTickPredictions(final boolean... values) {
-        int length = playerCount == 3 ? values.length - 1 : values.length;
-        for (int i = 0; i < length; i++) {
-            int currentScore = scoreMap.get(i).getLast();
-            if (values[i]) {
-                scoreMap.get(i).add(currentScore + tickPredictions.get(i) + 5);
-            } else {
-                scoreMap.get(i).add(currentScore);
-            }
+        final List<Boolean> made = new ArrayList<>();
+        for (final boolean value : values) {
+            made.add(value);
         }
-        currentRound++;
-        currentPlayer = (currentPlayer + 1) % playerCount;
-        if (currentRound > amountOfRounds) {
-            showResultScreen = true;
-        }
+        state = SpadesEngine.INSTANCE.confirmTricks(state, made);
     }
 
     public void setPlayerCount(final int playerCount) {
@@ -104,12 +81,16 @@ public class SpadesGame {
         this.playerNames = playerNames;
     }
 
+    public void setRandomDealer(boolean checked) {
+        startingPlayer = checked ? SpadesEngine.INSTANCE.randomStartingPlayer(playerCount, random) : 0;
+    }
+
     public LinkedList<Integer> getScoreListForPlayer(final int playerNumber) {
-        return scoreMap.get(playerNumber);
+        return new LinkedList<>(state.getScores().get(playerNumber));
     }
 
     public int getCurrentRound() {
-        return currentRound;
+        return state.getCurrentRound();
     }
 
     public String getPlayerName(final int playerNumber) {
@@ -117,36 +98,37 @@ public class SpadesGame {
     }
 
     public String getLastScoreAndPlayerNameAsString(final int playerNumber) {
-        return getPlayerName(playerNumber) + ": " + scoreMap.get(playerNumber).getLast();
+        final List<Integer> playerScores = state.getScores().get(playerNumber);
+        final int last = playerScores.get(playerScores.size() - 1);
+        return getPlayerName(playerNumber) + ": " + last;
     }
 
     public String getPlayerTricksString(Context context, final int playerNumber) {
-        final int prediction = tickPredictions.get(playerNumber);
+        final int prediction = state.getTickPredictions().get(playerNumber);
         final String tricks = prediction == 1 ? context.getString(R.string.trick) : context.getString(R.string.tricks);
         return String.format(Locale.getDefault(), "%d %s", prediction, tricks);
     }
 
     public String getPlayerPointsString(Context context, final int playerNumber) {
-        final int prediction = tickPredictions.get(playerNumber);
+        final int prediction = state.getTickPredictions().get(playerNumber);
         final int points = prediction + 5;
         return String.format(Locale.getDefault(), context.getString(R.string.points_added), points);
     }
 
-
     public int getAmountOfCards() {
-        return !secondHalfOfTheGame ? currentRound : Math.max(1, amountOfRounds - currentRound + 1);
+        return SpadesEngine.INSTANCE.amountOfCards(state);
     }
 
     public boolean isSecondHalfOfTheGame() {
-        return secondHalfOfTheGame;
+        return state.getSecondHalf();
     }
 
     public boolean isShowResultScreen() {
-        return showResultScreen;
+        return state.getShowResultScreen();
     }
 
     public String getCurrentRoundString(Context context) {
-        return String.format(Locale.getDefault(), context.getString(R.string.round), currentRound);
+        return String.format(Locale.getDefault(), context.getString(R.string.round), state.getCurrentRound());
     }
 
     public int getPlayerCount() {
@@ -154,7 +136,7 @@ public class SpadesGame {
     }
 
     public String getCurrentPlayerName() {
-        return getPlayerName(currentPlayer);
+        return getPlayerName(state.getCurrentPlayer());
     }
 
     public void setLanguages(Languages languages) {
@@ -171,15 +153,7 @@ public class SpadesGame {
         return String.format(Locale.getDefault(), declareTricksActivity.getString(R.string.combined_trick_prediction), combinedTricks, possibleTricks, declareTricksActivity.getString(R.string.tricks));
     }
 
-    public void setRandomDealer(boolean checked) {
-        if (checked) {
-            currentPlayer = (int) (Math.random() * playerCount);
-        } else {
-            currentPlayer = 0;
-        }
-    }
-
     public int getAmountOfRounds() {
-        return amountOfRounds;
+        return state.getAmountOfRounds();
     }
 }
