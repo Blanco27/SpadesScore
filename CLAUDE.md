@@ -21,9 +21,9 @@ Note: JVM unit tests cover the pure domain core (`SpadesEngineTest`) and the `Ga
 
 ## Architecture
 
-**Language mix:** The UI is **Jetpack Compose** (Kotlin) — a single `MainActivity` hosting a `NavHost` (`setup` → `players` → `deal` → `declare` → `confirm` → `result`). Game rules live in the pure Kotlin domain core (`domain/GameState` + `domain/SpadesEngine`). `SpadesGame.java` is a now-unused legacy singleton kept only until Phase 4 removes it. The Compose theme lives in `ui/theme/`, the setup screen in `ui/setup/`, and the in-game screens + shared `GameViewModel` in `ui/game/`.
+**Language mix:** The UI is **Jetpack Compose** (Kotlin) — a single `MainActivity` hosting a `NavHost` (`setup` → `players` → `deal` → `declare` → `confirm` → `result`). Game rules live in the pure Kotlin domain core (`domain/GameState` + `domain/SpadesEngine`). The legacy `SpadesGame.java` singleton and `Languages.java` enum have been removed. The Compose theme lives in `ui/theme/`, the setup screen in `ui/setup/`, and the in-game screens + shared `GameViewModel` in `ui/game/`.
 
-**State lives in one Activity-scoped `GameViewModel`** (`ui/game/GameViewModel.kt`). It holds `GameUiState` (player count, language, and the immutable `GameState`) as a `StateFlow`, and every action delegates directly to `SpadesEngine`. State survives configuration changes via the ViewModel; **there is no persistence** — process death loses everything (out of scope). The legacy `SpadesGame` singleton is no longer used.
+**State lives in one Activity-scoped `GameViewModel`** (`ui/game/GameViewModel.kt`). It holds `GameUiState` (player count and the immutable `GameState`) as a `StateFlow`, and every action delegates directly to `SpadesEngine`. State survives configuration changes via the ViewModel; **there is no persistence** — process death loses everything (out of scope).
 
 **Screen flow** (Compose routes in one `NavHost`, forward-only, back disabled):
 
@@ -58,5 +58,5 @@ The result table is **data-driven** from `GameState.scores` (`ui/game/ResultScre
 
 ## Localization
 
-English/German via the `Languages` enum (held in `GameUiState`, changeable only on the setup screen). `MainActivity.applyLocale()`/`changeLanguage()` mutate the configuration and call `recreate()`. German strings are in `res/values-de/strings.xml`. User-facing copy goes through `getString(R.string.…)`, not literals — including the now-localized in-screen name validation.
+English/German via **`AppCompatDelegate` per-app locales** (BCP-47 tags `en`/`de`). `MainActivity.setLanguage(tag)` calls `AppCompatDelegate.setApplicationLocales(...)`; `autoStoreLocales` (manifest service + `res/xml/locales_config.xml`) persists the choice across restarts and AppCompat handles the `recreate()`. Language is the single source of truth in AppCompatDelegate (not in `GameUiState`) and is changeable only on the setup screen. German strings are in `res/values-de/strings.xml`. User-facing copy goes through `getString(R.string.…)`, not literals.
 
