@@ -1,34 +1,33 @@
 package com.nwe.spadesscore.ui.theme
 
 import androidx.compose.material3.Typography
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.googlefonts.Font
+import androidx.compose.ui.text.googlefonts.GoogleFont
+import com.nwe.spadesscore.R
 
-// Set of Material typography styles to start with
-val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
+private val googleFontProvider = GoogleFont.Provider(
+    providerAuthority = "com.google.android.gms.fonts",
+    providerPackage = "com.google.android.gms",
+    certificates = R.array.com_google_android_gms_fonts_certs
+)
+
+private val patrickHand = GoogleFont("Patrick Hand")
+
+/** Playful brand font used for display/headline styles; body stays on the M3 default. */
+val PatrickHandFamily = FontFamily(
+    Font(googleFont = patrickHand, fontProvider = googleFontProvider, weight = FontWeight.Normal)
+)
+
+private val default = Typography()
+
+val AppTypography = default.copy(
+    displayLarge = default.displayLarge.copy(fontFamily = PatrickHandFamily),
+    displayMedium = default.displayMedium.copy(fontFamily = PatrickHandFamily),
+    displaySmall = default.displaySmall.copy(fontFamily = PatrickHandFamily),
+    headlineLarge = default.headlineLarge.copy(fontFamily = PatrickHandFamily),
+    headlineMedium = default.headlineMedium.copy(fontFamily = PatrickHandFamily),
+    headlineSmall = default.headlineSmall.copy(fontFamily = PatrickHandFamily),
+    titleLarge = default.titleLarge.copy(fontFamily = PatrickHandFamily)
 )
