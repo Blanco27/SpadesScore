@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.nwe.spadesscore.Languages
 import com.nwe.spadesscore.domain.GameState
 import com.nwe.spadesscore.domain.SpadesEngine
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,16 +12,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.Random
 
-/** UI-State für den gesamten Spielfluss. `game` ist null vor [startGame]. */
+/** UI-State für den gesamten Spielfluss. `game` ist null vor [startGame]. Die Sprache lebt
+ *  nicht hier, sondern in [androidx.appcompat.app.AppCompatDelegate] (per-app locales). */
 data class GameUiState(
     val playerCount: Int = 4,
-    val language: Languages = Languages.ENGLISH,
     val game: GameState? = null
 )
 
 /**
  * Activity-weites ViewModel des gesamten Spiels. Besitzt den unveränderlichen [GameState] und ruft
- * die reine [SpadesEngine] direkt – kein SpadesGame-Singleton. Überlebt Config-Changes als ViewModel
+ * die reine [SpadesEngine] direkt. Überlebt Config-Changes als ViewModel
  * (keine Prozesstod-Persistenz; bewusst außerhalb des Umfangs). [random] ist für deterministische
  * Tests injizierbar.
  */
@@ -32,8 +31,6 @@ class GameViewModel(private val random: Random = Random()) : ViewModel() {
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
 
     fun selectPlayerCount(count: Int) = _uiState.update { it.copy(playerCount = count) }
-
-    fun selectLanguage(language: Languages) = _uiState.update { it.copy(language = language) }
 
     fun startGame(names: List<String>, randomDealer: Boolean) {
         val start = if (randomDealer) SpadesEngine.randomStartingPlayer(_uiState.value.playerCount, random) else 0

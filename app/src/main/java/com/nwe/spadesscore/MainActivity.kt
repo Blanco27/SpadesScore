@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.getValue
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -20,7 +22,6 @@ import com.nwe.spadesscore.ui.game.PlayerNamesScreen
 import com.nwe.spadesscore.ui.game.ResultScreen
 import com.nwe.spadesscore.ui.setup.SetupScreen
 import com.nwe.spadesscore.ui.theme.SpadesScoreTheme
-import java.util.Locale
 
 private object Routes {
     const val SETUP = "setup"
@@ -33,8 +34,9 @@ private object Routes {
 
 /**
  * Single-Activity-Host. Ein NavHost trägt Setup + alle Spiel-Screens; ein gemeinsames
- * [GameViewModel] hält den Zustand. Zurück ist im gesamten Flow deaktiviert. Sprache lebt im VM;
- * Locale wird vor setContent angewandt, Wechsel via recreate().
+ * [GameViewModel] hält den Zustand. Zurück ist im gesamten Flow deaktiviert. Die Sprache wird über
+ * [AppCompatDelegate] per-app locales gesetzt (autoStoreLocales persistiert sie; AppCompat ruft
+ * recreate() selbst auf), nur auf dem Setup-Screen änderbar.
  */
 class MainActivity : AppCompatActivity() {
 
@@ -42,7 +44,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        applyLocale(localeCodeFor(gameViewModel.uiState.value.language))
 
         enableEdgeToEdge()
         setContent {
@@ -55,9 +56,9 @@ class MainActivity : AppCompatActivity() {
                     composable(Routes.SETUP) {
                         SetupScreen(
                             playerCount = state.playerCount,
-                            language = state.language,
+                            languageTag = currentLanguageTag(),
                             onSelectPlayerCount = gameViewModel::selectPlayerCount,
-                            onSelectLanguage = { changeLanguage(it) },
+                            onSelectLanguage = { setLanguage(it) },
                             onNext = { navController.navTo(Routes.PLAYERS) }
                         )
                     }
@@ -118,23 +119,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeLanguage(language: Languages) {
-        if (gameViewModel.uiState.value.language == language) return
-        gameViewModel.selectLanguage(language)
-        applyLocale(localeCodeFor(language))
-        recreate()
+    /** Setzt die App-Sprache; AppCompat persistiert (autoStoreLocales) und ruft recreate() selbst. */
+    private fun setLanguage(tag: String) {
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag))
     }
 
-    private fun localeCodeFor(language: Languages?): String =
-        if (language == Languages.GERMAN) "de" else "en"
-
-    @Suppress("DEPRECATION")
-    private fun applyLocale(code: String) {
-        val locale = Locale(code)
-        Locale.setDefault(locale)
-        val config = resources.configuration
-        config.setLocale(locale)
-        resources.updateConfiguration(config, resources.displayMetrics)
+    /** Aktuell wirksamer Sprach-Tag für den Selektor: app-locale, sonst die aufgelöste Config-Locale. */
+    private fun currentLanguageTag(): String {
+        val appLocales = AppCompatDelegate.getApplicationLocales()
+        val locale = if (appLocales.size() > 0) appLocales.get(0) else resources.configuration.locales.get(0)
+        return if (locale?.language == "de") "de" else "en"
     }
 }
 

@@ -1,6 +1,5 @@
 package com.nwe.spadesscore.ui.game
 
-import com.nwe.spadesscore.Languages
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -14,7 +13,7 @@ class GameViewModelTest {
 
     @Test
     fun initialState_isDefault() {
-        assertEquals(GameUiState(playerCount = 4, language = Languages.ENGLISH, game = null), vm().uiState.value)
+        assertEquals(GameUiState(playerCount = 4, game = null), vm().uiState.value)
     }
 
     @Test
@@ -22,13 +21,6 @@ class GameViewModelTest {
         val vm = vm()
         vm.selectPlayerCount(3)
         assertEquals(3, vm.uiState.value.playerCount)
-    }
-
-    @Test
-    fun selectLanguage_updatesState() {
-        val vm = vm()
-        vm.selectLanguage(Languages.GERMAN)
-        assertEquals(Languages.GERMAN, vm.uiState.value.language)
     }
 
     @Test

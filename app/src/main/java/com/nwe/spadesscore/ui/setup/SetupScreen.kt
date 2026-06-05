@@ -24,16 +24,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.nwe.spadesscore.Languages
 import com.nwe.spadesscore.R
 import com.nwe.spadesscore.ui.theme.SpadesScoreTheme
 
 @Composable
 fun SetupScreen(
     playerCount: Int,
-    language: Languages,
+    languageTag: String,
     onSelectPlayerCount: (Int) -> Unit,
-    onSelectLanguage: (Languages) -> Unit,
+    onSelectLanguage: (String) -> Unit,
     onNext: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -66,10 +65,10 @@ fun SetupScreen(
         SegmentedSelector(
             label = stringResource(R.string.language),
             options = listOf(
-                Languages.ENGLISH to stringResource(R.string.english),
-                Languages.GERMAN to stringResource(R.string.deutsch)
+                "en" to stringResource(R.string.english),
+                "de" to stringResource(R.string.deutsch)
             ),
-            selected = language,
+            selected = languageTag,
             onSelect = onSelectLanguage
         )
 
@@ -119,7 +118,7 @@ private fun SetupScreenPreview() {
     SpadesScoreTheme {
         SetupScreen(
             playerCount = 4,
-            language = Languages.ENGLISH,
+            languageTag = "en",
             onSelectPlayerCount = {},
             onSelectLanguage = {},
             onNext = {}
