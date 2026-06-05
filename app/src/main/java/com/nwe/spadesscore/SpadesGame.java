@@ -150,10 +150,10 @@ public class SpadesGame {
         return languages;
     }
 
-    public String getCombinedTrickPredictionString(DeclareTricksActivity declareTricksActivity, int tricks1, int tricks2, int tricks3, int tricks4) {
+    public String getCombinedTrickPredictionString(Context context, int tricks1, int tricks2, int tricks3, int tricks4) {
         final int combinedTricks = tricks1 + tricks2 + tricks3 + (playerCount == 4 ? tricks4 : 0);
         final int possibleTricks = getAmountOfCards();
-        return String.format(Locale.getDefault(), declareTricksActivity.getString(R.string.combined_trick_prediction), combinedTricks, possibleTricks, declareTricksActivity.getString(R.string.tricks));
+        return String.format(Locale.getDefault(), context.getString(R.string.combined_trick_prediction), combinedTricks, possibleTricks, context.getString(R.string.tricks));
     }
 
     public int getAmountOfRounds() {

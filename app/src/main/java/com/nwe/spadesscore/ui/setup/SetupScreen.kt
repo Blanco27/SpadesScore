@@ -30,7 +30,8 @@ import com.nwe.spadesscore.ui.theme.SpadesScoreTheme
 
 @Composable
 fun SetupScreen(
-    state: SetupUiState,
+    playerCount: Int,
+    language: Languages,
     onSelectPlayerCount: (Int) -> Unit,
     onSelectLanguage: (Languages) -> Unit,
     onNext: () -> Unit,
@@ -58,7 +59,7 @@ fun SetupScreen(
                 3 to stringResource(R.string.three),
                 4 to stringResource(R.string.four)
             ),
-            selected = state.playerCount,
+            selected = playerCount,
             onSelect = onSelectPlayerCount
         )
         Spacer(Modifier.height(24.dp))
@@ -68,7 +69,7 @@ fun SetupScreen(
                 Languages.ENGLISH to stringResource(R.string.english),
                 Languages.GERMAN to stringResource(R.string.deutsch)
             ),
-            selected = state.language,
+            selected = language,
             onSelect = onSelectLanguage
         )
 
@@ -117,7 +118,8 @@ private fun <T> SegmentedSelector(
 private fun SetupScreenPreview() {
     SpadesScoreTheme {
         SetupScreen(
-            state = SetupUiState(playerCount = 4, language = Languages.ENGLISH),
+            playerCount = 4,
+            language = Languages.ENGLISH,
             onSelectPlayerCount = {},
             onSelectLanguage = {},
             onNext = {}
