@@ -27,6 +27,10 @@ class GameRepositoryTest {
         repo.setPredictions(listOf(2, 0, 0, 0))
         repo.confirmTricks(listOf(true, false, false, false))
 
+        // Persistenz deterministisch abwarten: der serielle Dispatcher garantiert,
+        // dass mit dem letzten Job auch alle vorherigen Schreibvorgänge fertig sind.
+        repo.lastPersistJob?.join()
+
         // Repository neu aufbauen -> lädt aus derselben DB
         val restored = GameRepository(db.gameDao(), Dispatchers.IO)
         assertEquals(2, restored.state.value.currentRound)
