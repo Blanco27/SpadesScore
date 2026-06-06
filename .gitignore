@@ -23,3 +23,10 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Local build logs
+build_*.log
+# Superpowers AI tooling artifacts
+.superpowers/
+# IDE
+/.idea/markdown.xml
