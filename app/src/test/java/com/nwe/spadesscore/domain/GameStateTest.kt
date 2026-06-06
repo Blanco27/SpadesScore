@@ -54,6 +54,12 @@ class GameStateTest {
     }
 
     @Test
+    fun isGameOver_secondHalf_atBoundary() {
+        assertFalse(state(16, 16, true).isGameOver) // last round, not over yet
+        assertTrue(state(17, 16, true).isGameOver)  // one past the end
+    }
+
+    @Test
     fun currentDealerName_readsPlayerAtDealerIndex() {
         val s = state(1, 8, false).copy(dealerIndex = 2)
         assertEquals("C", s.currentDealerName)

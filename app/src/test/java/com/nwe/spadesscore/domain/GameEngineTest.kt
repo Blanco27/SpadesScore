@@ -73,7 +73,8 @@ class GameEngineTest {
         var s: GameState = GameEngine.startGame(listOf("A", "B", "C", "D"), randomDealer = false, language = Language.ENGLISH)
         s = GameEngine.confirmTricks(s.copy(predictions = listOf(1, 0, 0, 0)), listOf(true, false, false, false))
         s = GameEngine.confirmTricks(s.copy(predictions = listOf(2, 0, 0, 0)), listOf(true, false, false, false))
-        assertEquals(listOf(0, 6, 13), s.players[0].scores) // 0 -> +6 -> +7
+        // round 1: 0 + 1 + 5 = 6; round 2: 6 + 2 + 5 = 13
+        assertEquals(listOf(0, 6, 13), s.players[0].scores)
     }
 
     @Test
@@ -82,6 +83,26 @@ class GameEngineTest {
         val half = GameEngine.startSecondHalf(start)
         assertEquals(16, half.amountOfRounds)
         assertTrue(half.isSecondHalf)
+    }
+
+    @Test
+    fun placementByPlayerIndex_tiedScores_assignConsecutiveNotSharedRanks() {
+        val s = GameEngine.startGame(listOf("A", "B", "C", "D"), randomDealer = false, language = Language.ENGLISH)
+            .copy(
+                players = listOf(
+                    com.nwe.spadesscore.domain.model.Player("A", listOf(0, 20)),
+                    com.nwe.spadesscore.domain.model.Player("B", listOf(0, 20)), // tied with A
+                    com.nwe.spadesscore.domain.model.Player("C", listOf(0, 10)),
+                    com.nwe.spadesscore.domain.model.Player("D", listOf(0, 5)),
+                ),
+            )
+        val places = GameEngine.placementByPlayerIndex(s)
+        // Tied players get distinct consecutive ranks (1 and 2 in some order), not a shared rank.
+        assertTrue(places[0]!! in 1..2)
+        assertTrue(places[1]!! in 1..2)
+        assertTrue(places[0] != places[1])
+        assertEquals(3, places[2])
+        assertEquals(4, places[3])
     }
 
     @Test
