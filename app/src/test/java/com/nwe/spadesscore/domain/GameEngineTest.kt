@@ -78,6 +78,19 @@ class GameEngineTest {
     }
 
     @Test
+    fun confirmTricks_threePlayers_scoresHitsAndRotation() {
+        val start = GameEngine.startGame(listOf("A", "B", "C"), randomDealer = false, language = Language.ENGLISH)
+            .copy(predictions = listOf(2, 0, 1))
+        val next = GameEngine.confirmTricks(start, listOf(true, false, true))
+        assertEquals(3, next.players.size)
+        assertEquals(listOf(0, 7), next.players[0].scores) // 0 + 2 + 5
+        assertEquals(listOf(0, 0), next.players[1].scores) // miss -> unchanged
+        assertEquals(listOf(0, 6), next.players[2].scores) // 0 + 1 + 5
+        assertEquals(2, next.currentRound)
+        assertEquals(1, next.dealerIndex)
+    }
+
+    @Test
     fun startSecondHalf_doublesRoundsAndSetsFlag() {
         val start = GameEngine.startGame(listOf("A", "B", "C", "D"), randomDealer = false, language = Language.ENGLISH)
         val half = GameEngine.startSecondHalf(start)
