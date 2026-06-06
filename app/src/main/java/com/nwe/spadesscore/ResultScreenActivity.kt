@@ -14,6 +14,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.nwe.spadesscore.ui.applyPersistedLocale
 import com.nwe.spadesscore.ui.gameRepository
 import com.nwe.spadesscore.ui.result.ResultViewModel
 
@@ -42,6 +43,7 @@ class ResultScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyPersistedLocale()
         setContentView(R.layout.activity_result_screen)
 
         scoreCells = (1..4).map { player ->
