@@ -53,4 +53,8 @@
         <item>9</item>
         <item>10</item>
     </string-array>
+    <string name="dialog_empty_name_title">Leerer Name</string>
+    <string name="dialog_empty_name_message">Bitte gib jedem Spieler einen Namen</string>
+    <string name="dialog_name_too_long_title">Name zu lang</string>
+    <string name="dialog_name_too_long_message">Namen dürfen maximal 10 Zeichen lang sein</string>
 </resources>

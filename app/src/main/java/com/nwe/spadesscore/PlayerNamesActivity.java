@@ -38,7 +38,7 @@ public class PlayerNamesActivity extends SpadesAppCompatActivity {
     }
 
     @Override
-    void initializeUIComponents() {
+    protected void initializeUIComponents() {
         player1_name_input = findViewById(R.id.player1_name_input);
         player2_name_input = findViewById(R.id.player2_name_input);
         player3_name_input = findViewById(R.id.player3_name_input);
@@ -60,7 +60,7 @@ public class PlayerNamesActivity extends SpadesAppCompatActivity {
     }
 
     @Override
-    void setupUI() {
+    protected void setupUI() {
         if (spadesGame.getPlayerCount() == 3) {
             player4_name_input.setVisibility(View.GONE);
             findViewById(R.id.player4_space).setVisibility(View.GONE);
@@ -70,7 +70,7 @@ public class PlayerNamesActivity extends SpadesAppCompatActivity {
     }
 
     @Override
-    void initContentView() {
+    protected void initContentView() {
         setContentView(R.layout.activity_player_names);
     }
 

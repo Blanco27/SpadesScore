@@ -23,10 +23,10 @@ public abstract class SpadesAppCompatActivity extends AppCompatActivity {
         });
     }
 
-    abstract void initializeUIComponents();
+    protected abstract void initializeUIComponents();
 
-    abstract void setupUI();
+    protected abstract void setupUI();
 
-    abstract void initContentView();
+    protected abstract void initContentView();
 
 }

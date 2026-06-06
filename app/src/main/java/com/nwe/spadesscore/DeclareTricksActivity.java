@@ -105,7 +105,7 @@ public class DeclareTricksActivity extends SpadesAppCompatActivity {
     }
 
     @Override
-    void initContentView() {
+    protected void initContentView() {
         setContentView(R.layout.activity_declare_tricks);
         COLOR_ACTIVE = ContextCompat.getColor(this, R.color.background_button_enabled);
         COLOR_DEACTIVE = ContextCompat.getColor(this, R.color.background_button_disabled);

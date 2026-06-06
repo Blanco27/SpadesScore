@@ -61,7 +61,7 @@ public class DealCardsActivity extends SpadesAppCompatActivity {
     }
 
     @Override
-    void initContentView() {
+    protected void initContentView() {
         setContentView(R.layout.activity_deal_cards);
     }
 

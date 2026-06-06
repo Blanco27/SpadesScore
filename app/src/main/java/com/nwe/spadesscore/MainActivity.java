@@ -30,7 +30,7 @@ public class MainActivity extends SpadesAppCompatActivity {
     }
 
     @Override
-    void initializeUIComponents() {
+    protected void initializeUIComponents() {
         btn3Players = findViewById(R.id.btn3Players);
         btn4Players = findViewById(R.id.btn4Players);
         btnLanguageEnglish = findViewById(R.id.btnLanguageEnglish);
@@ -39,7 +39,7 @@ public class MainActivity extends SpadesAppCompatActivity {
     }
 
     @Override
-    void setupUI() {
+    protected void setupUI() {
         if (spadesGame.getPlayerCount() == 4) {
             btn4Players.setSelected(true);
             btn3Players.setSelected(false);
@@ -161,7 +161,7 @@ public class MainActivity extends SpadesAppCompatActivity {
     }
 
     @Override
-    void initContentView() {
+    protected void initContentView() {
         setContentView(R.layout.activity_main);
         COLOR_ACTIVE = ContextCompat.getColor(this, R.color.background_button_enabled);
         COLOR_DEACTIVE = ContextCompat.getColor(this, R.color.background_button_disabled);
