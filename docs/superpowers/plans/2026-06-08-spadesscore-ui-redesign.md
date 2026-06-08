@@ -1,6 +1,8 @@
 # SpadesScore UI-Redesign — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+>
+> **⚡ Execution is batched for speed — read the “Execution Strategy (Batches)” section below BEFORE starting. It supersedes the per-task `Build`/`lint`/`Visual check`/`Commit` steps: implement a whole batch, then run one checkpoint at the batch end.**
 
 **Goal:** Reskin the SpadesScore app so it looks **exactly 1:1** like the mockup `docs/mockups/spadesscore-ui-redesign.html` (Paper Light / Casino Noir, Space Grotesk + Inter), add a Settings screen with a theme switcher, and a new launcher icon — without touching MVVM/Room/GameEngine logic.
 
@@ -19,6 +21,39 @@
 - Build: `./gradlew assembleDebug`
 - Lint: `./gradlew lint`
 - Unit tests: `./gradlew testDebugUnitTest`
+
+---
+
+## Execution Strategy (Batches) — read first
+
+This plan was originally written with a per-task **Build → Commit** cadence. **That cadence is superseded by the batches below**, tuned for maximum speed without losing quality. When executing:
+
+- **Within a batch, IGNORE the individual `Build` / `lint` / `Visual check` / `Commit` steps inside each Task.** Implement all of a batch's tasks first, then run the **single batch checkpoint** at the end.
+- The per-task implementation content (code, XML, file lists) is still authoritative — only the verify/commit *ceremony* is consolidated.
+
+**Checkpoint = (1) compile-check → (2) code-review + refactor → (3) commit.**
+
+| Batch | Tasks | Type | Checkpoint at batch end |
+|---|---|---|---|
+| **1 · Design-System** | 1–6 | resources only | `assembleDebug` (AAPT compiles all XML — catches bad `?attr`/typo refs) → quick structural review → commit. No lint/tests yet. Internal order: colors (2) → attrs/themes (3) → drawables (5)/type (4); fonts (1) + icons (6) are independent. |
+| **2 · Theme-Persistenz** | 7–8 | Kotlin | Keep Task 7 **TDD** (pure logic). Then `testDebugUnitTest --tests "*ThemeModeTest"` + `assembleDebug` → review → commit. |
+| **3 · Settings** | 9–12 | Kotlin + res | `assembleDebug` → review → 1 smoke check (open Settings, toggle theme + language) → commit. |
+| **4 · Reskin Screens** | 13–19 | layouts + activities | See **Batch 4 protocol** below. |
+| **5 · Launcher-Icon** | 20 | res + PNG | `assembleDebug` → eyeball icon on device → commit. No code review. |
+| **6 · Cleanup + Gate** | 21–22 | delete + verify | Full `testDebugUnitTest` + `assembleDebug lint` + the single 1:1 visual gate (all screens, Light/Dark, EN/DE) + persistence checks → finish-branch. |
+
+**Frequency rules (the speed levers):**
+- `assembleDebug` runs **once per code/resource batch** — that *is* the compile-check. Where lint is also called for, combine: `./gradlew assembleDebug lint` (one invocation).
+- **`lint` only at Batch 4 + the final Gate** (not every batch).
+- **Full unit suite only at the Gate.** The ThemeMode test runs inline in Batch 2 (it is the only new logic — the reskin never touches the domain layer).
+- **One commit per batch** (or a few logical commits within it) — not one per task.
+- A reminder per the user's instruction: where a batch adds nothing that compiles (e.g. a pure strings-only change), the build can be skipped — the next batch's `assembleDebug` covers it anyway.
+
+**Batch 4 protocol (parallel reskin — chosen: Subagents + Pilot/End-Gate):**
+1. **Pilot first:** Do **Task 13 (Start screen) fully, including its visual check** against mockup 1/8. This validates the whole design-system before it replicates across 7 screens; fix any token/style issues here.
+2. **Shared-header refactor:** Deal/Declare/Confirm/Result share one header (brand row + score row + round title + progress). Extract it once as a reusable `<include>` (e.g. `layout/include_round_header.xml`) + a small bind helper **before** reskinning those screens. DRY = faster *and* consistent.
+3. **Parallel fan-out:** Dispatch **independent subagents** for Tasks 14–19 — each owns its own `activity_*.xml` + `*Activity.kt`. Use **git-worktree isolation per agent** so concurrent writes don't conflict (`superpowers:dispatching-parallel-agents`). Strings already landed in Batch 3, so no shared file is on the parallel path.
+4. **Single checkpoint:** after all screens land → `./gradlew assembleDebug lint` (one run) → **one** code-review across the whole screen diff + refactor → commit. **Defer all per-screen visual checks to the Task 22 gate** — only the pilot is checked inline.
 
 ---
 
@@ -944,11 +979,13 @@ git commit -m "feat(settings): add SettingsActivity (theme switch, language, abo
 
 ---
 
-# Phase 4 — Reskin Screens
+# Phase 4 — Reskin Screens  (= Batch 4 — see Execution Strategy)
 
-> For every screen task: rebuild the layout to match its mockup screen using Phase-1 styles/attrs/drawables, keep the existing view IDs the Activity references (or update the Activity in lockstep when adding IDs), then **build + lint + visually compare to the named mockup screen in `docs/mockups/spadesscore-ui-redesign.html`**, then commit. The data needed by every new decorative element (round, totals, scores, names, predictions, placements) is already present in each screen's `UiState` (verified).
+> **Batch-4 cadence (overrides the per-task Build/Visual/Commit steps):** (1) Pilot Task 13 fully, incl. a visual check; (2) extract the shared header (`include_round_header.xml`) before Deal/Declare/Confirm/Result; (3) run Tasks 14–19 as **parallel, worktree-isolated subagents**; (4) one `assembleDebug lint` + one code-review + refactor + commit at the end. **Visual checks for Tasks 14–19 are deferred to the Task 22 gate** — only the pilot is checked inline.
+>
+> For every screen: rebuild the layout to match its mockup screen using Phase-1 styles/attrs/drawables, keep the existing view IDs the Activity references (or update the Activity in lockstep when adding IDs). The data needed by every new decorative element (round, totals, scores, names, predictions, placements) is already present in each screen's `UiState` (verified).
 
-## Task 13: Start screen (`activity_main.xml` + `MainActivity.kt`)
+## Task 13: Start screen (`activity_main.xml` + `MainActivity.kt`)  — ⭐ Batch-4 PILOT (keep the inline visual check)
 
 **Files:**
 - Modify: `app/src/main/res/layout/activity_main.xml`
