@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SpadesScore · UI-Redesign — Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --page:#F3F3F1; --page2:#ECECEA; --ink:#17171A; --ink-soft:#5C5C63; --line:#E2E2DE;
+    --indigo:#4F46E5; --indigo-deep:#3F38C9; --gold:#B8893A; --danger:#C0392B;
+    font-family:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--page);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh;
+    background-image:
+      radial-gradient(circle at 13% 12%, rgba(79,70,229,.07), transparent 40%),
+      radial-gradient(circle at 88% 4%, rgba(79,70,229,.05), transparent 38%),
+      radial-gradient(circle at 82% 96%, rgba(23,23,26,.05), transparent 45%);}
+
+  /* ===== HERO ===== */
+  header.hero{max-width:1280px;margin:0 auto;padding:60px 40px 20px;}
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--indigo);margin-bottom:18px;}
+  .kicker::before{content:"♠";color:var(--ink);font-size:14px;letter-spacing:0;}
+  .kicker::after{content:"";width:30px;height:2px;background:var(--indigo);display:inline-block;}
+  header.hero h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(34px,5.2vw,62px);line-height:1.02;letter-spacing:-.025em;color:var(--ink);max-width:20ch;}
+  header.hero h1 em{font-style:normal;color:var(--indigo);}
+  header.hero p.lede{margin-top:20px;max-width:64ch;font-size:16.5px;line-height:1.62;color:var(--ink-soft);font-weight:500;}
+  header.hero p.lede b{color:var(--ink);font-weight:600;}
+
+  .meta-row{display:flex;flex-wrap:wrap;gap:34px 46px;margin-top:38px;align-items:flex-start;}
+  .badge-soft{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);margin-bottom:10px;}
+  .swatches{display:flex;gap:0;border-radius:12px;overflow:hidden;box-shadow:0 10px 24px rgba(23,23,26,.12);}
+  .swatch{width:56px;height:56px;display:grid;place-items:end;padding:6px;}
+  .swatch span{font-size:8px;font-weight:700;letter-spacing:.02em;}
+  .swatch small{font-size:7px;font-weight:600;display:block;opacity:.8;}
+  .typenote{max-width:30ch;}
+  .typenote .ff{font-family:'Space Grotesk';font-weight:700;font-size:30px;color:var(--ink);letter-spacing:-.01em;line-height:1.05;}
+  .typenote .ff2{font-family:'Inter';font-weight:600;font-size:18px;color:var(--ink-soft);margin-top:1px;}
+  .typenote p{font-size:13px;line-height:1.55;color:var(--ink-soft);font-weight:500;margin-top:9px;}
+  .typenote b{color:var(--ink);font-weight:700;}
+  .sig{display:flex;gap:22px;align-items:flex-start;}
+  .sig .mark{width:62px;height:62px;border-radius:17px;background:linear-gradient(155deg,#26262c,#0E0E10);display:grid;place-items:center;font-size:32px;color:var(--gold);box-shadow:0 10px 22px rgba(23,23,26,.30);}
+  .sigcol .row{display:flex;align-items:center;gap:10px;margin-top:7px;}
+  .spd{font-size:26px;line-height:1;}
+  .ranks{display:flex;gap:6px;margin-top:8px;}
+  .rb{display:inline-flex;align-items:center;gap:3px;font-family:'Space Grotesk';font-weight:700;font-size:11px;
+    padding:4px 9px;border-radius:99px;background:#E7E7E3;color:var(--ink-soft);}
+  .rb.one{background:rgba(79,70,229,.13);color:var(--indigo-deep);}
+  .rb svg{width:11px;height:11px;}
+  .note{font-size:11.5px;color:var(--ink-soft);font-weight:500;margin-top:9px;max-width:30ch;}
+
+  /* ===== SECTION TITLES ===== */
+  .sectit{max-width:1280px;margin:34px auto 0;padding:0 40px;}
+  .sectit h2{font-family:'Space Grotesk';font-weight:700;font-size:24px;letter-spacing:-.01em;color:var(--ink);display:flex;align-items:center;gap:11px;}
+  .sectit h2 .tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--ink);padding:4px 10px;border-radius:99px;}
+  .sectit h2 .tag.d{background:#0E0E10;color:var(--gold);}
+  .sectit p{font-size:13.5px;color:var(--ink-soft);font-weight:500;margin-top:7px;max-width:60ch;}
+
+  /* ===== STAGE / PHONES ===== */
+  .stage{max-width:1280px;margin:0 auto;padding:24px 40px 30px;
+    display:flex;flex-wrap:wrap;gap:46px 44px;justify-content:center;align-items:flex-start;}
+  .frame-wrap{display:flex;flex-direction:column;align-items:center;gap:13px;}
+  .frame-label{font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--ink);display:flex;align-items:center;gap:10px;}
+  .frame-label .n{font-family:'Space Grotesk';font-size:12px;font-weight:700;color:#fff;background:var(--indigo);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;}
+  .dark-wrap .frame-label .n{background:var(--gold);color:#15130C;}
+  .frame-sub{font-size:12px;color:var(--ink-soft);max-width:30ch;text-align:center;margin-top:-5px;font-weight:500;line-height:1.45;}
+
+  .phone{width:290px;border-radius:40px;padding:9px;
+    background:linear-gradient(160deg,#dadada,#bcbcbc);box-shadow:0 26px 54px rgba(23,23,26,.18);}
+  .dark-wrap .phone,.phone.onDark{background:linear-gradient(160deg,#3a3b42,#1d1e22);box-shadow:0 26px 54px rgba(0,0,0,.45);}
+  .screen{border-radius:32px;overflow:hidden;padding:17px 15px 17px;display:flex;flex-direction:column;gap:12px;
+    background:var(--bg);color:var(--ink-c);min-height:560px;}
+
+  /* theme tokens */
+  .light{--bg:#F6F6F4;--surface:#FFFFFF;--ink-c:#17171A;--muted:#6B6B72;--accent:#4F46E5;--line:#E7E7E3;
+    --track:#E7E7E3;--stepbg:#F1F1EF;--chipbg:#EEEDFB;--ctabg:#17171A;--ctafg:#fff;--onAcc:#fff;
+    --spade:#17171A;--ring:rgba(79,70,229,.14);--hitbg:rgba(79,70,229,.06);--shadow:0 6px 16px rgba(40,40,50,.06);--warn:#C0392B;--warnbg:rgba(192,57,43,.10);}
+  .dark{--bg:#0E0E10;--surface:#1A1A1E;--ink-c:#F4F4F5;--muted:#8A8A93;--accent:#E4B95B;--line:#2A2A30;
+    --track:#26262C;--stepbg:#222228;--chipbg:#211E16;--ctabg:#E4B95B;--ctafg:#15130C;--onAcc:#15130C;
+    --spade:#E4B95B;--ring:rgba(228,185,91,.16);--hitbg:rgba(228,185,91,.09);--shadow:none;--warn:#E8736F;--warnbg:rgba(232,115,111,.12);}
+
+  /* shared screen bits */
+  .brand{display:flex;align-items:center;justify-content:space-between;}
+  .brand .wm{font-family:'Space Grotesk';font-weight:700;font-size:14px;letter-spacing:-.01em;color:var(--ink-c);display:flex;align-items:center;gap:6px;}
+  .brand .wm .sp{color:var(--spade);font-size:15px;}
+  .brand .rd{font-family:'Inter';font-size:11px;font-weight:600;color:var(--muted);}
+
+  .scorerow{display:flex;justify-content:space-between;gap:5px;}
+  .scorerow div{font-family:'Inter';font-size:9.5px;font-weight:500;color:var(--muted);text-align:center;flex:1;}
+  .scorerow b{display:block;font-family:'Space Grotesk';font-weight:600;font-size:13px;color:var(--ink-c);margin-top:1px;}
+
+  .title{font-family:'Space Grotesk';font-weight:700;font-size:40px;letter-spacing:-.02em;color:var(--ink-c);text-align:center;line-height:1;margin-top:4px;}
+  .title em{font-style:normal;color:var(--accent);}
+  .progress{height:6px;border-radius:99px;background:var(--track);overflow:hidden;margin:2px 4px;}
+  .progress>i{display:block;height:100%;background:var(--accent);border-radius:99px;}
+  .subtitle{font-family:'Inter';font-size:12.5px;font-weight:500;color:var(--muted);text-align:center;}
+
+  .prow{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:11px 11px 11px 15px;box-shadow:var(--shadow);}
+  .prow .pn{font-family:'Space Grotesk';font-weight:500;font-size:15px;color:var(--ink-c);}
+  .prow .meta{font-family:'Inter';font-size:11px;font-weight:500;color:var(--muted);margin-top:3px;}
+  .prow .meta .tk{color:var(--accent);font-weight:600;}
+  .prow.hit{background:var(--hitbg);}
+  .prow.hit .meta .pt{color:var(--accent);font-weight:700;}
+
+  .step2{display:flex;align-items:center;gap:11px;background:var(--stepbg);border-radius:12px;padding:6px 13px;}
+  .step2 .pm{font-family:'Space Grotesk';font-size:17px;font-weight:600;color:var(--muted);width:12px;text-align:center;}
+  .step2 .vl{font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--accent);min-width:16px;text-align:center;}
+
+  .check{width:27px;height:27px;border-radius:8px;border:2px solid var(--line);flex-shrink:0;display:grid;place-items:center;background:var(--surface);}
+  .check.on{background:var(--accent);border-color:var(--accent);}
+  .check.on::after{content:"✓";font-size:15px;font-weight:700;color:var(--onAcc);line-height:1;}
+
+  .chip{align-self:center;font-family:'Inter';font-size:11.5px;font-weight:600;padding:5px 14px;border-radius:99px;background:var(--chipbg);color:var(--accent);}
+  .chip b{font-family:'Space Grotesk';font-weight:700;}
+  .chip.warn{background:var(--warnbg);color:var(--warn);}
+
+  .cta{margin-top:auto;text-align:center;padding:14px;border-radius:15px;font-family:'Space Grotesk';font-weight:600;font-size:15px;
+    background:var(--ctabg);color:var(--ctafg);box-shadow:0 12px 24px rgba(0,0,0,.16);}
+  .dark .cta{box-shadow:0 12px 24px rgba(228,185,91,.26);}
+  .cta.off{background:var(--stepbg);color:var(--muted);box-shadow:none;}
+
+  .spacer{flex:1;min-height:6px;}
+
+  /* start screen */
+  .hero-mark{display:flex;flex-direction:column;align-items:center;gap:9px;margin:14px 0 4px;}
+  .hero-mark .big{font-size:62px;line-height:1;color:var(--spade);}
+  .hero-mark .wordmark{font-family:'Space Grotesk';font-weight:700;font-size:27px;letter-spacing:.04em;color:var(--ink-c);}
+  .hero-mark .tag{font-family:'Inter';font-size:12px;font-weight:500;color:var(--muted);}
+  .label{font-family:'Inter';font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--muted);margin:0 4px 7px;}
+  .seg{display:flex;background:var(--stepbg);border-radius:14px;padding:4px;gap:4px;}
+  .seg .opt{flex:1;text-align:center;padding:11px 4px;border-radius:11px;font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--muted);}
+  .seg .opt.on{background:var(--surface);color:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.12);}
+
+  /* names screen */
+  .field{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow);}
+  .field.focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring);}
+  .field .lbl{font-family:'Inter';font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+  .field .val{font-family:'Space Grotesk';font-weight:500;font-size:16px;color:var(--ink-c);margin-top:2px;}
+  .field .val.ph{color:var(--muted);font-weight:400;}
+  .switchrow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 4px;}
+  .switchrow .sl{font-family:'Space Grotesk';font-weight:500;font-size:14.5px;color:var(--ink-c);}
+  .switch{width:48px;height:28px;border-radius:99px;background:var(--track);position:relative;flex-shrink:0;}
+  .switch>i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.35);transition:.2s;}
+  .switch.on{background:var(--accent);}
+  .switch.on>i{left:23px;}
+
+  /* deal screen */
+  .dealwrap{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .fan{display:block;}
+  .count{display:flex;align-items:baseline;gap:7px;}
+  .count .num{font-family:'Space Grotesk';font-weight:700;font-size:40px;color:var(--accent);line-height:1;}
+  .count .lbl{font-family:'Inter';font-weight:600;font-size:14px;color:var(--muted);}
+
+  /* result screen */
+  .endhead{display:flex;flex-direction:column;align-items:center;gap:3px;}
+  .endhead .t{font-family:'Space Grotesk';font-weight:700;font-size:30px;letter-spacing:-.01em;color:var(--ink-c);}
+  .endhead .s{font-family:'Inter';font-size:12px;font-weight:500;color:var(--muted);}
+  .grid{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 10px 10px;box-shadow:var(--shadow);}
+  .grow{display:grid;grid-template-columns:repeat(4,1fr);}
+  .grow.ghead .gc{font-family:'Space Grotesk';font-weight:600;font-size:13.5px;color:var(--ink-c);text-align:center;padding-bottom:9px;}
+  .grow.gbody .gc{font-family:'Space Grotesk';font-weight:500;font-size:12px;color:var(--muted);text-align:center;padding:3px 0;}
+  .grow.gbody:last-of-type .gc{color:var(--ink-c);}
+  .gtot{display:grid;grid-template-columns:repeat(4,1fr);margin-top:7px;padding-top:11px;border-top:1px solid var(--line);}
+  .gtot .gc{display:flex;flex-direction:column;align-items:center;gap:5px;}
+  .gtot .num{font-family:'Space Grotesk';font-weight:700;font-size:27px;color:var(--ink-c);line-height:1;}
+  .gtot .gc.lead .num{color:var(--accent);}
+  .gbadge{display:inline-flex;align-items:center;gap:3px;font-family:'Space Grotesk';font-weight:700;font-size:10px;
+    padding:3px 8px;border-radius:99px;background:var(--stepbg);color:var(--muted);}
+  .gbadge.b1{background:var(--ring);color:var(--accent);}
+  .gbadge svg{width:11px;height:11px;}
+
+  /* ===== START GEAR ===== */
+  .startbar{display:flex;justify-content:flex-end;align-items:center;}
+  .gear{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:var(--muted);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);}
+  .gear svg{width:20px;height:20px;}
+
+  /* ===== SETTINGS ===== */
+  .appbar{display:flex;align-items:center;gap:9px;padding:0 0 4px;}
+  .appbar .back{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:var(--ink-c);margin-left:-6px;}
+  .appbar .back svg{width:21px;height:21px;}
+  .appbar .ttl{font-family:'Space Grotesk';font-weight:700;font-size:23px;letter-spacing:-.01em;color:var(--ink-c);}
+  .settingsbody{display:flex;flex-direction:column;flex:1;}
+  .seclabel{font-family:'Inter';font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 4px 9px;}
+  .seclabel.first{margin-top:8px;}
+  .seg.theme{padding:5px;}
+  .seg.theme .opt{display:flex;flex-direction:column;align-items:center;gap:6px;padding:11px 4px 9px;}
+  .seg.theme .opt svg{width:19px;height:19px;}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;}
+  .lrow{display:flex;align-items:center;gap:12px;padding:13px 15px;}
+  .lrow + .lrow{border-top:1px solid var(--line);}
+  .lrow .tag{font-family:'Space Grotesk';font-weight:700;font-size:11px;color:var(--muted);background:var(--stepbg);border-radius:7px;padding:5px 8px;min-width:32px;text-align:center;}
+  .lrow .ln{flex:1;font-family:'Space Grotesk';font-weight:500;font-size:15px;color:var(--ink-c);}
+  .radio{width:21px;height:21px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;display:grid;place-items:center;}
+  .radio.on{border-color:var(--accent);}
+  .radio.on::after{content:"";width:11px;height:11px;border-radius:50%;background:var(--accent);}
+  .cfoot{display:flex;flex-direction:column;align-items:center;gap:9px;padding:36px 10px 8px;margin-top:auto;}
+  .cmark{width:46px;height:46px;border-radius:14px;background:linear-gradient(150deg,#26262c,#0E0E10);display:grid;place-items:center;font-size:24px;color:#E4B95B;box-shadow:0 8px 18px rgba(0,0,0,.32);}
+  .cname{font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--ink-c);}
+  .cname .v{font-family:'Inter';font-weight:600;font-size:12px;color:var(--muted);margin-left:7px;}
+  .clink{display:inline-flex;align-items:center;gap:7px;font-family:'Inter';font-size:13px;font-weight:600;color:var(--accent);}
+  .clink svg{width:15px;height:15px;fill:currentColor;}
+  .coss{font-family:'Inter';font-size:11.5px;font-weight:500;color:var(--muted);}
+  .coss .heart{color:var(--warn);}
+
+  /* ===== FOOTER ===== */
+  .foot{max-width:1280px;margin:8px auto 0;padding:18px 40px 90px;}
+  .foot .panel{background:var(--ink);color:#ECECEC;border-radius:26px;padding:36px 40px;display:flex;flex-wrap:wrap;gap:34px;justify-content:space-between;}
+  .foot h4{font-family:'Space Grotesk';font-weight:700;font-size:22px;margin-bottom:13px;color:#fff;}
+  .foot ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .foot li{font-size:13.5px;color:rgba(255,255,255,.82);font-weight:500;display:flex;gap:10px;align-items:flex-start;line-height:1.45;}
+  .foot li::before{content:"♠";color:var(--gold);font-size:11px;margin-top:3px;}
+  .foot li b{color:#fff;font-weight:700;}
+  .foot .col{min-width:280px;flex:1;}
+  .foot .badge-soft{color:var(--gold);}
+
+  @media (max-width:760px){header.hero{padding:42px 22px 14px;} .stage{padding:18px 14px 30px;gap:38px;} .sectit{padding:0 22px;} .foot{padding:18px 20px 60px;}}
+</style>
+</head>
+<body>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="kicker">SpadesScore · UI-Redesign</div>
+    <h1>Vom Krakel-Look zum <em>ruhigen</em> Score-Tool</h1>
+    <p class="lede">
+      Weg von Handschrift und marmoriertem Foto-Pik — hin zu zwei aufeinander abgestimmten Paletten,
+      einer klaren <b>Space-Grotesk-/Inter-</b>Typo, weißen Karten mit Haarlinie und genau <b>einem Akzent pro Modus</b>
+      (Indigo im Hellen, Gold im Dunklen). Gleiche Funktion, gleicher Flow — nur Farbe, Form, Schrift und Rhythmus
+      werden geschärft. <b>MVVM, Room und die XML-Layouts bleiben unverändert.</b>
+    </p>
+
+    <div class="meta-row">
+      <div>
+        <div class="badge-soft">Palette · Light „Paper Light"</div>
+        <div class="swatches">
+          <div class="swatch" style="background:#F6F6F4"><span style="color:#8a8a86">BG<small style="color:#aaa">#F6F6F4</small></span></div>
+          <div class="swatch" style="background:#FFFFFF"><span style="color:#9a9a96">SURFACE<small style="color:#bbb">#FFFFFF</small></span></div>
+          <div class="swatch" style="background:#E7E7E3"><span style="color:#8a8a86">LINE<small style="color:#a8a8a4">#E7E7E3</small></span></div>
+          <div class="swatch" style="background:#6B6B72"><span style="color:#fff">MUTED<small style="color:#ddd">#6B6B72</small></span></div>
+          <div class="swatch" style="background:#4F46E5"><span style="color:#fff">AKZENT<small style="color:#dcd9fb">#4F46E5</small></span></div>
+          <div class="swatch" style="background:#17171A"><span style="color:#fff">INK<small style="color:#bbb">#17171A</small></span></div>
+        </div>
+        <div class="badge-soft" style="margin-top:15px">Palette · Dark „Casino Noir"</div>
+        <div class="swatches">
+          <div class="swatch" style="background:#0E0E10"><span style="color:#fff">BG<small style="color:#999">#0E0E10</small></span></div>
+          <div class="swatch" style="background:#1A1A1E"><span style="color:#fff">SURFACE<small style="color:#999">#1A1A1E</small></span></div>
+          <div class="swatch" style="background:#2A2A30"><span style="color:#fff">LINE<small style="color:#aaa">#2A2A30</small></span></div>
+          <div class="swatch" style="background:#8A8A93"><span style="color:#fff">MUTED<small style="color:#eee">#8A8A93</small></span></div>
+          <div class="swatch" style="background:#E4B95B"><span style="color:#3a2f12">AKZENT<small style="color:#5b4a1e">#E4B95B</small></span></div>
+          <div class="swatch" style="background:#F4F4F5"><span style="color:#8a8a86">INK<small style="color:#aaa">#F4F4F5</small></span></div>
+        </div>
+      </div>
+
+      <div class="typenote">
+        <div class="badge-soft">Typografie</div>
+        <div class="ff">Space Grotesk</div>
+        <div class="ff2">+ Inter</div>
+        <p><b>700</b> Headlines &amp; Zahlen · <b>600/500</b> Titel &amp; Namen (Space Grotesk) · <b>400/500</b> Body &amp; Labels (Inter).</p>
+        <p style="margin-top:4px">Markante Ziffern für Runde, Scores &amp; Stepper — neutraler, ruhiger Fließtext.</p>
+      </div>
+
+      <div>
+        <div class="badge-soft">Signatur</div>
+        <div class="sig">
+          <div class="mark">♠</div>
+          <div class="sigcol">
+            <div class="row"><span class="spd" style="color:#4F46E5">♠</span><span class="spd" style="color:#17171A">♠</span><span class="spd" style="color:#E4B95B">♠</span></div>
+            <div class="note">Cleaner Vektor-Pik statt Marmor-Foto — Indigo / Ink / Gold.</div>
+            <div class="badge-soft" style="margin-top:14px">Rang-Badges · Ergebnis</div>
+            <div class="ranks">
+              <span class="rb one"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l4.5 4L12 4l4.5 7L21 7v11H3z"/></svg>1.</span>
+              <span class="rb">2.</span>
+              <span class="rb">3.</span>
+              <span class="rb">4.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ LIGHT WALKTHROUGH ============ -->
+  <div class="sectit">
+    <h2>Alle Masken <span class="tag">Light · Paper Light</span></h2>
+    <p>Der komplette Spielfluss in der hellen Palette — Start, Namen, Austeilen, Ansagen, Bestätigen, Ergebnis — plus die neue <b>Einstellungsseite</b> (über das ⚙ vom Start).</p>
+  </div>
+
+  <main class="stage">
+
+    <!-- 1 START -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">1</span> Start</div>
+      <div class="frame-sub">Spieleranzahl + Start. Über ⚙ oben rechts zu den Einstellungen.</div>
+      <div class="phone"><div class="screen light">
+        <div class="startbar"><span class="gear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span></div>
+        <div class="spacer"></div>
+        <div class="hero-mark">
+          <div class="big">♠</div>
+          <div class="wordmark">SPADES</div>
+          <div class="tag">Stiche ansagen. Punkte behalten.</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="label">Anzahl Spieler</div>
+        <div class="seg"><div class="opt">3 Spieler</div><div class="opt on">4 Spieler</div></div>
+        <div class="spacer"></div>
+        <div class="cta">Spiel starten</div>
+      </div></div>
+    </div>
+
+    <!-- 2 NAMEN -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">2</span> Spielernamen</div>
+      <div class="frame-sub">Namen + Zufalls-Dealer. (3-Spieler-Modus blendet Spieler 4 aus.)</div>
+      <div class="phone"><div class="screen light">
+        <div class="title" style="font-size:26px;text-align:left;margin:2px 2px 2px">Spielernamen</div>
+        <div class="field focus"><div class="lbl">Spieler 1</div><div class="val">Anna</div></div>
+        <div class="field"><div class="lbl">Spieler 2</div><div class="val">Ben</div></div>
+        <div class="field"><div class="lbl">Spieler 3</div><div class="val">Clara</div></div>
+        <div class="field"><div class="lbl">Spieler 4</div><div class="val">David</div></div>
+        <div style="height:4px"></div>
+        <div class="switchrow"><span class="sl">Zufälliger erster Dealer</span><span class="switch on"><i></i></span></div>
+        <div class="spacer"></div>
+        <div class="cta">Spiel starten</div>
+      </div></div>
+    </div>
+
+    <!-- 3 AUSTEILEN -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">3</span> Karten austeilen</div>
+      <div class="frame-sub">Wer teilt aus + Kartenzahl der Runde.</div>
+      <div class="phone"><div class="screen light">
+        <div class="brand"><span class="wm"><span class="sp">♠</span> Spades</span><span class="rd">Runde 5 / 8</span></div>
+        <div class="scorerow"><div>Anna<b>18</b></div><div>Ben<b>11</b></div><div>Clara<b>10</b></div><div>David<b>11</b></div></div>
+        <div class="spacer"></div>
+        <div class="title">Runde <em>5</em></div>
+        <div class="progress"><i style="width:62%"></i></div>
+        <div class="subtitle">Anna teilt aus</div>
+        <div class="spacer"></div>
+        <div class="dealwrap">
+          <svg class="fan" viewBox="0 0 160 120" width="150" height="112" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(80 62) rotate(-15) translate(-25 -37)"><rect width="50" height="72" rx="8" fill="#fff" stroke="#E2E2DE" stroke-width="1.5"/><text x="9" y="21" font-family="Space Grotesk,sans-serif" font-size="15" font-weight="700" fill="#17171A">Q</text><text x="25" y="48" text-anchor="middle" font-size="22" fill="#17171A">♣</text></g>
+            <g transform="translate(80 59) translate(-25 -37)"><rect width="50" height="72" rx="8" fill="#fff" stroke="#E2E2DE" stroke-width="1.5"/><text x="9" y="21" font-family="Space Grotesk,sans-serif" font-size="15" font-weight="700" fill="#C0392B">K</text><text x="25" y="48" text-anchor="middle" font-size="22" fill="#C0392B">♥</text></g>
+            <g transform="translate(80 62) rotate(15) translate(-25 -37)"><rect width="50" height="72" rx="8" fill="#fff" stroke="#E2E2DE" stroke-width="1.5"/><text x="9" y="21" font-family="Space Grotesk,sans-serif" font-size="15" font-weight="700" fill="#17171A">A</text><text x="25" y="49" text-anchor="middle" font-size="24" fill="#17171A">♠</text></g>
+          </svg>
+          <div class="count"><span class="num">5</span><span class="lbl">Karten pro Spieler</span></div>
+        </div>
+        <div class="spacer"></div>
+        <div class="cta">Weiter</div>
+      </div></div>
+    </div>
+
+    <!-- 4 ANSAGEN -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">4</span> Stiche ansagen</div>
+      <div class="frame-sub">Stepper je Spieler · CTA sperrt bei Summe = Stiche.</div>
+      <div class="phone"><div class="screen light">
+        <div class="brand"><span class="wm"><span class="sp">♠</span> Spades</span><span class="rd">Runde 5 / 8</span></div>
+        <div class="scorerow"><div>Anna<b>18</b></div><div>Ben<b>11</b></div><div>Clara<b>10</b></div><div>David<b>11</b></div></div>
+        <div class="title">Runde <em>5</em></div>
+        <div class="progress"><i style="width:62%"></i></div>
+        <div class="subtitle">Stiche ansagen</div>
+        <div style="height:2px"></div>
+        <div class="prow"><span class="pn">Anna</span><span class="step2"><span class="pm">−</span><span class="vl">3</span><span class="pm">+</span></span></div>
+        <div class="prow"><span class="pn">Ben</span><span class="step2"><span class="pm">−</span><span class="vl">2</span><span class="pm">+</span></span></div>
+        <div class="prow"><span class="pn">Clara</span><span class="step2"><span class="pm">−</span><span class="vl">0</span><span class="pm">+</span></span></div>
+        <div class="prow"><span class="pn">David</span><span class="step2"><span class="pm">−</span><span class="vl">1</span><span class="pm">+</span></span></div>
+        <div class="chip"><b>6</b>&nbsp;/&nbsp;<b>5</b>&nbsp;Stiche</div>
+        <div class="cta">Stiche bestätigen</div>
+      </div></div>
+    </div>
+
+    <!-- 5 BESTÄTIGEN -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">5</span> Stiche bestätigen</div>
+      <div class="frame-sub">Treffer abhaken · Punkte je Spieler.</div>
+      <div class="phone"><div class="screen light">
+        <div class="brand"><span class="wm"><span class="sp">♠</span> Spades</span><span class="rd">Runde 5 / 8</span></div>
+        <div class="scorerow"><div>Anna<b>18</b></div><div>Ben<b>11</b></div><div>Clara<b>10</b></div><div>David<b>11</b></div></div>
+        <div class="title">Runde <em>5</em></div>
+        <div class="progress"><i style="width:62%"></i></div>
+        <div style="height:2px"></div>
+        <div class="prow hit"><div><div class="pn">Anna</div><div class="meta"><span class="tk">3 Stiche</span> · <span class="pt">+8 Punkte</span></div></div><span class="check on"></span></div>
+        <div class="prow"><div><div class="pn">Ben</div><div class="meta"><span class="tk">2 Stiche</span> · +7 Punkte</div></div><span class="check"></span></div>
+        <div class="prow hit"><div><div class="pn">Clara</div><div class="meta"><span class="tk">0 Stiche</span> · <span class="pt">+5 Punkte</span></div></div><span class="check on"></span></div>
+        <div class="prow hit"><div><div class="pn">David</div><div class="meta"><span class="tk">1 Stich</span> · <span class="pt">+6 Punkte</span></div></div><span class="check on"></span></div>
+        <div class="spacer"></div>
+        <div class="cta">Nächste Runde</div>
+      </div></div>
+    </div>
+
+    <!-- 6 ERGEBNIS -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">6</span> Ergebnis</div>
+      <div class="frame-sub">Rundenstände + Endsumme mit Rang-Badges.</div>
+      <div class="phone"><div class="screen light">
+        <div class="endhead"><div class="t">Endstand</div><div class="s">8 Runden gespielt</div></div>
+        <div style="height:4px"></div>
+        <div class="grid">
+          <div class="grow ghead"><div class="gc">Anna</div><div class="gc">Ben</div><div class="gc">Clara</div><div class="gc">David</div></div>
+          <div class="grow gbody"><div class="gc">6</div><div class="gc">0</div><div class="gc">5</div><div class="gc">5</div></div>
+          <div class="grow gbody"><div class="gc">11</div><div class="gc">6</div><div class="gc">5</div><div class="gc">11</div></div>
+          <div class="grow gbody"><div class="gc">11</div><div class="gc">6</div><div class="gc">5</div><div class="gc">11</div></div>
+          <div class="grow gbody"><div class="gc">18</div><div class="gc">11</div><div class="gc">10</div><div class="gc">11</div></div>
+          <div class="grow gbody"><div class="gc">26</div><div class="gc">11</div><div class="gc">15</div><div class="gc">17</div></div>
+          <div class="grow gbody"><div class="gc">26</div><div class="gc">11</div><div class="gc">15</div><div class="gc">17</div></div>
+          <div class="grow gbody"><div class="gc">32</div><div class="gc">17</div><div class="gc">15</div><div class="gc">24</div></div>
+          <div class="gtot">
+            <div class="gc lead"><span class="num">42</span><span class="gbadge b1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l4.5 4L12 4l4.5 7L21 7v11H3z"/></svg>1.</span></div>
+            <div class="gc"><span class="num">23</span><span class="gbadge">3.</span></div>
+            <div class="gc"><span class="num">20</span><span class="gbadge">4.</span></div>
+            <div class="gc"><span class="num">24</span><span class="gbadge">2.</span></div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="cta">Weiter</div>
+      </div></div>
+    </div>
+
+    <!-- 7 EINSTELLUNGEN -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">7</span> Einstellungen</div>
+      <div class="frame-sub">Über ⚙ oben rechts vom Start · Darstellung, Sprache, About im Quiet-Footer.</div>
+      <div class="phone"><div class="screen light">
+        <div class="appbar"><span class="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></span><span class="ttl">Einstellungen</span></div>
+        <div class="settingsbody">
+          <div class="seclabel first">Darstellung</div>
+          <div class="seg theme">
+            <div class="opt on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>System</div>
+            <div class="opt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Hell</div>
+            <div class="opt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Dunkel</div>
+          </div>
+          <div class="seclabel">Sprache</div>
+          <div class="panel">
+            <div class="lrow"><span class="tag">EN</span><span class="ln">English</span><span class="radio"></span></div>
+            <div class="lrow"><span class="tag">DE</span><span class="ln">Deutsch</span><span class="radio on"></span></div>
+          </div>
+          <div class="cfoot">
+            <div class="cmark">♠</div>
+            <div class="cname">SpadesScore<span class="v">v1.1.0</span></div>
+            <a class="clink"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>Quellcode auf GitHub</a>
+            <div class="coss">Open Source · mit <span class="heart">❤</span> gebaut</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+  </main>
+
+  <!-- ============ DARK SHOWCASE ============ -->
+  <div class="sectit">
+    <h2>Dark Mode <span class="tag d">Casino Noir</span></h2>
+    <p>Dieselbe Struktur in der dunklen Palette mit Gold-Akzent. Drei Hero-Masken — inklusive des <b>gesperrten</b> CTA-Zustands beim Ansagen.</p>
+  </div>
+
+  <main class="stage dark-wrap">
+
+    <!-- 8 START DARK -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">8</span> Start</div>
+      <div class="frame-sub">Gold-Akzent, Pik als Held auf Fast-Schwarz. ⚙ führt zu den Einstellungen.</div>
+      <div class="phone"><div class="screen dark">
+        <div class="startbar"><span class="gear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span></div>
+        <div class="spacer"></div>
+        <div class="hero-mark">
+          <div class="big">♠</div>
+          <div class="wordmark">SPADES</div>
+          <div class="tag">Stiche ansagen. Punkte behalten.</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="label">Anzahl Spieler</div>
+        <div class="seg"><div class="opt">3 Spieler</div><div class="opt on">4 Spieler</div></div>
+        <div class="spacer"></div>
+        <div class="cta">Spiel starten</div>
+      </div></div>
+    </div>
+
+    <!-- 9 ANSAGEN DARK (LOCKED) -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">9</span> Stiche ansagen — gesperrt</div>
+      <div class="frame-sub">Summe 5 = 5 Stiche → CTA gesperrt, Chip warnt.</div>
+      <div class="phone"><div class="screen dark">
+        <div class="brand"><span class="wm"><span class="sp">♠</span> Spades</span><span class="rd">Runde 5 / 8</span></div>
+        <div class="scorerow"><div>Anna<b>18</b></div><div>Ben<b>11</b></div><div>Clara<b>10</b></div><div>David<b>11</b></div></div>
+        <div class="title">Runde <em>5</em></div>
+        <div class="progress"><i style="width:62%"></i></div>
+        <div class="subtitle">Stiche ansagen</div>
+        <div style="height:2px"></div>
+        <div class="prow"><span class="pn">Anna</span><span class="step2"><span class="pm">−</span><span class="vl">2</span><span class="pm">+</span></span></div>
+        <div class="prow"><span class="pn">Ben</span><span class="step2"><span class="pm">−</span><span class="vl">1</span><span class="pm">+</span></span></div>
+        <div class="prow"><span class="pn">Clara</span><span class="step2"><span class="pm">−</span><span class="vl">1</span><span class="pm">+</span></span></div>
+        <div class="prow"><span class="pn">David</span><span class="step2"><span class="pm">−</span><span class="vl">1</span><span class="pm">+</span></span></div>
+        <div class="chip warn"><b>5</b>&nbsp;/&nbsp;<b>5</b>&nbsp;Stiche</div>
+        <div class="subtitle" style="color:var(--warn)">Summe muss von 5 abweichen</div>
+        <div class="cta off">Stiche bestätigen</div>
+      </div></div>
+    </div>
+
+    <!-- 10 ERGEBNIS DARK -->
+    <div class="frame-wrap">
+      <div class="frame-label"><span class="n">10</span> Ergebnis</div>
+      <div class="frame-sub">Endstand mit Gold-Akzent &amp; Krone für Platz 1.</div>
+      <div class="phone"><div class="screen dark">
+        <div class="endhead"><div class="t">Endstand</div><div class="s">8 Runden gespielt</div></div>
+        <div style="height:4px"></div>
+        <div class="grid">
+          <div class="grow ghead"><div class="gc">Anna</div><div class="gc">Ben</div><div class="gc">Clara</div><div class="gc">David</div></div>
+          <div class="grow gbody"><div class="gc">6</div><div class="gc">0</div><div class="gc">5</div><div class="gc">5</div></div>
+          <div class="grow gbody"><div class="gc">11</div><div class="gc">6</div><div class="gc">5</div><div class="gc">11</div></div>
+          <div class="grow gbody"><div class="gc">11</div><div class="gc">6</div><div class="gc">5</div><div class="gc">11</div></div>
+          <div class="grow gbody"><div class="gc">18</div><div class="gc">11</div><div class="gc">10</div><div class="gc">11</div></div>
+          <div class="grow gbody"><div class="gc">26</div><div class="gc">11</div><div class="gc">15</div><div class="gc">17</div></div>
+          <div class="grow gbody"><div class="gc">26</div><div class="gc">11</div><div class="gc">15</div><div class="gc">17</div></div>
+          <div class="grow gbody"><div class="gc">32</div><div class="gc">17</div><div class="gc">15</div><div class="gc">24</div></div>
+          <div class="gtot">
+            <div class="gc lead"><span class="num">42</span><span class="gbadge b1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 7l4.5 4L12 4l4.5 7L21 7v11H3z"/></svg>1.</span></div>
+            <div class="gc"><span class="num">23</span><span class="gbadge">3.</span></div>
+            <div class="gc"><span class="num">20</span><span class="gbadge">4.</span></div>
+            <div class="gc"><span class="num">24</span><span class="gbadge">2.</span></div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="cta">Weiter</div>
+      </div></div>
+    </div>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <section class="foot">
+    <div class="panel">
+      <div class="col">
+        <div class="badge-soft">Was sich ändert</div>
+        <h4>Design-Entscheidungen</h4>
+        <ul>
+          <li>Handschrift (<b>Patrick Hand</b>) → <b>Space Grotesk + Inter</b> — ruhig, modern, sehr lesbar.</li>
+          <li>Marmor-Foto-Pik → cleaner <b>Vektor-♠</b> als Marke.</li>
+          <li>Zwei abgestimmte Paletten: <b>Paper Light</b> (Indigo) &amp; <b>Casino Noir</b> (Gold) — ein Akzent pro Modus.</li>
+          <li>Weiße <b>Karten mit Haarlinie</b> &amp; dezentem Schatten statt flacher Blöcke.</li>
+          <li>Klare Bausteine: <b>Stepper</b>, <b>Fortschritt</b> und „x / y Stiche"-Chip — CTA <b>sperrt</b> bei Summe = Stiche.</li>
+          <li>Ergebnis-Finale mit <b>Rang-Badges &amp; Krone</b> statt nur Farbe.</li>
+          <li>Neue <b>Einstellungsseite</b> (Darstellung · Sprache · About) über das <b>⚙ vom Start</b> — die Sprachwahl wandert vom Start dorthin.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="badge-soft">Was bleibt &amp; was kommt</div>
+        <h4>Geringes Risiko</h4>
+        <ul>
+          <li>100 % <b>XML-Layouts + Material Components</b> — kein Compose, kein Rewrite.</li>
+          <li>Architektur (<b>MVVM, Room, Repository, GameEngine</b>) bleibt unverändert.</li>
+          <li>Angefasst werden nur <b>Theme</b>: <code>colors.xml</code>, <code>themes.xml</code>, Schrift, Drawables (<code>button_background</code>, <code>player_bg_rounded</code>) und die Layout-XMLs (+ neu: <code>activity_settings</code>).</li>
+          <li>About zeigt die Version aus <b>BuildConfig.VERSION_NAME</b> (1.1.0); der GitHub-Link öffnet via <b>Intent</b> (ACTION_VIEW).</li>
+          <li>Optionaler <b>Theme-Schalter</b> (System/Hell/Dunkel) ergänzt den automatischen Dark Mode.</li>
+          <li><b>Dark Mode</b> über <code>values/</code> + <code>values-night/</code> — beide Paletten erhalten.</li>
+          <li>Lokalisierung <b>EN/DE</b> bleibt vollständig erhalten.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Launcher-Icon — Entwürfe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',system-ui,sans-serif;background:#121216;color:#F4F4F5;
+    -webkit-font-smoothing:antialiased;min-height:100vh;padding:34px 30px 80px;}
+  h1{font-family:'Space Grotesk';font-weight:700;font-size:30px;letter-spacing:-.02em;margin-bottom:8px;}
+  .sub{font-size:14px;line-height:1.55;color:#A8A8B0;max-width:90ch;font-weight:500;}
+  .sub em{color:#E4B95B;font-style:normal;font-weight:600;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:30px;}
+  .card{background:#1A1A1E;border:1px solid #2A2A30;border-radius:20px;overflow:hidden;cursor:pointer;
+    transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease;}
+  .card:hover{transform:translateY(-3px);border-color:#3a3a44;}
+  .card.selected{border-color:#E4B95B;box-shadow:0 0 0 3px rgba(228,185,91,.28);}
+
+  .stage{position:relative;height:200px;display:flex;}
+  .stage .half{flex:1;}
+  .stage .lhalf{background:#F6F6F4;}
+  .stage .rhalf{background:#0E0E10;}
+  .tile{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:116px;height:116px;border-radius:28px;display:grid;place-items:center;
+    box-shadow:0 16px 30px rgba(0,0,0,.40);}
+  .tile svg{width:70px;height:70px;display:block;}
+
+  .body{padding:17px 18px 19px;}
+  .body h3{font-family:'Space Grotesk';font-weight:700;font-size:18px;letter-spacing:-.01em;margin-bottom:7px;}
+  .body h3 .rec{font-weight:600;font-size:13px;color:#9b95f2;}
+  .body p{font-size:12.5px;line-height:1.55;color:#A8A8B0;font-weight:500;}
+  .body p b{color:#EDEDF0;font-weight:600;}
+  .pal{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;}
+  .pal span{font-size:10px;font-weight:700;letter-spacing:.04em;padding:4px 10px;border-radius:99px;}
+
+  .ind{position:fixed;left:0;right:0;bottom:0;background:#0E0E10;border-top:1px solid #2A2A30;
+    padding:13px 30px;font-size:13px;color:#A8A8B0;font-weight:500;}
+  .ind .selected-text{color:#E4B95B;font-weight:700;}
+</style>
+</head>
+<body>
+  <h1>Launcher-Icon — vier Entwürfe</h1>
+  <p class="sub">Alle aus dem neuen Design-System (cleaner Vektor-♠, Indigo / Ink / Gold). Jedes Icon liegt auf einem <em>geteilten Hintergrund</em> (links hell, rechts dunkel), damit du siehst, wie es auf jedem Homescreen wirkt. Klick zum Auswählen — oder sag mir A/B/C/D im Terminal.</p>
+
+  <div class="grid">
+
+    <!-- A -->
+    <div class="card" data-choice="a" onclick="toggleSelect(this)">
+      <div class="stage">
+        <div class="half lhalf"></div><div class="half rhalf"></div>
+        <div class="tile" style="background:linear-gradient(150deg,#26262c,#0E0E10);">
+          <svg viewBox="0 0 24 24"><path fill="#E4B95B" d="M12 3C12 3 4 9 4 14c0 2.8 2.2 4.6 4.6 4.6 1.2 0 2.3-.5 3-1.4-.2 2-.9 3.6-2.6 4.8h6c-1.7-1.2-2.4-2.8-2.6-4.8.7.9 1.8 1.4 3 1.4C17.8 18.6 20 16.8 20 14 20 9 12 3 12 3Z"/></svg>
+        </div>
+      </div>
+      <div class="body">
+        <h3>A · Casino Noir <span class="rec">(Empfehlung)</span></h3>
+        <p>Dunkle Kachel (#0E0E10) mit <b>Gold-♠</b> — exakt die Signatur-Marke aus dem Mockup. Premium, unverwechselbar, liest sich auf hellen wie dunklen Homescreens stark.</p>
+        <div class="pal"><span style="background:#1A1A1E;color:#E4B95B;">INK-KACHEL</span><span style="background:#E4B95B;color:#3a2f12;">GOLD ♠</span></div>
+      </div>
+    </div>
+
+    <!-- B -->
+    <div class="card" data-choice="b" onclick="toggleSelect(this)">
+      <div class="stage">
+        <div class="half lhalf"></div><div class="half rhalf"></div>
+        <div class="tile" style="background:linear-gradient(150deg,#FFFFFF,#ECECEA);border:1px solid #E2E2DE;">
+          <svg viewBox="0 0 24 24"><path fill="#4F46E5" d="M12 3C12 3 4 9 4 14c0 2.8 2.2 4.6 4.6 4.6 1.2 0 2.3-.5 3-1.4-.2 2-.9 3.6-2.6 4.8h6c-1.7-1.2-2.4-2.8-2.6-4.8.7.9 1.8 1.4 3 1.4C17.8 18.6 20 16.8 20 14 20 9 12 3 12 3Z"/></svg>
+        </div>
+      </div>
+      <div class="body">
+        <h3>B · Paper Indigo</h3>
+        <p>Helle „Paper"-Kachel mit <b>Indigo-♠</b> und Haarlinie. Ruhig, hell, exakt die Light-Palette. Auf hellen Homescreens dezenter (die Haarlinie grenzt es ab).</p>
+        <div class="pal"><span style="background:#F6F6F4;color:#6B6B72;border:1px solid #E2E2DE;">PAPER-KACHEL</span><span style="background:#4F46E5;color:#fff;">INDIGO ♠</span></div>
+      </div>
+    </div>
+
+    <!-- C -->
+    <div class="card" data-choice="c" onclick="toggleSelect(this)">
+      <div class="stage">
+        <div class="half lhalf"></div><div class="half rhalf"></div>
+        <div class="tile" style="background:linear-gradient(150deg,#4F46E5,#3F38C9);">
+          <svg viewBox="0 0 24 24"><path fill="#FFFFFF" d="M12 3C12 3 4 9 4 14c0 2.8 2.2 4.6 4.6 4.6 1.2 0 2.3-.5 3-1.4-.2 2-.9 3.6-2.6 4.8h6c-1.7-1.2-2.4-2.8-2.6-4.8.7.9 1.8 1.4 3 1.4C17.8 18.6 20 16.8 20 14 20 9 12 3 12 3Z"/></svg>
+        </div>
+      </div>
+      <div class="body">
+        <h3>C · Indigo Field</h3>
+        <p>Voll-Indigo-Kachel mit <b>weißem ♠</b>. Bunt, modern, maximaler Pop auf dem Homescreen. Klassischer „App-Icon"-Look, weniger „edel" als A.</p>
+        <div class="pal"><span style="background:#4F46E5;color:#fff;">INDIGO-KACHEL</span><span style="background:#fff;color:#4F46E5;border:1px solid #E2E2DE;">WEISS ♠</span></div>
+      </div>
+    </div>
+
+    <!-- D -->
+    <div class="card" data-choice="d" onclick="toggleSelect(this)">
+      <div class="stage">
+        <div class="half lhalf"></div><div class="half rhalf"></div>
+        <div class="tile" style="background:linear-gradient(150deg,#26262c,#0E0E10);">
+          <svg viewBox="0 0 24 24"><defs><linearGradient id="duo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6E66EC"/><stop offset="1" stop-color="#E4B95B"/></linearGradient></defs><path fill="url(#duo)" d="M12 3C12 3 4 9 4 14c0 2.8 2.2 4.6 4.6 4.6 1.2 0 2.3-.5 3-1.4-.2 2-.9 3.6-2.6 4.8h6c-1.7-1.2-2.4-2.8-2.6-4.8.7.9 1.8 1.4 3 1.4C17.8 18.6 20 16.8 20 14 20 9 12 3 12 3Z"/></svg>
+        </div>
+      </div>
+      <div class="body">
+        <h3>D · Duo-Mark</h3>
+        <p>Dunkle Kachel, aber das ♠ läuft als Verlauf von <b>Indigo oben</b> zu <b>Gold unten</b> — vereint beide Paletten in einer Marke („ein Akzent pro Modus"-Idee). Eigenständig, etwas verspielter.</p>
+        <div class="pal"><span style="background:#1A1A1E;color:#fff;">NOIR-KACHEL</span><span style="background:linear-gradient(90deg,#6E66EC,#E4B95B);color:#1a1a1e;">INDIGO→GOLD ♠</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ind"><span id="indicator-text">Klick ein Icon oben an, dann zurück ins Terminal.</span></div>
+</body>
+</html>
