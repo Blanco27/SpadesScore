@@ -1,178 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="32dp"
-    android:paddingEnd="32dp"
+    android:orientation="vertical"
+    android:background="?attr/appBg"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="32dp"
+    android:paddingBottom="24dp"
     tools:context=".PlayerNamesActivity">
 
-    <LinearLayout
+    <!-- Screen title -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:text="@string/set_player_names"
+        android:textAppearance="@style/TextAppearance.Spades.ScreenTitle"
+        android:layout_marginBottom="18dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4" />
+    <!-- Player 1 field card -->
+    <LinearLayout
+        android:id="@+id/player1_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_field"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="10dp">
 
         <TextView
-            android:id="@+id/info_text_view2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/patrick_hand"
-            android:gravity="center"
-            android:text="@string/set_player_names"
-            android:textColor="@color/text_muted"
-            android:textSize="28sp" />
+            android:text="@string/player1_name"
+            android:textAppearance="@style/TextAppearance.Spades.Label"
+            android:layout_marginBottom="2dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1" />
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/player1_name_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/space_grotesk_medium"
+            android:textSize="16sp"
+            android:textColor="?attr/appInk"
+            android:textColorHint="?attr/appMuted"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp" />
+    </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/patrick_hand"
-                android:hint="@string/player1_name"
-                android:textSize="20sp"
-                app:hintTextColor="#616161"
-                tools:ignore="TextContrastCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+    <!-- Player 2 field card -->
+    <LinearLayout
+        android:id="@+id/player2_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_field"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="10dp">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player2_name"
+            android:textAppearance="@style/TextAppearance.Spades.Label"
+            android:layout_marginBottom="2dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/player2_name_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/space_grotesk_medium"
+            android:textSize="16sp"
+            android:textColor="?attr/appInk"
+            android:textColorHint="?attr/appMuted"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp" />
+    </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/patrick_hand"
-                android:hint="@string/player2_name"
-                android:textSize="20sp"
-                app:hintTextColor="#616161"
-                tools:ignore="TextContrastCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+    <!-- Player 3 field card -->
+    <LinearLayout
+        android:id="@+id/player3_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_field"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="10dp">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player3_name"
+            android:textAppearance="@style/TextAppearance.Spades.Label"
+            android:layout_marginBottom="2dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/player3_name_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/space_grotesk_medium"
+            android:textSize="16sp"
+            android:textColor="?attr/appInk"
+            android:textColorHint="?attr/appMuted"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp" />
+    </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/patrick_hand"
-                android:hint="@string/player3_name"
-                android:textSize="20sp"
-                app:hintTextColor="#616161"
-                tools:ignore="TextContrastCheck" />
+    <!-- Player 4 field card (hidden in 3-player mode) -->
+    <LinearLayout
+        android:id="@+id/player4_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_field"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="10dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player4_name"
+            android:textAppearance="@style/TextAppearance.Spades.Label"
+            android:layout_marginBottom="2dp" />
 
-        <Space
-            android:id="@+id/player4_space"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1" />
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/player4_name_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/patrick_hand"
-                android:hint="@string/player4_name"
-                android:textSize="20sp"
-                app:hintTextColor="#616161"
-                tools:ignore="TextContrastCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:fontFamily="@font/space_grotesk_medium"
+            android:textSize="16sp"
+            android:textColor="?attr/appInk"
+            android:textColorHint="?attr/appMuted"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:imeOptions="actionDone"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/random_dealer_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/patrick_hand"
-                android:text="@string/random_first_dealer"
-                android:textColor="@color/text_muted"
-                android:textSize="24sp" />
+    <!-- Random dealer switch row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/random_first_dealer"
+            android:fontFamily="@font/space_grotesk_medium"
+            android:textSize="14.5sp"
+            android:textColor="?attr/appInk" />
 
-            <CheckBox
-                android:id="@+id/random_dealer_checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="casual"
-                android:scaleX="1.2"
-                android:scaleY="1.2"
-                android:buttonTint="@color/checkBoxColor"/>
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1" />
-
-        <Button
-            android:id="@+id/start_game_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/button_background"
-            android:elevation="3dp"
-            android:fontFamily="@font/patrick_hand"
-            android:text="@string/next"
-            android:textColor="@color/text_button"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:backgroundTint="@null" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/random_dealer_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Flexible spacer — pushes CTA to the bottom -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- CTA -->
+    <Button
+        android:id="@+id/start_game_button"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_cta"
+        android:backgroundTint="@null"
+        android:text="@string/next"
+        android:textColor="?attr/appCtaFg"
+        android:fontFamily="@font/space_grotesk_semibold"
+        android:textSize="15sp"
+        android:textAllCaps="false"
+        app:backgroundTint="@null" />
+
+</LinearLayout>

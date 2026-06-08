@@ -1,323 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+  Declare-Tricks screen (Task 17 reskin).
+  Structure: shared round header → subtitle → per-player card rows (spinner wired in code)
+             → sum chip → warn subtitle (gone by default) → flex spacer → CTA.
+  Lock logic (chip warn, warn subtitle, disabled CTA) is driven entirely in
+  DeclareTricksActivity.updateCombinedTricksTextView().
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/appBg"
+    android:fillViewport="true"
     android:paddingStart="24dp"
-    android:paddingTop="64dp"
     android:paddingEnd="24dp"
-    tools:context=".DealCardsActivity">
+    android:paddingTop="64dp"
+    android:paddingBottom="24dp"
+    android:clipToPadding="false"
+    tools:context=".DeclareTricksActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
-        <!-- Score Layout -->
+        <!-- Shared round header: brand row + per-player score row + accent round title + progress bar -->
+        <include layout="@layout/include_round_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:id="@+id/current_score_layout"
+        <!-- Screen subtitle: "Call tricks" / "Stiche ansagen" -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/declare_tricks_subtitle"
+            android:textAppearance="@style/TextAppearance.Spades.Body"
+            android:gravity="center"
+            android:layout_marginTop="14dp" />
+
+        <!-- Small gap between subtitle and player rows -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="4dp" />
+
+        <!-- ── Player 1 card row ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
             android:orientation="horizontal"
-            >
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:paddingEnd="11dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/current_score_player1_text_view"
+                android:id="@+id/player1_name_text_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/patrick_hand"
-                android:gravity="center"
-                android:textColor="@color/text_muted"
-                android:textSize="16sp"
-                app:autoSizeTextType="none"
-                tools:text="player 1: 25" />
+                android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                tools:text="Anna" />
 
-            <TextView
-                android:id="@+id/current_score_player2_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/patrick_hand"
-                android:gravity="center"
-                android:textColor="@color/text_muted"
-                android:textSize="16sp"
-                app:autoSizeTextType="none"
-                tools:text="player 2: 65" />
-
-            <TextView
-                android:id="@+id/current_score_player3_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/patrick_hand"
-                android:gravity="center"
-                android:textColor="@color/text_muted"
-                android:textSize="16sp"
-                app:autoSizeTextType="none"
-                tools:text="player 3: 44" />
-
-            <TextView
-                android:id="@+id/current_score_player4_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/patrick_hand"
-                android:gravity="center"
-                android:textColor="@color/text_muted"
-                android:textSize="16sp"
-                app:autoSizeTextType="none"
-                tools:text="Player 4: 33" />
+            <com.nwe.spadesscore.TrickSpinner
+                android:id="@+id/spinner1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4" />
-
-        <TextView
-            android:id="@+id/round_TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/patrick_hand"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="@color/text_header"
-            android:textSize="54sp"
-            tools:text="Round X" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="8dp" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="80dp"
-            android:paddingRight="80dp"
-            android:progress="40"
-            android:progressTint="@color/spinnerText" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="8dp" />
-
-        <TextView
-            android:id="@+id/info_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/patrick_hand"
-            android:gravity="center"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text="@string/declare_how_many_tricks_they_expect_to_win"
-            android:textColor="@color/text_muted"
-            android:textSize="24sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4" />
-
+        <!-- ── Player 2 card row ── -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:background="@drawable/bg_card"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:paddingEnd="11dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:layout_marginTop="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/player2_name_text_view"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/player_bg_rounded"
-                android:elevation="3dp"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp"
-                android:paddingTop="20dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="20dp">
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                tools:text="Ben" />
 
-                <TextView
-                    android:id="@+id/player1_name_text_view"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center|center_horizontal|start"
-                    android:textColor="@color/text_muted"
-                    android:textSize="32sp"
-                    tools:text="Player 1" />
-
-                <com.nwe.spadesscore.TrickSpinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:elevation="3dp" />
-
-
-            </LinearLayout>
-
-            <!-- Abstand 8dp -->
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/player_bg_rounded"
-                android:elevation="3dp"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp"
-                android:paddingTop="20dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="20dp">
-
-                <TextView
-                    android:id="@+id/player2_name_text_view"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center|center_horizontal|start"
-                    android:textColor="@color/text_muted"
-                    android:textSize="32sp"
-                    tools:text="Player 2" />
-
-                <com.nwe.spadesscore.TrickSpinner
-                    android:id="@+id/spinner2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:elevation="3dp" />
-            </LinearLayout>
-
-            <!-- Abstand 8dp -->
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/player_bg_rounded"
-                android:elevation="3dp"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp"
-                android:paddingTop="20dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="20dp">
-
-                <TextView
-                    android:id="@+id/player3_name_text_view"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center|center_horizontal|start"
-                    android:textColor="@color/text_muted"
-                    android:textSize="32sp"
-                    tools:text="Player 3" />
-
-                <com.nwe.spadesscore.TrickSpinner
-                    android:id="@+id/spinner3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:elevation="3dp" />
-            </LinearLayout>
-
-            <!-- Abstand 8dp -->
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="8dp" />
-
-            <LinearLayout
-                android:id="@+id/player4_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/player_bg_rounded"
-                android:elevation="3dp"
-                android:orientation="horizontal"
-                android:paddingLeft="16dp"
-                android:paddingTop="20dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="20dp">
-
-                <TextView
-                    android:id="@+id/player4_name_text_view"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center|center_horizontal|start"
-                    android:textColor="@color/text_muted"
-                    android:textSize="32sp"
-                    tools:text="Player 4" />
-
-                <com.nwe.spadesscore.TrickSpinner
-                    android:id="@+id/spinner4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:elevation="3dp" />
-            </LinearLayout>
+            <com.nwe.spadesscore.TrickSpinner
+                android:id="@+id/spinner2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4" />
-
-        <TextView
-            android:id="@+id/combined_tricks_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/patrick_hand"
-            android:textAlignment="center"
-            android:textColor="@color/text_muted"
-            android:textSize="24sp"
-            tools:text="3/3 Tricks" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4" />
-
+        <!-- ── Player 3 card row ── -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:paddingEnd="11dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:layout_marginTop="10dp">
 
-            <Button
-                android:id="@+id/start_Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/option_button"
-                android:elevation="3dp"
-                android:fontFamily="@font/patrick_hand"
-                android:text="@string/confirm_ticks"
-                android:textColor="@color/text_button"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:backgroundTint="@null" />
+            <TextView
+                android:id="@+id/player3_name_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                tools:text="Clara" />
+
+            <com.nwe.spadesscore.TrickSpinner
+                android:id="@+id/spinner3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
+        <!-- ── Player 4 card row (hidden in 3-player mode) ── -->
+        <LinearLayout
+            android:id="@+id/player4_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="15dp"
+            android:paddingEnd="11dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/player4_name_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                tools:text="David" />
+
+            <com.nwe.spadesscore.TrickSpinner
+                android:id="@+id/spinner4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <!-- ── Sum chip: shows combined/cardAmount/tricks; bg+color driven by lock state ── -->
+        <TextView
+            android:id="@+id/sum_chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_chip"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="12sp"
+            android:textColor="?attr/appAccent"
+            tools:text="6/5 Tricks" />
+
+        <!-- ── Warn subtitle: shown when sum == cardAmount (locked state) ── -->
+        <TextView
+            android:id="@+id/warn_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.Spades.Body"
+            android:textColor="?attr/appWarn"
+            android:visibility="gone"
+            tools:text="Sum must differ from 5" />
+
+        <!-- Flexible spacer: pushes CTA to bottom when content fits; min 16dp when scrolling -->
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:minHeight="16dp" />
+
+        <!-- ── CTA: id preserved for lock logic; bg/textColor driven by lock state ── -->
+        <Button
+            android:id="@+id/start_Button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_cta"
+            android:backgroundTint="@null"
+            android:fontFamily="@font/space_grotesk_semibold"
+            android:text="@string/confirm_ticks"
+            android:textAllCaps="false"
+            android:textColor="?attr/appCtaFg"
+            android:textSize="15sp"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

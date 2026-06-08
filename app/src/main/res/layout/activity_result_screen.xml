@@ -1,1464 +1,1749 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/appBg"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="28dp">
+
+        <!-- ── Header ─────────────────────────────────────────────── -->
+
+        <TextView
+            android:id="@+id/result_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/final_score"
+            android:textAppearance="@style/TextAppearance.Spades.Headline" />
+
+        <TextView
+            android:id="@+id/result_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/TextAppearance.Spades.Body"
+            tools:text="8 rounds played" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
+            android:layout_height="12dp" />
 
-        <TableLayout
+        <!-- ── Grid card ──────────────────────────────────────────── -->
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:orientation="vertical"
+            android:background="@drawable/bg_grid"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
 
-            <TableRow
-                android:id="@+id/tableHeader"
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1.3"
-                android:showDividers="none">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/header_player1"
-                    android:layout_width="wrap_content"
+                <!-- ── Header row ──────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/tableHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/header_player1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_semibold"
+                        android:gravity="center"
+                        android:paddingBottom="9dp"
+                        android:textColor="?attr/appInk"
+                        android:textSize="14sp"
+                        tools:text="Anna" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/header_player2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_semibold"
+                        android:gravity="center"
+                        android:paddingBottom="9dp"
+                        android:textColor="?attr/appInk"
+                        android:textSize="14sp"
+                        tools:text="Ben" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/header_player3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_semibold"
+                        android:gravity="center"
+                        android:paddingBottom="9dp"
+                        android:textColor="?attr/appInk"
+                        android:textSize="14sp"
+                        tools:text="Clara" />
+
+                    <Space
+                        android:id="@+id/player4_space1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/header_player4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_semibold"
+                        android:gravity="center"
+                        android:paddingBottom="9dp"
+                        android:textColor="?attr/appInk"
+                        android:textSize="14sp"
+                        tools:text="David" />
+                </TableRow>
+
+                <!-- ── Round 1 ──────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round1Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="6" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="0" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="5" />
+
+                    <Space
+                        android:id="@+id/player4_space2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="5" />
+                </TableRow>
+
+                <!-- ── Round 2 ──────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round2Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="11" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="6" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="5" />
+
+                    <Space
+                        android:id="@+id/player4_space3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="11" />
+                </TableRow>
+
+                <!-- ── Round 3 ──────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round3Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="11" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="6" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="5" />
+
+                    <Space
+                        android:id="@+id/player4_space4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="11" />
+                </TableRow>
+
+                <!-- ── Round 4 ──────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round4Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="18" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="11" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="10" />
+
+                    <Space
+                        android:id="@+id/player4_space5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="11" />
+                </TableRow>
+
+                <!-- ── Round 5 ──────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round5Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="26" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="11" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="15" />
+
+                    <Space
+                        android:id="@+id/player4_space6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="17" />
+                </TableRow>
+
+                <!-- ── Round 6 ──────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round6Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="26" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="11" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="15" />
+
+                    <Space
+                        android:id="@+id/player4_space7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="17" />
+                </TableRow>
+
+                <!-- ── Round 7 ──────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round7Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="32" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="17" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="15" />
+
+                    <Space
+                        android:id="@+id/player4_space8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="24" />
+                </TableRow>
+
+                <!-- ── Round 8 ──────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round8Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="42" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="23" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="20" />
+
+                    <Space
+                        android:id="@+id/player4_space9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="24" />
+                </TableRow>
+
+                <!-- ── Round 9 ──────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round9Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="42" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="23" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="20" />
+
+                    <Space
+                        android:id="@+id/player4_space10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="24" />
+                </TableRow>
+
+                <!-- ── Round 10 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round10Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="42" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="23" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="20" />
+
+                    <Space
+                        android:id="@+id/player4_space11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="24" />
+                </TableRow>
+
+                <!-- ── Round 11 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round11Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="47" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="29" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="26" />
+
+                    <Space
+                        android:id="@+id/player4_space12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="30" />
+                </TableRow>
+
+                <!-- ── Round 12 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round12Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="53" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="35" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="32" />
+
+                    <Space
+                        android:id="@+id/player4_space13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="36" />
+                </TableRow>
+
+                <!-- ── Round 13 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round13Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="53" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="35" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="32" />
+
+                    <Space
+                        android:id="@+id/player4_space14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="36" />
+                </TableRow>
+
+                <!-- ── Round 14 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round14Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="60" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="41" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="38" />
+
+                    <Space
+                        android:id="@+id/player4_space15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="42" />
+                </TableRow>
+
+                <!-- ── Round 15 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round15Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="60" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="47" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="44" />
+
+                    <Space
+                        android:id="@+id/player4_space16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="48" />
+                </TableRow>
+
+                <!-- ── Round 16 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round16Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="66" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="53" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="50" />
+
+                    <Space
+                        android:id="@+id/player4_space17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="54" />
+                </TableRow>
+
+                <!-- ── Round 17 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round17Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="72" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="59" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="56" />
+
+                    <Space
+                        android:id="@+id/player4_space18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="60" />
+                </TableRow>
+
+                <!-- ── Round 18 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round18Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="78" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="65" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="62" />
+
+                    <Space
+                        android:id="@+id/player4_space19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="66" />
+                </TableRow>
+
+                <!-- ── Round 19 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round19Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="84" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="71" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="68" />
+
+                    <Space
+                        android:id="@+id/player4_space20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="72" />
+                </TableRow>
+
+                <!-- ── Round 20 ─────────────────────────────── -->
+
+                <TableRow
+                    android:id="@+id/round20Scores"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/score_player1_round20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="90" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player2_round20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="77" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player3_round20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="74" />
+
+                    <Space
+                        android:id="@+id/player4_space21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1" />
+
+                    <TextView
+                        android:id="@+id/score_player4_round20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/space_grotesk_medium"
+                        android:gravity="center"
+                        android:textColor="?attr/appMuted"
+                        android:textSize="12sp"
+                        tools:text="78" />
+                </TableRow>
+
+            </TableLayout>
+
+            <!-- ── Totals divider ─────────────────────────────── -->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="11dp"
+                android:background="?attr/appLine" />
+
+            <!-- ── Totals row ─────────────────────────────────── -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Player 1 total -->
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/text_muted"
-                    android:textSize="24sp"
-                    android:typeface="sans"
-                    tools:text="Player 1" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/total_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.Spades.Number"
+                        android:textSize="27sp"
+                        tools:text="42" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/crown_1"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginEnd="2dp"
+                            android:src="@drawable/ic_crown"
+                            android:visibility="gone"
+                            app:tint="?attr/appAccent" />
+
+                        <TextView
+                            android:id="@+id/rank_badge_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_rank_badge"
+                            android:fontFamily="@font/space_grotesk_bold"
+                            android:paddingStart="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="3dp"
+                            android:textColor="?attr/appMuted"
+                            android:textSize="10sp"
+                            tools:text="1." />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <Space
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.1" />
 
-                <TextView
-                    android:id="@+id/header_player2"
-                    android:layout_width="wrap_content"
+                <!-- Player 2 total -->
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="24sp"
-                    tools:text="Player 2" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/total_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.Spades.Number"
+                        android:textSize="27sp"
+                        tools:text="23" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/crown_2"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginEnd="2dp"
+                            android:src="@drawable/ic_crown"
+                            android:visibility="gone"
+                            app:tint="?attr/appAccent" />
+
+                        <TextView
+                            android:id="@+id/rank_badge_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_rank_badge"
+                            android:fontFamily="@font/space_grotesk_bold"
+                            android:paddingStart="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="3dp"
+                            android:textColor="?attr/appMuted"
+                            android:textSize="10sp"
+                            tools:text="3." />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <Space
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.1" />
 
-                <TextView
-                    android:id="@+id/header_player3"
-                    android:layout_width="wrap_content"
+                <!-- Player 3 total -->
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
                     android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="24sp"
-                    tools:text="Player 3" />
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/total_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.Spades.Number"
+                        android:textSize="27sp"
+                        tools:text="20" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/crown_3"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginEnd="2dp"
+                            android:src="@drawable/ic_crown"
+                            android:visibility="gone"
+                            app:tint="?attr/appAccent" />
+
+                        <TextView
+                            android:id="@+id/rank_badge_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_rank_badge"
+                            android:fontFamily="@font/space_grotesk_bold"
+                            android:paddingStart="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="3dp"
+                            android:textColor="?attr/appMuted"
+                            android:textSize="10sp"
+                            tools:text="4." />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Separator before player 4 (hidden in 3-player mode) -->
                 <Space
-                    android:id="@+id/player4_space1"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/total_sep_p4"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:fontFamily="casual"
                     android:layout_weight="0.1" />
 
-                <TextView
-                    android:id="@+id/header_player4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="24sp"
-                    tools:text="Player 4" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round1Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="0" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="5" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="6" />
-
-                <Space
-                    android:id="@+id/player4_space2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="0" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round2Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="6" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="5" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="11" />
-
-                <Space
-                    android:id="@+id/player4_space3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="5" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round3Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="12" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="11" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="11" />
-
-                <Space
-                    android:id="@+id/player4_space4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="10" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round4Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="19" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="16" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="11" />
-
-                <Space
-                    android:id="@+id/player4_space5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="16" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round5Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="24" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="16" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="19" />
-
-                <Space
-                    android:id="@+id/player4_space6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="21" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round6Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="24" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="21" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="19" />
-
-                <Space
-                    android:id="@+id/player4_space7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="28" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round7Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="30" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="26" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="25" />
-
-                <Space
-                    android:id="@+id/player4_space8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="34" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round8Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="35" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="28" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="32" />
-
-                <Space
-                    android:id="@+id/player4_space9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="39" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round9Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="35" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="34" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="37" />
-
-                <Space
-                    android:id="@+id/player4_space10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="39" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round10Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="41" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="34" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="42" />
-
-                <Space
-                    android:id="@+id/player4_space11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="45" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round11Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="47" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="40" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="47" />
-
-                <Space
-                    android:id="@+id/player4_space12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="52" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round12Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="53" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="45" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="53" />
-
-                <Space
-                    android:id="@+id/player4_space13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="57" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round13Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="53" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="50" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="53" />
-
-                <Space
-                    android:id="@+id/player4_space14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="57" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round14Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="60" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="56" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="58" />
-
-                <Space
-                    android:id="@+id/player4_space15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="63" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round15Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="60" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="62" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="63" />
-
-                <Space
-                    android:id="@+id/player4_space16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="70" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round16Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="66" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="67" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="63" />
-
-                <Space
-                    android:id="@+id/player4_space17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="75" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round17Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="72" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="73" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="70" />
-
-                <Space
-                    android:id="@+id/player4_space18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="75" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round18Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="77" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="79" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="70" />
-
-                <Space
-                    android:id="@+id/player4_space19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="81" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round19Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="82" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="79" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="75" />
-
-                <Space
-                    android:id="@+id/player4_space20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="86" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/round20Scores"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/score_player1_round20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="82" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player2_round20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="84" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player3_round20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="79" />
-
-                <Space
-                    android:id="@+id/player4_space21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.1" />
-
-                <TextView
-                    android:id="@+id/score_player4_round20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/patrick_hand"
-                    android:gravity="center"
-                    android:textColor="@color/text_muted"
-                    android:textSize="16sp"
-                    tools:text="91" />
-            </TableRow>
-        </TableLayout>
+                <!-- Player 4 total (hidden in 3-player mode) -->
+                <LinearLayout
+                    android:id="@+id/total_col_p4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/total_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.Spades.Number"
+                        android:textSize="27sp"
+                        tools:text="24" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/crown_4"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginEnd="2dp"
+                            android:src="@drawable/ic_crown"
+                            android:visibility="gone"
+                            app:tint="?attr/appAccent" />
+
+                        <TextView
+                            android:id="@+id/rank_badge_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_rank_badge"
+                            android:fontFamily="@font/space_grotesk_bold"
+                            android:paddingStart="8dp"
+                            android:paddingTop="3dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="3dp"
+                            android:textColor="?attr/appMuted"
+                            android:textSize="10sp"
+                            tools:text="2." />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ── Button spacer ─────────────────────────────────── -->
 
         <Space
             android:id="@+id/lowerSpace"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5" />
+            android:layout_height="24dp" />
+
+        <!-- ── CTA button ─────────────────────────────────────── -->
 
         <Button
             android:id="@+id/continue_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.05"
-            android:background="@drawable/button_background"
-            android:elevation="3dp"
-            android:fontFamily="@font/patrick_hand"
-            android:text="@string/continue_game"
-            android:textColor="@color/text_button"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_cta"
+            android:fontFamily="@font/space_grotesk_semibold"
+            android:text="@string/continue_label"
+            android:textAllCaps="false"
+            android:textColor="?attr/appCtaFg"
+            android:textSize="15sp"
             app:backgroundTint="@null" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

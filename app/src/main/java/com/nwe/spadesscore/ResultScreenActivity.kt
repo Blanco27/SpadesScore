@@ -2,10 +2,10 @@ package com.nwe.spadesscore
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Space
 import android.widget.TableRow
 import android.widget.TextView
@@ -14,6 +14,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.google.android.material.color.MaterialColors
 import com.nwe.spadesscore.ui.applyPersistedLocale
 import com.nwe.spadesscore.ui.gameRepository
 import com.nwe.spadesscore.ui.result.ResultViewModel
@@ -28,15 +29,17 @@ class ResultScreenActivity : AppCompatActivity() {
         const val MAX_ROUNDS = 20
         const val PLAYER4_SPACE_COUNT = 21
         const val HIGHLIGHT_TEXT_SIZE_SP = 30f
-        const val COLOR_GOLD = "#ffd700"
-        const val COLOR_SILVER = "#e6e6e6"
-        const val COLOR_BRONZE = "#bf8970"
     }
 
-    // scoreCells[player][round]: Spieler 0..3, Runde 0..19
+    // scoreCells[player][round]: player 0..3, round 0..19
     private lateinit var scoreCells: List<List<TextView>>
     private lateinit var roundRows: List<TableRow>
     private lateinit var player4Spaces: List<Space>
+
+    // New: totals row views (index 0..3 → player 1..4)
+    private lateinit var totalScoreViews: List<TextView>
+    private lateinit var rankBadgeViews: List<TextView>
+    private lateinit var crownViews: List<ImageView>
 
     @SuppressLint("DiscouragedApi")
     private fun viewIdByName(name: String): Int = resources.getIdentifier(name, "id", packageName)
@@ -46,6 +49,7 @@ class ResultScreenActivity : AppCompatActivity() {
         applyPersistedLocale()
         setContentView(R.layout.activity_result_screen)
 
+        // ── Original getIdentifier loops — preserved exactly ──────────
         scoreCells = (1..4).map { player ->
             (1..MAX_ROUNDS).map { round ->
                 findViewById<TextView>(viewIdByName("score_player${player}_round$round"))
@@ -54,13 +58,23 @@ class ResultScreenActivity : AppCompatActivity() {
         roundRows = (1..MAX_ROUNDS).map { findViewById<TableRow>(viewIdByName("round${it}Scores")) }
         player4Spaces = (1..PLAYER4_SPACE_COUNT).map { findViewById<Space>(viewIdByName("player4_space$it")) }
 
+        // ── New view lookups via getIdentifier ─────────────────────────
+        totalScoreViews = (1..4).map { i -> findViewById<TextView>(viewIdByName("total_$i")) }
+        rankBadgeViews  = (1..4).map { i -> findViewById<TextView>(viewIdByName("rank_badge_$i")) }
+        crownViews      = (1..4).map { i -> findViewById<ImageView>(viewIdByName("crown_$i")) }
+
         val state = viewModel.uiState()
 
+        // ── Original operations ────────────────────────────────────────
         hidePlayer4IfNeeded(state.playerCount)
         setRowVisibility(state.visibleRoundCount)
         fillScores(state.scoresByPlayer)
         setPlayerNames(state.playerCount, state.playerNames)
         highlightLastColumn(state.placementByPlayer, state.highlightColumnIndex)
+
+        // ── New operations ─────────────────────────────────────────────
+        setResultHeader(state.visibleRoundCount)
+        setTotals(state.scoresByPlayer, state.placementByPlayer, state.highlightColumnIndex)
 
         val continueButton = findViewById<Button>(R.id.continue_button)
         continueButton.setOnClickListener {
@@ -82,6 +96,9 @@ class ResultScreenActivity : AppCompatActivity() {
             scoreCells[3].forEach { it.visibility = View.GONE }
             player4Spaces.forEach { it.visibility = View.GONE }
             findViewById<TextView>(R.id.header_player4).visibility = View.GONE
+            // Hide player-4 totals column and its preceding separator
+            findViewById<View>(R.id.total_col_p4).visibility = View.GONE
+            findViewById<View>(R.id.total_sep_p4).visibility = View.GONE
         }
     }
 
@@ -111,17 +128,56 @@ class ResultScreenActivity : AppCompatActivity() {
 
     private fun highlightLastColumn(placementByPlayer: Map<Int, Int>, columnIndex: Int) {
         if (columnIndex < 0) return
-        placementByPlayer.forEach { (playerIndex, place) ->
+        val inkColor = MaterialColors.getColor(this, R.attr.appInk, 0)
+        placementByPlayer.forEach { (playerIndex, _) ->
             val cell = scoreCells[playerIndex][columnIndex]
-            cell.setTextColor(colorForPlace(place))
+            cell.setTextColor(inkColor)
             cell.textSize = HIGHLIGHT_TEXT_SIZE_SP
         }
     }
 
-    private fun colorForPlace(place: Int): Int = when (place) {
-        1 -> Color.parseColor(COLOR_GOLD)
-        2 -> Color.parseColor(COLOR_SILVER)
-        3 -> Color.parseColor(COLOR_BRONZE)
-        else -> scoreCells[0][1].textColors.defaultColor
+    private fun setResultHeader(visibleRoundCount: Int) {
+        // result_title text is static (@string/final_score set in XML)
+        val subtitle = getString(R.string.rounds_played, visibleRoundCount)
+        findViewById<TextView>(R.id.result_subtitle).text = subtitle
+    }
+
+    private fun setTotals(
+        scoresByPlayer: List<List<Int>>,
+        placementByPlayer: Map<Int, Int>,
+        highlightColumnIndex: Int,
+    ) {
+        val accentColor = MaterialColors.getColor(this, R.attr.appAccent, 0)
+        val inkColor    = MaterialColors.getColor(this, R.attr.appInk, 0)
+        val mutedColor  = MaterialColors.getColor(this, R.attr.appMuted, 0)
+
+        // Iterate only over players present in scoresByPlayer (3 or 4)
+        scoresByPlayer.indices.forEach { playerIndex ->
+            // Total = score at the last played round (highlightColumnIndex is 0-based)
+            val scores = scoresByPlayer[playerIndex]
+            val total = when {
+                highlightColumnIndex >= 0 && highlightColumnIndex < scores.size ->
+                    scores[highlightColumnIndex]
+                scores.isNotEmpty() -> scores.last()
+                else -> 0
+            }
+
+            totalScoreViews[playerIndex].text = total.toString()
+
+            val placement = placementByPlayer[playerIndex] ?: (playerIndex + 1)
+            rankBadgeViews[playerIndex].text = "$placement."
+
+            if (placement == 1) {
+                rankBadgeViews[playerIndex].setBackgroundResource(R.drawable.bg_rank_badge_lead)
+                rankBadgeViews[playerIndex].setTextColor(accentColor)
+                totalScoreViews[playerIndex].setTextColor(accentColor)
+                crownViews[playerIndex].visibility = View.VISIBLE
+            } else {
+                rankBadgeViews[playerIndex].setBackgroundResource(R.drawable.bg_rank_badge)
+                rankBadgeViews[playerIndex].setTextColor(mutedColor)
+                totalScoreViews[playerIndex].setTextColor(inkColor)
+                crownViews[playerIndex].visibility = View.GONE
+            }
+        }
     }
 }

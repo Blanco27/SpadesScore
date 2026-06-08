@@ -1,14 +1,15 @@
 package com.nwe.spadesscore
 
 import android.content.Intent
+import android.graphics.drawable.GradientDrawable
 import android.view.View
-import android.widget.CheckBox
-import android.widget.ProgressBar
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.google.android.material.color.MaterialColors
+import com.nwe.spadesscore.ui.bindRoundHeader
 import com.nwe.spadesscore.ui.confirm.ConfirmTicksUiState
 import com.nwe.spadesscore.ui.confirm.ConfirmTicksViewModel
 import com.nwe.spadesscore.ui.gameRepository
@@ -20,30 +21,25 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
         viewModelFactory { initializer { ConfirmTicksViewModel(gameRepository) } }
     }
 
-    private lateinit var roundTextView: TextView
-    private lateinit var scoreViews: List<TextView>
+    private lateinit var rowLayouts: List<LinearLayout>
     private lateinit var nameViews: List<TextView>
     private lateinit var tricksViews: List<TextView>
     private lateinit var pointsViews: List<TextView>
-    private lateinit var checkboxes: List<CheckBox>
-    private lateinit var progressBar: ProgressBar
+    private lateinit var checkViews: List<TextView>
 
-    private var defaultColor = 0
-    private var greenColor = 0
+    /** Per-player hit state — toggled by tapping a row or its check button. */
+    private val hitStates = BooleanArray(4) { false }
 
     override fun initContentView() {
         setContentView(R.layout.activity_confirm_tricks)
-        greenColor = ContextCompat.getColor(this, R.color.plusPointsText)
     }
 
     override fun initializeUIComponents() {
-        roundTextView = findViewById(R.id.round_TextView)
-        progressBar = findViewById(R.id.progressBar)
-        scoreViews = listOf(
-            findViewById(R.id.current_score_player1_text_view),
-            findViewById(R.id.current_score_player2_text_view),
-            findViewById(R.id.current_score_player3_text_view),
-            findViewById(R.id.current_score_player4_text_view),
+        rowLayouts = listOf(
+            findViewById(R.id.player1_layout),
+            findViewById(R.id.player2_layout),
+            findViewById(R.id.player3_layout),
+            findViewById(R.id.player4_layout),
         )
         nameViews = listOf(
             findViewById(R.id.player1_name_text),
@@ -63,49 +59,89 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
             findViewById(R.id.player3_points_text),
             findViewById(R.id.player4_points_text),
         )
-        checkboxes = listOf(
-            findViewById(R.id.player1_checkbox),
-            findViewById(R.id.player2_checkbox),
-            findViewById(R.id.player3_checkbox),
-            findViewById(R.id.player4_checkbox),
+        checkViews = listOf(
+            findViewById(R.id.player1_check),
+            findViewById(R.id.player2_check),
+            findViewById(R.id.player3_check),
+            findViewById(R.id.player4_check),
         )
     }
 
     override fun setupUI() {
         val state = viewModel.uiState()
         val playerCount = state.players.size
+
         if (playerCount == 3) {
-            scoreViews[3].visibility = View.GONE
-            findViewById<View>(R.id.player4_layout).visibility = View.GONE
+            rowLayouts[3].visibility = View.GONE
         }
+
+        bindRoundHeader(
+            round = state.round,
+            totalRounds = state.amountOfRounds,
+            playerNames = state.players.map { it.name },
+            playerScores = state.players.map { it.score },
+        )
+
         for (index in 0 until playerCount) {
-            checkboxes[index].setOnClickListener {
-                pointsViews[index].setTextColor(if (checkboxes[index].isChecked) greenColor else defaultColor)
-            }
+            rowLayouts[index].setOnClickListener { toggleHit(index) }
+            checkViews[index].setOnClickListener { toggleHit(index) }
         }
-        progressBar.max = state.amountOfRounds
-        progressBar.progress = state.round
-        findViewById<View>(R.id.start_Button).setOnClickListener { startNextRound() }
-        defaultColor = pointsViews[0].textColors.defaultColor
+
         render(state)
+
+        findViewById<View>(R.id.start_Button).setOnClickListener { startNextRound() }
     }
 
     private fun render(state: ConfirmTicksUiState) {
-        roundTextView.text = getString(R.string.round, state.round)
         state.players.forEachIndexed { index, player ->
-            scoreViews[index].text = "${player.name}: ${player.score}"
             nameViews[index].text = player.name
             val trickWord =
                 if (player.prediction == 1) getString(R.string.trick) else getString(R.string.tricks)
             tricksViews[index].text =
                 String.format(Locale.getDefault(), "%d %s", player.prediction, trickWord)
-            pointsViews[index].text = getString(R.string.points_added, player.pointsIfHit)
+            pointsViews[index].text = " · ${getString(R.string.points_added, player.pointsIfHit)}"
+            applyHitVisuals(index, isHit = false)
         }
+    }
+
+    private fun toggleHit(index: Int) {
+        hitStates[index] = !hitStates[index]
+        applyHitVisuals(index, isHit = hitStates[index])
+    }
+
+    /**
+     * Applies hit or miss visuals to a player row:
+     *  - Hit:  appHitBg row background (rounded), bg_check_on + "✓", points in appAccent.
+     *  - Miss: bg_card row background, bg_check (empty), points in appMuted.
+     */
+    private fun applyHitVisuals(index: Int, isHit: Boolean) {
+        val row = rowLayouts[index]
+        val density = resources.displayMetrics.density
+
+        if (isHit) {
+            val hitColor = MaterialColors.getColor(row, R.attr.appHitBg)
+            row.background = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                cornerRadius = 16f * density
+                setColor(hitColor)
+            }
+        } else {
+            row.setBackgroundResource(R.drawable.bg_card)
+        }
+
+        checkViews[index].apply {
+            setBackgroundResource(if (isHit) R.drawable.bg_check_on else R.drawable.bg_check)
+            text = if (isHit) "✓" else ""
+        }
+
+        val accentColor = MaterialColors.getColor(row, R.attr.appAccent)
+        val mutedColor = MaterialColors.getColor(row, R.attr.appMuted)
+        pointsViews[index].setTextColor(if (isHit) accentColor else mutedColor)
     }
 
     private fun startNextRound() {
         val playerCount = viewModel.uiState().players.size
-        val hits = (0 until playerCount).map { checkboxes[it].isChecked }
+        val hits = (0 until playerCount).map { hitStates[it] }
         val gameOver = viewModel.confirm(hits)
         val next = if (gameOver) ResultScreenActivity::class.java else DealCardsActivity::class.java
         startActivity(Intent(this, next))

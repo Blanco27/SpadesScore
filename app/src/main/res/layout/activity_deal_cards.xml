@@ -1,203 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="24dp"
-    android:paddingTop="64dp"
-    android:paddingEnd="24dp"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="?attr/appBg"
     tools:context=".DealCardsActivity">
 
+    <!-- Shared header: brand row + per-player score row + round title + progress bar -->
+    <include
+        layout="@layout/include_round_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Dealer subtitle: e.g. "Anna deals" / "Anna teilt aus" -->
+    <TextView
+        android:id="@+id/dealer_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.Spades.Body"
+        tools:text="Anna deals" />
+
+    <!-- Top spacer -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Deal illustration: card fan + card count + label (all centered) -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:gravity="center">
 
-        <!-- Score Layout -->
-        <LinearLayout
-            android:id="@+id/current_score_layout"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_card_fan"
+            android:contentDescription="@string/image_of_playing_cards" />
+
+        <!-- Number + "cards per player" label, baseline-aligned side by side -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="true"
+            android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/current_score_player1_text_view"
-                android:layout_width="0dp"
+                android:id="@+id/card_count"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/patrick_hand"
-                android:gravity="center"
-                android:textColor="@color/text_muted"
-                android:textSize="16sp"
-                app:autoSizeTextType="none"
-                tools:text="player 1: 25" />
+                android:textAppearance="@style/TextAppearance.Spades.Number"
+                android:textSize="40sp"
+                android:textColor="?attr/appAccent"
+                tools:text="5" />
 
             <TextView
-                android:id="@+id/current_score_player2_text_view"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/patrick_hand"
-                android:gravity="center"
-                android:textColor="@color/text_muted"
-                android:textSize="16sp"
-                app:autoSizeTextType="none"
-                tools:text="player 2: 65" />
-
-            <TextView
-                android:id="@+id/current_score_player3_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/patrick_hand"
-                android:gravity="center"
-                android:textColor="@color/text_muted"
-                android:textSize="16sp"
-                app:autoSizeTextType="none"
-                tools:text="player 3: 44" />
-
-            <TextView
-                android:id="@+id/current_score_player4_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/patrick_hand"
-                android:gravity="center"
-                android:textColor="@color/text_muted"
-                android:textSize="16sp"
-                app:autoSizeTextType="none"
-                tools:text="Player 4: 33" />
+                android:layout_marginStart="7dp"
+                android:layout_gravity="bottom"
+                android:text="@string/cards_per_player"
+                android:textAppearance="@style/TextAppearance.Spades.Body" />
 
         </LinearLayout>
-
-        <!-- Runde -->
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.2" />
-
-        <TextView
-            android:id="@+id/round_TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/patrick_hand"
-            android:gravity="center"
-            android:textColor="@color/text_header"
-            android:textSize="54sp"
-            tools:text="Round X" />
-
-        <!-- Spielername -->
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="8dp" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="80dp"
-            android:paddingRight="80dp"
-            android:progress="40"
-            android:progressTint="@color/spinnerText" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="8dp" />
-
-        <TextView
-            android:id="@+id/player_name_TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/patrick_hand"
-            android:gravity="center"
-            android:textColor="@color/text_muted"
-            android:textSize="24sp"
-            tools:text="Player must deal X cards" />
-
-        <!-- Button -->
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/amount_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/patrick_hand"
-                android:gravity="center_vertical|end"
-                android:textColor="@color/text_muted"
-                android:textSize="36sp"
-                tools:text="4x" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="124dp"
-                android:layout_height="124dp"
-                android:contentDescription="@string/image_of_playing_cards"
-                android:src="@drawable/ace" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <Button
-                android:id="@+id/start_Button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/button_background"
-                android:elevation="3dp"
-                android:fontFamily="casual"
-                android:text="@string/done"
-                android:textColor="@color/text_button"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:backgroundTint="@null" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.8" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Bottom spacer -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- CTA button -->
+    <Button
+        android:id="@+id/deal_next_button"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_cta"
+        android:text="@string/continue_label"
+        android:textColor="?attr/appCtaFg"
+        android:fontFamily="@font/space_grotesk_semibold"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        app:backgroundTint="@null" />
+
+</LinearLayout>
