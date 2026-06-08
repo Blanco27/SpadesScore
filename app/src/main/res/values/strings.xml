@@ -57,4 +57,23 @@
     <string name="dialog_empty_name_message">Please give each player a name</string>
     <string name="dialog_name_too_long_title">Name too long</string>
     <string name="dialog_name_too_long_message">Names can only be a maximum of 10 characters long</string>
+    <string name="tagline">Call your tricks. Keep the score.</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="cards_per_player">Cards per player</string>
+    <string name="declare_tricks_subtitle">Call tricks</string>
+    <string name="deal_subtitle">%s deals</string>
+    <string name="tricks_sum_warning">Sum must differ from %d</string>
+    <string name="round_progress">Round %1$d / %2$d</string>
+    <string name="final_score">Final score</string>
+    <string name="rounds_played">%d rounds played</string>
+    <string name="source_on_github">Source on GitHub</string>
+    <string name="open_source_built_with_love">Open source · built with ❤</string>
+    <string name="next_round">Next round</string>
+    <string name="continue_label">Continue</string>
+    <string name="wordmark">SPADES</string>
+    <string name="github_url" translatable="false">https://github.com/Blanco27/SpadesScore</string>
 </resources>

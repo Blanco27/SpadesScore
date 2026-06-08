@@ -57,4 +57,22 @@
     <string name="dialog_empty_name_message">Bitte gib jedem Spieler einen Namen</string>
     <string name="dialog_name_too_long_title">Name zu lang</string>
     <string name="dialog_name_too_long_message">Namen dürfen maximal 10 Zeichen lang sein</string>
+    <string name="tagline">Stiche ansagen. Punkte behalten.</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_appearance">Darstellung</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_dark">Dunkel</string>
+    <string name="cards_per_player">Karten pro Spieler</string>
+    <string name="declare_tricks_subtitle">Stiche ansagen</string>
+    <string name="deal_subtitle">%s teilt aus</string>
+    <string name="tricks_sum_warning">Summe muss von %d abweichen</string>
+    <string name="round_progress">Runde %1$d / %2$d</string>
+    <string name="final_score">Endstand</string>
+    <string name="rounds_played">%d Runden gespielt</string>
+    <string name="source_on_github">Quellcode auf GitHub</string>
+    <string name="open_source_built_with_love">Open Source · mit ❤ gebaut</string>
+    <string name="next_round">Nächste Runde</string>
+    <string name="continue_label">Weiter</string>
+    <string name="wordmark">SPADES</string>
 </resources>

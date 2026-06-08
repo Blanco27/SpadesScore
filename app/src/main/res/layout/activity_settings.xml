@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/appBg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="17dp"
+        android:paddingEnd="17dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+
+        <!-- AppBar row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="4dp">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/ic_back"
+                android:tint="?attr/appInk"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_title"
+                android:textAppearance="@style/TextAppearance.Spades.ScreenTitle"
+                android:layout_marginStart="9dp" />
+
+        </LinearLayout>
+
+        <!-- Section label: Appearance -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_appearance"
+            android:textAppearance="@style/TextAppearance.Spades.Label"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="4dp" />
+
+        <!-- Theme segment -->
+        <LinearLayout
+            android:id="@+id/theme_segment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_segment"
+            android:padding="5dp">
+
+            <!-- System -->
+            <LinearLayout
+                android:id="@+id/theme_system"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="11dp"
+                android:paddingBottom="9dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/ic_theme_system"
+                    android:tint="?attr/appInk"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theme_system"
+                    android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                    android:layout_marginTop="6dp" />
+
+            </LinearLayout>
+
+            <!-- Light -->
+            <LinearLayout
+                android:id="@+id/theme_light"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="11dp"
+                android:paddingBottom="9dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/ic_sun"
+                    android:tint="?attr/appInk"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theme_light"
+                    android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                    android:layout_marginTop="6dp" />
+
+            </LinearLayout>
+
+            <!-- Dark -->
+            <LinearLayout
+                android:id="@+id/theme_dark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="11dp"
+                android:paddingBottom="9dp"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/ic_moon"
+                    android:tint="?attr/appInk"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theme_dark"
+                    android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                    android:layout_marginTop="6dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Section label: Language -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/language"
+            android:textAppearance="@style/TextAppearance.Spades.Label"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="4dp" />
+
+        <!-- Language panel -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="6dp">
+
+            <!-- EN row -->
+            <LinearLayout
+                android:id="@+id/lang_en"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EN"
+                    android:fontFamily="@font/space_grotesk_bold"
+                    android:textSize="11sp"
+                    android:textColor="?attr/appMuted"
+                    android:background="@drawable/bg_step"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/english"
+                    android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                    android:layout_marginStart="12dp" />
+
+                <View
+                    android:id="@+id/radio_en"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:background="@drawable/bg_radio" />
+
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/appLine" />
+
+            <!-- DE row -->
+            <LinearLayout
+                android:id="@+id/lang_de"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DE"
+                    android:fontFamily="@font/space_grotesk_bold"
+                    android:textSize="11sp"
+                    android:textColor="?attr/appMuted"
+                    android:background="@drawable/bg_step"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/deutsch"
+                    android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                    android:layout_marginStart="12dp" />
+
+                <View
+                    android:id="@+id/radio_de"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:background="@drawable/bg_radio" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Quiet footer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="36dp">
+
+            <!-- Spade icon on rounded tile -->
+            <FrameLayout
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:background="@drawable/bg_card">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@drawable/ic_spade"
+                    android:tint="?attr/appSpade"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null" />
+
+            </FrameLayout>
+
+            <!-- Version label -->
+            <TextView
+                android:id="@+id/version_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Spades.PlayerName"
+                android:gravity="center"
+                android:layout_marginTop="9dp" />
+
+            <!-- GitHub link -->
+            <LinearLayout
+                android:id="@+id/github_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginTop="9dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_github"
+                    android:tint="?attr/appAccent"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/source_on_github"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="13sp"
+                    android:textColor="?attr/appAccent"
+                    android:layout_marginStart="7dp" />
+
+            </LinearLayout>
+
+            <!-- Open source line -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open_source_built_with_love"
+                android:textAppearance="@style/TextAppearance.Spades.Body"
+                android:gravity="center"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
