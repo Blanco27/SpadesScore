@@ -1,221 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="32dp"
-    android:layout_marginEnd="32dp"
+    android:orientation="vertical"
+    android:background="?attr/appBg"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="24dp"
     tools:context=".MainActivity">
 
+    <!-- Top bar: gear icon aligned to end -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4" />
+        <ImageButton
+            android:id="@+id/settings_gear"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_gear"
+            android:src="@drawable/ic_gear"
+            app:tint="?attr/appMuted"
+            android:padding="10dp"
+            android:contentDescription="@string/settings_title" />
+
+    </LinearLayout>
+
+    <!-- Spacer (flex) -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Hero: spade icon + wordmark + tagline (centred) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="20"
-            android:contentDescription="@string/contentDescription"
-            app:srcCompat="@drawable/spades_logo" />
-
-        <!-- PLAYER SELECTION TITLE -->
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3" />
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:src="@drawable/ic_spade"
+            app:tint="?attr/appSpade"
+            android:contentDescription="@null" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:fontFamily="@font/patrick_hand"
-            android:gravity="center"
-            android:text="@string/number_of_players"
-            android:textColor="@color/text_normal"
-            android:textSize="28sp" />
-
-        <!-- PLAYER BUTTONS -->
-        <Space
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2" />
-
-            <Button
-                android:id="@+id/btn3Players"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/option_button"
-                android:elevation="3dp"
-                android:fontFamily="@font/patrick_hand"
-                android:text="@string/three"
-                android:textColor="@color/text_button"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:backgroundTint="@null" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <Button
-                android:id="@+id/btn4Players"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/option_button"
-                android:elevation="3dp"
-                android:fontFamily="@font/patrick_hand"
-                android:text="@string/four"
-                android:textColor="@color/text_button"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:backgroundTint="@null" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2" />
-        </LinearLayout>
-
-        <!-- PLAYER SELECTION TITLE -->
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:text="@string/wordmark"
+            android:textAppearance="@style/TextAppearance.Spades.Wordmark"
+            android:layout_marginTop="9dp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:fontFamily="@font/patrick_hand"
-            android:gravity="center"
-            android:text="@string/language"
-            android:textColor="@color/text_normal"
-            android:textSize="28sp" />
-
-        <!-- LANGUAGE TITLE -->
-        <Space
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4" />
+            android:text="@string/tagline"
+            android:textAppearance="@style/TextAppearance.Spades.Body"
+            android:layout_marginTop="5dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+    </LinearLayout>
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2" />
+    <!-- Spacer (flex) -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-            <Button
-                android:id="@+id/btnLanguageEnglish"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/option_button"
-                android:elevation="3dp"
-                android:fontFamily="@font/patrick_hand"
-                android:text="@string/english"
-                android:textColor="@color/text_button"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:backgroundTint="@null" />
+    <!-- Label: number of players -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_players"
+        android:textAppearance="@style/TextAppearance.Spades.Label"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="7dp" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <Button
-                android:id="@+id/btnLanguageGerman"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/option_button"
-                android:elevation="3dp"
-                android:fontFamily="@font/patrick_hand"
-                android:text="@string/deutsch"
-                android:textColor="@color/text_button"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:backgroundTint="@null" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2" />
-        </LinearLayout>
-
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="6" />
-
+    <!-- Segment: 3 players / 4 players -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_segment"
+        android:padding="4dp">
 
-        <Space
+        <TextView
+            android:id="@+id/btn3Players"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25" />
-
-        <Button
-            android:id="@+id/start_game_button"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="2"
-            android:background="@drawable/button_background"
-            android:elevation="3dp"
-            android:fontFamily="@font/patrick_hand"
-            android:text="@string/next"
-            android:textColor="@color/text_button"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:backgroundTint="@null" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25" />
-
-    </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="8" />
+            android:layout_weight="1"
+            android:text="@string/three"
+            android:fontFamily="@font/space_grotesk_semibold"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/btn4Players"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/four"
+            android:fontFamily="@font/space_grotesk_semibold"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Spacer (flex) -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- CTA: start game -->
+    <Button
+        android:id="@+id/start_game_button"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_cta"
+        android:backgroundTint="@null"
+        android:text="@string/next"
+        android:textColor="?attr/appCtaFg"
+        android:fontFamily="@font/space_grotesk_semibold"
+        android:textSize="15sp"
+        android:textAllCaps="false"
+        app:backgroundTint="@null" />
+
+</LinearLayout>
