@@ -12,5 +12,28 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!-- Redesign: semantic color attributes -->
+        <item name="appBg">@color/bg</item>
+        <item name="appSurface">@color/surface</item>
+        <item name="appInk">@color/ink</item>
+        <item name="appMuted">@color/muted</item>
+        <item name="appAccent">@color/accent</item>
+        <item name="appLine">@color/line</item>
+        <item name="appTrack">@color/track</item>
+        <item name="appStepBg">@color/step_bg</item>
+        <item name="appChipBg">@color/chip_bg</item>
+        <item name="appCtaBg">@color/cta_bg</item>
+        <item name="appCtaFg">@color/cta_fg</item>
+        <item name="appOnAccent">@color/on_accent</item>
+        <item name="appSpade">@color/spade</item>
+        <item name="appRing">@color/ring</item>
+        <item name="appHitBg">@color/hit_bg</item>
+        <item name="appWarn">@color/warn</item>
+        <item name="appWarnBg">@color/warn_bg</item>
+        <!-- Redesign: window chrome -->
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:navigationBarColor">@color/bg</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

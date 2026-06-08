@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.Spades.Title" parent="">
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">?attr/appInk</item>
+    </style>
+    <style name="TextAppearance.Spades.Headline" parent="">
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">?attr/appInk</item>
+    </style>
+    <style name="TextAppearance.Spades.ScreenTitle" parent="">
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">?attr/appInk</item>
+    </style>
+    <style name="TextAppearance.Spades.Wordmark" parent="">
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textColor">?attr/appInk</item>
+    </style>
+    <style name="TextAppearance.Spades.Number" parent="">
+        <item name="android:fontFamily">@font/space_grotesk_bold</item>
+        <item name="android:textColor">?attr/appInk</item>
+    </style>
+    <style name="TextAppearance.Spades.PlayerName" parent="">
+        <item name="android:fontFamily">@font/space_grotesk_medium</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">?attr/appInk</item>
+    </style>
+    <style name="TextAppearance.Spades.Label" parent="">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">10.5sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textColor">?attr/appMuted</item>
+    </style>
+    <style name="TextAppearance.Spades.Body" parent="">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textColor">?attr/appMuted</item>
+    </style>
+</resources>

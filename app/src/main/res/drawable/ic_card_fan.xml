@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Three-card fan illustration. Viewport 160x120, matching mockup SVG.
+  Card 1 (left):  Q♣  dark ink, rotate(-15) around (80,62)
+  Card 2 (center):K♥  red ink,  no rotation, pivot (80,59)
+  Card 3 (right): A♠  dark ink, rotate(+15) around (80,62)
+  Static decoration — not themed (white card face works on both Paper Light and Casino Noir).
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="120dp"
+    android:viewportWidth="160"
+    android:viewportHeight="120">
+
+    <!-- Card 1: Q♣  — translate(80,62) rotate(-15) translate(-25,-37) -->
+    <group
+        android:translateX="80"
+        android:translateY="62"
+        android:rotation="-15"
+        android:pivotX="0"
+        android:pivotY="0">
+        <group
+            android:translateX="-25"
+            android:translateY="-37">
+            <!-- Card face: 50×72 rounded rect rx=8 -->
+            <path
+                android:fillColor="#FFFFFFFF"
+                android:strokeColor="#FFE2E2DE"
+                android:strokeWidth="1.5"
+                android:pathData="M8,0 L42,0 Q50,0 50,8 L50,64 Q50,72 42,72 L8,72 Q0,72 0,64 L0,8 Q0,0 8,0 Z"/>
+            <!-- Rank mark (Q) — small bar at top-left, dark -->
+            <path
+                android:fillColor="#FF17171A"
+                android:pathData="M7,7 L14,7 L14,10 L7,10 Z"/>
+            <!-- Club suit (♣): three circles + stem, dark -->
+            <path
+                android:fillColor="#FF17171A"
+                android:pathData="M19.5,33 A5.5,5.5,0,1,0,30.5,33 A5.5,5.5,0,1,0,19.5,33 Z M13.5,41 A5.5,5.5,0,1,0,24.5,41 A5.5,5.5,0,1,0,13.5,41 Z M25.5,41 A5.5,5.5,0,1,0,36.5,41 A5.5,5.5,0,1,0,25.5,41 Z M22,45 L28,45 L28,52 L22,52 Z"/>
+        </group>
+    </group>
+
+    <!-- Card 2: K♥ — translate(80,59) translate(-25,-37)  (no rotation) -->
+    <group
+        android:translateX="55"
+        android:translateY="22">
+        <!-- Card face: 50×72 rounded rect rx=8 -->
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:strokeColor="#FFE2E2DE"
+            android:strokeWidth="1.5"
+            android:pathData="M8,0 L42,0 Q50,0 50,8 L50,64 Q50,72 42,72 L8,72 Q0,72 0,64 L0,8 Q0,0 8,0 Z"/>
+        <!-- Rank mark (K) — small bar at top-left, red -->
+        <path
+            android:fillColor="#FFC0392B"
+            android:pathData="M7,7 L14,7 L14,10 L7,10 Z"/>
+        <!-- Heart suit (♥): classic heart path, red -->
+        <path
+            android:fillColor="#FFC0392B"
+            android:pathData="M25,50 C25,50 16,43 16,38 C16,34 19.5,32 22.5,34 C23.5,34.7 24.4,35.7 25,37 C25.6,35.7 26.5,34.7 27.5,34 C30.5,32 34,34 34,38 C34,43 25,50 25,50 Z"/>
+    </group>
+
+    <!-- Card 3: A♠ — translate(80,62) rotate(15) translate(-25,-37) -->
+    <group
+        android:translateX="80"
+        android:translateY="62"
+        android:rotation="15"
+        android:pivotX="0"
+        android:pivotY="0">
+        <group
+            android:translateX="-25"
+            android:translateY="-37">
+            <!-- Card face: 50×72 rounded rect rx=8 -->
+            <path
+                android:fillColor="#FFFFFFFF"
+                android:strokeColor="#FFE2E2DE"
+                android:strokeWidth="1.5"
+                android:pathData="M8,0 L42,0 Q50,0 50,8 L50,64 Q50,72 42,72 L8,72 Q0,72 0,64 L0,8 Q0,0 8,0 Z"/>
+            <!-- Rank mark (A) — small bar at top-left, dark -->
+            <path
+                android:fillColor="#FF17171A"
+                android:pathData="M7,7 L14,7 L14,10 L7,10 Z"/>
+            <!-- Spade suit (♠): inverted-heart body + stem, dark -->
+            <path
+                android:fillColor="#FF17171A"
+                android:pathData="M25,32 C25,32 16,38 16,43 C16,47 19.5,49 22.5,47 C23.5,46.3 24.4,45.3 25,44 C25.6,45.3 26.5,46.3 27.5,47 C30.5,49 34,47 34,43 C34,38 25,32 25,32 Z M22,47 L28,47 L27,52 L23,52 Z"/>
+        </group>
+    </group>
+
+</vector>

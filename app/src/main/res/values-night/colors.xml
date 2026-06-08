@@ -34,4 +34,23 @@
     <color name="checkbox_buttonTint">@color/background_button_enabled</color>
     <color name="switchThumbTint">#e3a21a</color>
     <color name="switchTrackTint">#5b420b</color>
+
+    <!-- Redesign tokens — Casino Noir -->
+    <color name="bg">#0E0E10</color>
+    <color name="surface">#1A1A1E</color>
+    <color name="ink">#F4F4F5</color>
+    <color name="muted">#8A8A93</color>
+    <color name="accent">#E4B95B</color>
+    <color name="line">#2A2A30</color>
+    <color name="track">#26262C</color>
+    <color name="step_bg">#222228</color>
+    <color name="chip_bg">#211E16</color>
+    <color name="cta_bg">#E4B95B</color>
+    <color name="cta_fg">#15130C</color>
+    <color name="on_accent">#15130C</color>
+    <color name="spade">#E4B95B</color>
+    <color name="ring">#29E4B95B</color>
+    <color name="hit_bg">#17E4B95B</color>
+    <color name="warn">#E8736F</color>
+    <color name="warn_bg">#1FE8736F</color>
 </resources>
