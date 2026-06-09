@@ -3,16 +3,19 @@ package com.nwe.spadesscore
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.material.color.MaterialColors
+import com.nwe.spadesscore.ui.animateFill
 import com.nwe.spadesscore.ui.bindRoundHeader
 import com.nwe.spadesscore.ui.confirm.ConfirmTicksUiState
 import com.nwe.spadesscore.ui.confirm.ConfirmTicksViewModel
 import com.nwe.spadesscore.ui.gameRepository
+import com.nwe.spadesscore.ui.shake
 import java.util.Locale
 
 class ConfirmTicksActivity : SpadesAppCompatActivity() {
@@ -29,6 +32,18 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
 
     /** Per-player hit state — toggled by tapping a row or its check button. */
     private val hitStates = BooleanArray(4) { false }
+
+    private lateinit var startButton: Button
+    private lateinit var warnSubtitle: TextView
+
+    // Colors resolved from theme in initializeUIComponents(); used for lock/unlock transitions.
+    private var colorActive = 0      // appCtaBg  — CTA background when enabled
+    private var colorDeactive = 0    // appStepBg — CTA background when locked
+    private var ctaFgColor = 0       // appCtaFg  — CTA text color when enabled
+    private var ctaMutedColor = 0    // appMuted  — CTA text color when locked
+
+    /** True while the current selection is allowed (at least one visible player is a miss). */
+    private var lastStateValid = true
 
     override fun initContentView() {
         setContentView(R.layout.activity_confirm_tricks)
@@ -65,6 +80,14 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
             findViewById(R.id.player3_check),
             findViewById(R.id.player4_check),
         )
+
+        startButton = findViewById(R.id.start_Button)
+        warnSubtitle = findViewById(R.id.warn_subtitle)
+
+        colorActive   = MaterialColors.getColor(startButton, R.attr.appCtaBg)
+        colorDeactive = MaterialColors.getColor(startButton, R.attr.appStepBg)
+        ctaFgColor    = MaterialColors.getColor(startButton, R.attr.appCtaFg)
+        ctaMutedColor = MaterialColors.getColor(startButton, R.attr.appMuted)
     }
 
     override fun setupUI() {
@@ -89,7 +112,11 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
 
         render(state)
 
-        findViewById<View>(R.id.start_Button).setOnClickListener { startNextRound() }
+        (startButton.background as GradientDrawable).setColor(colorActive)
+        startButton.setTextColor(ctaFgColor)
+        startButton.setOnClickListener { startNextRound() }
+
+        updateConfirmLockState()
     }
 
     private fun render(state: ConfirmTicksUiState) {
@@ -107,6 +134,40 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
     private fun toggleHit(index: Int) {
         hitStates[index] = !hitStates[index]
         applyHitVisuals(index, isHit = hitStates[index])
+        updateConfirmLockState()
+    }
+
+    /**
+     * Locks the "Next round" CTA when EVERY visible player is marked as a hit:
+     * the trick-declaration rule guarantees not everyone can hit, so at least one
+     * player must remain a miss. Drives CTA enabled-state, background (animated),
+     * text color, the warn subtitle, and a shake on the transition into locked.
+     */
+    private fun updateConfirmLockState() {
+        val playerCount = viewModel.uiState().players.size
+        val allHit = (0 until playerCount).all { hitStates[it] }
+        val isValid = !allHit
+
+        if (!isValid) {
+            // ── LOCKED: everyone is a hit — impossible, force at least one miss ──
+            warnSubtitle.text = getString(R.string.confirm_all_hit_warning)
+            warnSubtitle.visibility = View.VISIBLE
+            startButton.isEnabled = false
+            startButton.setTextColor(ctaMutedColor)
+            if (lastStateValid) {
+                animateFill(startButton, colorActive, colorDeactive)
+                startButton.shake()
+            }
+        } else {
+            // ── OK: at least one miss — round can be confirmed ──
+            warnSubtitle.visibility = View.GONE
+            startButton.isEnabled = true
+            startButton.setTextColor(ctaFgColor)
+            if (!lastStateValid) {
+                animateFill(startButton, colorDeactive, colorActive)
+            }
+        }
+        lastStateValid = isValid
     }
 
     /**
