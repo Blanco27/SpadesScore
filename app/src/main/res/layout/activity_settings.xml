@@ -187,15 +187,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EN"
-                    android:fontFamily="@font/space_grotesk_bold"
-                    android:textSize="11sp"
-                    android:textColor="?attr/appMuted"
-                    android:background="@drawable/bg_step"
-                    android:paddingStart="6dp"
-                    android:paddingEnd="6dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp" />
+                    android:text="🇬🇧"
+                    android:textSize="22sp"
+                    android:minWidth="34dp"
+                    android:gravity="center" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -233,15 +228,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DE"
-                    android:fontFamily="@font/space_grotesk_bold"
-                    android:textSize="11sp"
-                    android:textColor="?attr/appMuted"
-                    android:background="@drawable/bg_step"
-                    android:paddingStart="6dp"
-                    android:paddingEnd="6dp"
-                    android:paddingTop="3dp"
-                    android:paddingBottom="3dp" />
+                    android:text="🇩🇪"
+                    android:textSize="22sp"
+                    android:minWidth="34dp"
+                    android:gravity="center" />
 
                 <TextView
                     android:layout_width="0dp"
