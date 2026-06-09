@@ -1,7 +1,5 @@
 package com.nwe.spadesscore
 
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.view.View
@@ -12,10 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.material.color.MaterialColors
+import com.nwe.spadesscore.ui.animateFill
 import com.nwe.spadesscore.ui.bindRoundHeader
 import com.nwe.spadesscore.ui.declare.DeclareTricksUiState
 import com.nwe.spadesscore.ui.declare.DeclareTricksViewModel
 import com.nwe.spadesscore.ui.gameRepository
+import com.nwe.spadesscore.ui.shake
 
 class DeclareTricksActivity : SpadesAppCompatActivity() {
 
@@ -143,7 +143,7 @@ class DeclareTricksActivity : SpadesAppCompatActivity() {
             if (lastTricksAreValid) {
                 // Transition INTO locked: animate CTA background + shake.
                 animateFill(startButton, colorActive, colorDeactive)
-                shakeView(startButton)
+                startButton.shake()
             }
         } else {
             // ── OK: bids differ from tricks — play is allowed ──
@@ -158,25 +158,6 @@ class DeclareTricksActivity : SpadesAppCompatActivity() {
             }
         }
         lastTricksAreValid = isValid
-    }
-
-    // ── Animation helpers ──────────────────────────────────────────────────────
-
-    private fun animateFill(view: View, fromColor: Int, toColor: Int) {
-        ValueAnimator.ofArgb(fromColor, toColor).apply {
-            duration = 250
-            addUpdateListener { animation ->
-                (view.background as GradientDrawable).setColor(animation.animatedValue as Int)
-            }
-            start()
-        }
-    }
-
-    private fun shakeView(view: View) {
-        ObjectAnimator.ofFloat(view, "translationX", 0f, 16f, -16f, 12f, -12f, 6f, -6f, 0f).apply {
-            duration = 350
-            start()
-        }
     }
 
     // ── Navigation ────────────────────────────────────────────────────────────
