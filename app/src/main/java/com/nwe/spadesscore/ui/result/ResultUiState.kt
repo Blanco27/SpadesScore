@@ -7,7 +7,7 @@ data class ResultUiState(
     val scoresByPlayer: List<List<Int>>,
     /** Anzahl sichtbarer Runden-Zeilen (= gespielte Runden). */
     val visibleRoundCount: Int,
-    /** Spalten-Index (0-basiert) der zuletzt gespielten Runde, der hervorgehoben wird. */
+    /** Spalten-Index (0-basiert) der zuletzt gespielten Runde; liefert die Endsumme der Totals-Zeile. */
     val highlightColumnIndex: Int,
     /** Spieler-Index -> Platz (1 = höchster Score) für die Medaillenfarben. */
     val placementByPlayer: Map<Int, Int>,

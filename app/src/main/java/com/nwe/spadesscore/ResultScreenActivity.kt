@@ -29,7 +29,6 @@ class ResultScreenActivity : AppCompatActivity() {
     private companion object {
         const val MAX_ROUNDS = 20
         const val PLAYER4_SPACE_COUNT = 21
-        const val HIGHLIGHT_TEXT_SIZE_SP = 30f
     }
 
     // scoreCells[player][round]: player 0..3, round 0..19
@@ -69,10 +68,12 @@ class ResultScreenActivity : AppCompatActivity() {
 
         // ── Original operations ────────────────────────────────────────
         hidePlayer4IfNeeded(state.playerCount)
-        setRowVisibility(state.visibleRoundCount)
+        // The totals row below already represents the last played round (its
+        // cumulative score IS the final total), so render only the rounds before
+        // it as plain grid rows — otherwise the final sum is shown twice.
+        setRowVisibility(state.visibleRoundCount - 1)
         fillScores(state.scoresByPlayer)
         setPlayerNames(state.playerCount, state.playerNames)
-        highlightLastColumn(state.placementByPlayer, state.highlightColumnIndex)
 
         // ── New operations ─────────────────────────────────────────────
         setResultHeader(state.visibleRoundCount)
@@ -125,16 +126,6 @@ class ResultScreenActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.header_player3).text = names[2]
         if (playerCount == 4) {
             findViewById<TextView>(R.id.header_player4).text = names[3]
-        }
-    }
-
-    private fun highlightLastColumn(placementByPlayer: Map<Int, Int>, columnIndex: Int) {
-        if (columnIndex < 0) return
-        val inkColor = MaterialColors.getColor(this, R.attr.appInk, 0)
-        placementByPlayer.forEach { (playerIndex, _) ->
-            val cell = scoreCells[playerIndex][columnIndex]
-            cell.setTextColor(inkColor)
-            cell.textSize = HIGHLIGHT_TEXT_SIZE_SP
         }
     }
 
