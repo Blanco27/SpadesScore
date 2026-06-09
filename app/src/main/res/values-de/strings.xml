@@ -63,7 +63,10 @@
     <string name="theme_system">System</string>
     <string name="theme_light">Hell</string>
     <string name="theme_dark">Dunkel</string>
-    <string name="cards_per_player">Karten pro Spieler</string>
+    <plurals name="cards_per_player">
+        <item quantity="one">Karte pro Spieler</item>
+        <item quantity="other">Karten pro Spieler</item>
+    </plurals>
     <string name="declare_tricks_subtitle">Stiche ansagen</string>
     <string name="deal_subtitle">%s teilt aus</string>
     <string name="tricks_sum_warning">Summe muss von %d abweichen</string>

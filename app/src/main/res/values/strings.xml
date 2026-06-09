@@ -63,7 +63,10 @@
     <string name="theme_system">System</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
-    <string name="cards_per_player">Cards per player</string>
+    <plurals name="cards_per_player">
+        <item quantity="one">card per player</item>
+        <item quantity="other">cards per player</item>
+    </plurals>
     <string name="declare_tricks_subtitle">Call tricks</string>
     <string name="deal_subtitle">%s deals</string>
     <string name="tricks_sum_warning">Sum must differ from %d</string>

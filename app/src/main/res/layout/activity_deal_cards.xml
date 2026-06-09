@@ -66,11 +66,12 @@
                 tools:text="5" />
 
             <TextView
+                android:id="@+id/cards_per_player_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
-                android:text="@string/cards_per_player"
-                android:textAppearance="@style/TextAppearance.Spades.Body" />
+                android:textAppearance="@style/TextAppearance.Spades.Body"
+                tools:text="cards per player" />
 
         </LinearLayout>
 

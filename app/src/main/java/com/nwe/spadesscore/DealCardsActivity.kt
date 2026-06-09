@@ -18,6 +18,7 @@ class DealCardsActivity : SpadesAppCompatActivity() {
 
     private lateinit var dealerSubtitle: TextView
     private lateinit var cardCount: TextView
+    private lateinit var cardsPerPlayerLabel: TextView
     private lateinit var dealNextButton: Button
 
     override fun initContentView() {
@@ -27,6 +28,7 @@ class DealCardsActivity : SpadesAppCompatActivity() {
     override fun initializeUIComponents() {
         dealerSubtitle = findViewById(R.id.dealer_subtitle)
         cardCount = findViewById(R.id.card_count)
+        cardsPerPlayerLabel = findViewById(R.id.cards_per_player_label)
         dealNextButton = findViewById(R.id.deal_next_button)
     }
 
@@ -40,6 +42,8 @@ class DealCardsActivity : SpadesAppCompatActivity() {
         )
         dealerSubtitle.text = getString(R.string.deal_subtitle, state.dealerName)
         cardCount.text = state.cardAmount.toString()
+        cardsPerPlayerLabel.text =
+            resources.getQuantityString(R.plurals.cards_per_player, state.cardAmount)
         dealNextButton.setOnClickListener {
             startActivity(Intent(this, DeclareTricksActivity::class.java))
         }
