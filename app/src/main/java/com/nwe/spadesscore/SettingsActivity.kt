@@ -48,7 +48,8 @@ class SettingsActivity : AppCompatActivity() {
         renderThemeSelection(viewModel.uiState().themeMode)
         map.forEach { (id, mode) ->
             findViewById<android.view.View>(id).setOnClickListener {
-                applyThemeMode(mode)   // persists + setDefaultNightMode -> triggers recreate
+                renderThemeSelection(mode)   // immediate feedback; setDefaultNightMode only recreates
+                applyThemeMode(mode)         // when the effective light/dark appearance actually changes
             }
         }
     }
