@@ -139,8 +139,9 @@ if (-not $SkipBuild) {
 & $AdbExe shell am start -n "$Pkg/.MainActivity" *> $null
 Start-Sleep -Seconds 3
 
-# MainActivity: 4 players + English
-[void](TapId "btn4Players"); [void](TapId "btnLanguageEnglish")
+# MainActivity: 4 players (English is the default game language; the EN/DE
+# toggle now lives in SettingsActivity behind the gear icon, not on this screen)
+[void](TapId "btn4Players")
 Start-Sleep -Milliseconds 400
 Shot "start"
 [void](TapId "start_game_button" 1200)
@@ -162,7 +163,7 @@ $SHOT_ROUND = 5
 for ($r = 1; $r -le 8; $r++) {
     Write-Host "Round $r ($(CurAct))"
     if ($r -eq $SHOT_ROUND) { Shot "deal" }
-    [void](TapId "start_Button" 850)                       # DONE -> Declare
+    [void](TapId "deal_next_button" 850)                   # DONE -> Declare
 
     $data = Get-RoundData $r $r                            # first half: cards == round
     $plus = Find-Centers ':id/btnPlus$'                    # 4 steppers, top-to-bottom
@@ -172,7 +173,7 @@ for ($r = 1; $r -le 8; $r++) {
     if ($r -eq $SHOT_ROUND) { Start-Sleep -Milliseconds 300; Shot "declare" }
     [void](TapId "start_Button" 850)                       # CONFIRM TICKS -> Confirm
 
-    for ($i = 0; $i -lt 4; $i++) { if ($data.hits[$i]) { [void](TapId "player$($i+1)_checkbox" 250) } }
+    for ($i = 0; $i -lt 4; $i++) { if ($data.hits[$i]) { [void](TapId "player$($i+1)_check" 250) } }
     if ($r -eq $SHOT_ROUND) { Start-Sleep -Milliseconds 300; Shot "confirm" }
     [void](TapId "start_Button" 950)                       # START NEXT ROUND
 }
