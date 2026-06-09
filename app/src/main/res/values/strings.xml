@@ -67,6 +67,7 @@
     <string name="declare_tricks_subtitle">Call tricks</string>
     <string name="deal_subtitle">%s deals</string>
     <string name="tricks_sum_warning">Sum must differ from %d</string>
+    <string name="confirm_all_hit_warning">At least one player must miss</string>
     <string name="round_progress">Round %1$d / %2$d</string>
     <string name="final_score">Final score</string>
     <string name="rounds_played">%d rounds played</string>

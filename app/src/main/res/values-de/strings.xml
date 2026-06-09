@@ -67,6 +67,7 @@
     <string name="declare_tricks_subtitle">Stiche ansagen</string>
     <string name="deal_subtitle">%s teilt aus</string>
     <string name="tricks_sum_warning">Summe muss von %d abweichen</string>
+    <string name="confirm_all_hit_warning">Mindestens einer muss daneben liegen</string>
     <string name="round_progress">Runde %1$d / %2$d</string>
     <string name="final_score">Endstand</string>
     <string name="rounds_played">%d Runden gespielt</string>
