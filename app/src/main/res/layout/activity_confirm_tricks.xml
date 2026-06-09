@@ -280,6 +280,18 @@
 
     </LinearLayout>
 
+    <!-- Warn subtitle: shown when every visible player is marked as a hit -->
+    <TextView
+        android:id="@+id/warn_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.Spades.Body"
+        android:textColor="?attr/appWarn"
+        android:visibility="gone"
+        tools:text="At least one player must miss" />
+
     <!-- Flex spacer pushes CTA to bottom -->
     <Space
         android:layout_width="match_parent"
