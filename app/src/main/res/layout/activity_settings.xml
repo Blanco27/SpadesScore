@@ -75,12 +75,13 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <ImageView
-                    android:layout_width="19dp"
-                    android:layout_height="19dp"
-                    android:src="@drawable/ic_theme_system"
-                    app:tint="?attr/appInk"
-                    android:contentDescription="@null" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🖥️"
+                    android:textColor="#FF000000"
+                    android:textSize="18sp"
+                    android:gravity="center" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -106,12 +107,13 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <ImageView
-                    android:layout_width="19dp"
-                    android:layout_height="19dp"
-                    android:src="@drawable/ic_sun"
-                    app:tint="?attr/appInk"
-                    android:contentDescription="@null" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="☀️"
+                    android:textColor="#FF000000"
+                    android:textSize="18sp"
+                    android:gravity="center" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -137,12 +139,13 @@
                 android:clickable="true"
                 android:focusable="true">
 
-                <ImageView
-                    android:layout_width="19dp"
-                    android:layout_height="19dp"
-                    android:src="@drawable/ic_moon"
-                    app:tint="?attr/appInk"
-                    android:contentDescription="@null" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🌙"
+                    android:textColor="#FF000000"
+                    android:textSize="18sp"
+                    android:gravity="center" />
 
                 <TextView
                     android:layout_width="wrap_content"
