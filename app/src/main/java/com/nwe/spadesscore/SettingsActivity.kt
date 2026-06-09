@@ -13,6 +13,7 @@ import androidx.activity.viewModels
 import com.nwe.spadesscore.domain.model.Language
 import com.nwe.spadesscore.domain.model.ThemeMode
 import com.nwe.spadesscore.ui.applyPersistedLocale
+import com.nwe.spadesscore.ui.applySystemBarInsetsAsPadding
 import com.nwe.spadesscore.ui.applyThemeMode
 import com.nwe.spadesscore.ui.gameRepository
 import com.nwe.spadesscore.ui.settings.SettingsViewModel
@@ -29,6 +30,7 @@ class SettingsActivity : AppCompatActivity() {
         applyPersistedLocale()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        findViewById<android.view.View>(android.R.id.content).applySystemBarInsetsAsPadding()
 
         findViewById<ImageView>(R.id.back_button).setOnClickListener { finish() }
 

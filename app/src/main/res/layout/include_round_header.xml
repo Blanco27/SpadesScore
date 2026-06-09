@@ -60,7 +60,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/score_name_1"
@@ -85,7 +86,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/score_name_2"
@@ -110,7 +112,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/score_name_3"
@@ -135,7 +138,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/score_name_4"
@@ -160,8 +164,9 @@
     <!-- Round title (number tinted accent in code) -->
     <TextView
         android:id="@+id/round_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.Spades.Title"
         android:layout_marginTop="22dp" />
 

@@ -8,7 +8,7 @@
     android:background="?attr/appBg"
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
-    android:paddingTop="32dp"
+    android:paddingTop="16dp"
     android:paddingBottom="24dp"
     tools:context=".PlayerNamesActivity">
 
@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:text="@string/set_player_names"
         android:textAppearance="@style/TextAppearance.Spades.ScreenTitle"
+        android:textSize="26sp"
         android:layout_marginBottom="18dp" />
 
     <!-- Player 1 field card -->
@@ -29,9 +30,9 @@
         android:background="@drawable/bg_field"
         android:paddingStart="14dp"
         android:paddingEnd="14dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="10dp">
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginBottom="14dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,9 +66,9 @@
         android:background="@drawable/bg_field"
         android:paddingStart="14dp"
         android:paddingEnd="14dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="10dp">
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginBottom="14dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,9 +102,9 @@
         android:background="@drawable/bg_field"
         android:paddingStart="14dp"
         android:paddingEnd="14dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="10dp">
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginBottom="14dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -137,9 +138,9 @@
         android:background="@drawable/bg_field"
         android:paddingStart="14dp"
         android:paddingEnd="14dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="10dp">
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginBottom="14dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -201,13 +202,13 @@
     <Button
         android:id="@+id/start_game_button"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="60dp"
         android:background="@drawable/bg_cta"
         android:backgroundTint="@null"
         android:text="@string/next"
         android:textColor="?attr/appCtaFg"
         android:fontFamily="@font/space_grotesk_semibold"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textAllCaps="false"
         app:backgroundTint="@null" />
 

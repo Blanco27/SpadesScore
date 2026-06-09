@@ -15,7 +15,7 @@
     android:fillViewport="true"
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
-    android:paddingTop="64dp"
+    android:paddingTop="24dp"
     android:paddingBottom="24dp"
     android:clipToPadding="false"
     tools:context=".DeclareTricksActivity">
@@ -197,14 +197,14 @@
         <Button
             android:id="@+id/start_Button"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="60dp"
             android:background="@drawable/bg_cta"
             android:backgroundTint="@null"
             android:fontFamily="@font/space_grotesk_semibold"
             android:text="@string/confirm_ticks"
             android:textAllCaps="false"
             android:textColor="?attr/appCtaFg"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:backgroundTint="@null" />
 
     </LinearLayout>

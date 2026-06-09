@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="24dp"
     android:background="?attr/appBg"
     tools:context=".DealCardsActivity">
 
@@ -25,11 +28,11 @@
         android:textAppearance="@style/TextAppearance.Spades.Body"
         tools:text="Anna deals" />
 
-    <!-- Top spacer -->
+    <!-- Top spacer (slightly weighted so the card block sits lower / more centred) -->
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1.25" />
 
     <!-- Deal illustration: card fan + card count + label (all centered) -->
     <LinearLayout
@@ -66,7 +69,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
-                android:layout_gravity="bottom"
                 android:text="@string/cards_per_player"
                 android:textAppearance="@style/TextAppearance.Spades.Body" />
 
@@ -84,13 +86,13 @@
     <Button
         android:id="@+id/deal_next_button"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="60dp"
         android:background="@drawable/bg_cta"
         android:text="@string/continue_label"
         android:textColor="?attr/appCtaFg"
         android:fontFamily="@font/space_grotesk_semibold"
         android:textAllCaps="false"
-        android:textSize="15sp"
+        android:textSize="16sp"
         app:backgroundTint="@null" />
 
 </LinearLayout>

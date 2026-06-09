@@ -57,17 +57,17 @@ class MainActivity : SpadesAppCompatActivity() {
     private fun renderPlayerCount(count: Int) {
         val accentColor = MaterialColors.getColor(btn3Players, R.attr.appAccent)
         val mutedColor = MaterialColors.getColor(btn3Players, R.attr.appMuted)
+        val activeElevation = 4f * resources.displayMetrics.density
 
-        if (count == 3) {
-            btn3Players.setBackgroundResource(R.drawable.bg_segment_selected)
-            btn3Players.setTextColor(accentColor)
-            btn4Players.setBackgroundResource(0)
-            btn4Players.setTextColor(mutedColor)
-        } else {
-            btn4Players.setBackgroundResource(R.drawable.bg_segment_selected)
-            btn4Players.setTextColor(accentColor)
-            btn3Players.setBackgroundResource(0)
-            btn3Players.setTextColor(mutedColor)
-        }
+        val (active, inactive) = if (count == 3) btn3Players to btn4Players
+                                 else btn4Players to btn3Players
+
+        active.setBackgroundResource(R.drawable.bg_segment_selected)
+        active.setTextColor(accentColor)
+        active.elevation = activeElevation
+
+        inactive.setBackgroundResource(0)
+        inactive.setTextColor(mutedColor)
+        inactive.elevation = 0f
     }
 }
