@@ -1,9 +1,11 @@
 package com.nwe.spadesscore
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.nwe.spadesscore.ui.applyPersistedLocale
+import com.nwe.spadesscore.ui.applySystemBarInsetsAsPadding
 
 abstract class SpadesAppCompatActivity : AppCompatActivity() {
 
@@ -11,6 +13,7 @@ abstract class SpadesAppCompatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         applyPersistedLocale()
         initContentView()
+        findViewById<View>(android.R.id.content).applySystemBarInsetsAsPadding()
         initializeUIComponents()
         setupUI()
         setupBackPressHandler()

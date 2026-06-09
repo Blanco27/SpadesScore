@@ -16,6 +16,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.material.color.MaterialColors
 import com.nwe.spadesscore.ui.applyPersistedLocale
+import com.nwe.spadesscore.ui.applySystemBarInsetsAsPadding
 import com.nwe.spadesscore.ui.gameRepository
 import com.nwe.spadesscore.ui.result.ResultViewModel
 
@@ -48,6 +49,7 @@ class ResultScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         applyPersistedLocale()
         setContentView(R.layout.activity_result_screen)
+        findViewById<View>(android.R.id.content).applySystemBarInsetsAsPadding()
 
         // ── Original getIdentifier loops — preserved exactly ──────────
         scoreCells = (1..4).map { player ->
