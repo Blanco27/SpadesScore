@@ -12,11 +12,34 @@
     android:background="?attr/appBg"
     tools:context=".DealCardsActivity">
 
-    <!-- Shared header: brand row + per-player score row + round title + progress bar -->
+    <!-- Top score strip: brand row + per-player scores -->
     <include
-        layout="@layout/include_round_header"
+        layout="@layout/include_round_score_strip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <!-- Gap: sets the score strip apart from the round block (mockup grouping) -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9" />
+
+    <!-- Round title (number tinted accent in code) -->
+    <TextView
+        android:id="@+id/round_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.Spades.Title" />
+
+    <!-- Progress bar -->
+    <ProgressBar
+        android:id="@+id/round_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:progressDrawable="@drawable/progress_track"
+        android:layout_marginTop="12dp" />
 
     <!-- Dealer subtitle: e.g. "Anna deals" / "Anna teilt aus" -->
     <TextView
@@ -28,11 +51,11 @@
         android:textAppearance="@style/TextAppearance.Spades.Body"
         tools:text="Anna deals" />
 
-    <!-- Top spacer (slightly weighted so the card block sits lower / more centred) -->
+    <!-- Gap before the card illustration -->
     <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.25" />
+        android:layout_weight="1.1" />
 
     <!-- Deal illustration: card fan + card count + label (all centered) -->
     <LinearLayout

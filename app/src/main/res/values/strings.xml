@@ -37,7 +37,7 @@
     <string name="tricks">Tricks</string>
     <string name="combined_trick_prediction">%d/%d %s</string>
     <string name="points_added">+%d Points</string>
-    <string name="set_player_names">Set player names</string>
+    <string name="set_player_names">Player names</string>
     <string name="random_first_dealer">Random first Dealer</string>
     <string name="image_of_playing_cards">Image of playing cards</string>
     <string-array name="spinner_entries_1_10">

@@ -1728,7 +1728,9 @@
         <Space
             android:id="@+id/lowerSpace"
             android:layout_width="match_parent"
-            android:layout_height="24dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="24dp" />
 
         <!-- ── CTA button ─────────────────────────────────────── -->
 

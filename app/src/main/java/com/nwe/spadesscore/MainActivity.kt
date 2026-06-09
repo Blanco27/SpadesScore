@@ -1,6 +1,8 @@
 package com.nwe.spadesscore
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
@@ -57,7 +59,9 @@ class MainActivity : SpadesAppCompatActivity() {
     private fun renderPlayerCount(count: Int) {
         val accentColor = MaterialColors.getColor(btn3Players, R.attr.appAccent)
         val mutedColor = MaterialColors.getColor(btn3Players, R.attr.appMuted)
-        val activeElevation = 4f * resources.displayMetrics.density
+        // Soft, low elevation to mimic the mockup's subtle box-shadow (0 2px 8px /12%)
+        // rather than Android's harsher default drop shadow.
+        val activeElevation = 2f * resources.displayMetrics.density
 
         val (active, inactive) = if (count == 3) btn3Players to btn4Players
                                  else btn4Players to btn3Players
@@ -65,6 +69,11 @@ class MainActivity : SpadesAppCompatActivity() {
         active.setBackgroundResource(R.drawable.bg_segment_selected)
         active.setTextColor(accentColor)
         active.elevation = activeElevation
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val softShadow = Color.argb(45, 0, 0, 0)
+            active.outlineSpotShadowColor = softShadow
+            active.outlineAmbientShadowColor = softShadow
+        }
 
         inactive.setBackgroundResource(0)
         inactive.setTextColor(mutedColor)

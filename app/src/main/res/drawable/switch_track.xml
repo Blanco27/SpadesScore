@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Toggle track: filled accent pill when checked, neutral line-colour pill when off.
+     Mirrors the redesign mockup switch (indigo/gold on, grey off). -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/appAccent" />
+            <corners android:radius="14dp" />
+            <size android:width="48dp" android:height="28dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/appLine" />
+            <corners android:radius="14dp" />
+            <size android:width="48dp" android:height="28dp" />
+        </shape>
+    </item>
+</selector>
