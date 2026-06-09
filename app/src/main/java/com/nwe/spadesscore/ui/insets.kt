@@ -13,7 +13,9 @@ import androidx.core.view.WindowInsetsCompat
  */
 fun View.applySystemBarInsetsAsPadding() {
     ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
-        val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        val bars = insets.getInsets(
+            WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+        )
         v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
         insets
     }
