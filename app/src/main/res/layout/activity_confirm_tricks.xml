@@ -24,12 +24,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <!-- Top/bottom weighted spacers center the row group (comfortably airier) -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="16dp" />
+
     <!-- Player 1 row -->
     <LinearLayout
         android:id="@+id/player1_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -93,7 +100,7 @@
         android:id="@+id/player2_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -157,7 +164,7 @@
         android:id="@+id/player3_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -221,7 +228,7 @@
         android:id="@+id/player4_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -285,7 +292,7 @@
         android:id="@+id/warn_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.Spades.Body"
         android:textColor="?attr/appWarn"

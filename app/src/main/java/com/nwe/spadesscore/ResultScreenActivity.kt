@@ -124,7 +124,7 @@ class ResultScreenActivity : AppCompatActivity() {
     /** Adds vertical breathing room between score rows so the table uses more of the
      *  screen height instead of looking compressed at the top (mockup rhythm). */
     private fun applyRowSpacing() {
-        val pad = (5 * resources.displayMetrics.density).toInt()
+        val pad = (14 * resources.displayMetrics.density).toInt()
         scoreCells.forEach { playerRows ->
             playerRows.forEach { cell ->
                 cell.setPaddingRelative(cell.paddingStart, pad, cell.paddingEnd, pad)

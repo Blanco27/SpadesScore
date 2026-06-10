@@ -39,10 +39,12 @@
             android:gravity="center"
             android:layout_marginTop="14dp" />
 
-        <!-- Small gap between subtitle and player rows -->
+        <!-- Top/bottom weighted spacers center the row group (comfortably airier) -->
         <Space
             android:layout_width="match_parent"
-            android:layout_height="4dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="16dp" />
 
         <!-- ── Player 1 card row ── -->
         <LinearLayout
@@ -55,7 +57,7 @@
             android:paddingEnd="11dp"
             android:paddingTop="14dp"
             android:paddingBottom="14dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/player1_name_text_view"
@@ -83,7 +85,7 @@
             android:paddingEnd="11dp"
             android:paddingTop="14dp"
             android:paddingBottom="14dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/player2_name_text_view"
@@ -111,7 +113,7 @@
             android:paddingEnd="11dp"
             android:paddingTop="14dp"
             android:paddingBottom="14dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/player3_name_text_view"
@@ -140,7 +142,7 @@
             android:paddingEnd="11dp"
             android:paddingTop="14dp"
             android:paddingBottom="14dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:id="@+id/player4_name_text_view"

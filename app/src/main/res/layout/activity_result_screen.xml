@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:paddingTop="16dp"
+        android:paddingTop="32dp"
         android:paddingBottom="28dp">
 
         <!-- ── Header ─────────────────────────────────────────────── -->
@@ -37,7 +37,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="12dp" />
+            android:layout_height="20dp" />
 
         <!-- ── Grid card ──────────────────────────────────────────── -->
 
