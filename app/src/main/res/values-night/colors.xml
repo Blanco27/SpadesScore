@@ -26,4 +26,7 @@
     <color name="hit_bg">#17E4B95B</color>
     <color name="warn">#E8736F</color>
     <color name="warn_bg">#1FE8736F</color>
+
+    <!-- Dark theme is flat (mockup shadow token is none); transparent so no shadow renders. -->
+    <color name="card_shadow">#00000000</color>
 </resources>

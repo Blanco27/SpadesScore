@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Soft card drop-shadow (mockup shadow token). Zero in values-night so dark theme
+         stays flat (mockup shadow token is none for Casino Noir). -->
+    <dimen name="card_elevation">4dp</dimen>
+</resources>
