@@ -6,11 +6,11 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class ThemeModeTest {
-    @Test fun defaultsToSystemForNull() {
-        assertEquals(ThemeMode.SYSTEM, themeModeFromStorage(null))
+    @Test fun defaultsToDarkForNull() {
+        assertEquals(ThemeMode.DARK, themeModeFromStorage(null))
     }
-    @Test fun defaultsToSystemForGarbage() {
-        assertEquals(ThemeMode.SYSTEM, themeModeFromStorage("nope"))
+    @Test fun defaultsToDarkForGarbage() {
+        assertEquals(ThemeMode.DARK, themeModeFromStorage("nope"))
     }
     @Test fun parsesEachKnownName() {
         assertEquals(ThemeMode.LIGHT, themeModeFromStorage("LIGHT"))
