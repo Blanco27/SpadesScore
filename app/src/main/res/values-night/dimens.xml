@@ -2,4 +2,7 @@
 <resources>
     <!-- Dark theme is flat — mockup shadow token is none for Casino Noir. -->
     <dimen name="card_elevation">0dp</dimen>
+
+    <!-- CTA keeps its shadow in dark too (mockup gives it a gold glow). -->
+    <dimen name="cta_elevation">8dp</dimen>
 </resources>

@@ -143,6 +143,7 @@ class DeclareTricksActivity : SpadesAppCompatActivity() {
             warnSubtitle.visibility = View.VISIBLE
             startButton.isEnabled = false
             startButton.setTextColor(ctaMutedColor)
+            startButton.elevation = 0f   // locked CTA is flat (mockup .cta.off)
             if (lastTricksAreValid) {
                 // Transition INTO locked: animate CTA background + shake.
                 animateFill(startButton, colorActive, colorDeactive)
@@ -155,6 +156,7 @@ class DeclareTricksActivity : SpadesAppCompatActivity() {
             warnSubtitle.visibility = View.INVISIBLE
             startButton.isEnabled = true
             startButton.setTextColor(ctaFgColor)
+            startButton.elevation = resources.getDimension(R.dimen.cta_elevation)
             if (!lastTricksAreValid) {
                 // Transition OUT of locked: animate CTA background back.
                 animateFill(startButton, colorDeactive, colorActive)

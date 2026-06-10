@@ -29,4 +29,6 @@
 
     <!-- Soft card drop-shadow tint (same softness as the start-screen segment shadow). -->
     <color name="card_shadow">#2D000000</color>
+    <!-- Stronger CTA drop-shadow tint (mockup .cta: 0 12px 24px black). -->
+    <color name="cta_shadow">#33000000</color>
 </resources>

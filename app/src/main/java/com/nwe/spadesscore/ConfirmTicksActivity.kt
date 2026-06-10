@@ -157,6 +157,7 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
             warnSubtitle.visibility = View.VISIBLE
             startButton.isEnabled = false
             startButton.setTextColor(ctaMutedColor)
+            startButton.elevation = 0f   // locked CTA is flat (mockup .cta.off)
             if (lastStateValid) {
                 animateFill(startButton, colorActive, colorDeactive)
                 startButton.shake()
@@ -166,6 +167,7 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
             warnSubtitle.visibility = View.INVISIBLE
             startButton.isEnabled = true
             startButton.setTextColor(ctaFgColor)
+            startButton.elevation = resources.getDimension(R.dimen.cta_elevation)
             if (!lastStateValid) {
                 animateFill(startButton, colorDeactive, colorActive)
             }

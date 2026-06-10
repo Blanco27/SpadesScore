@@ -3,4 +3,8 @@
     <!-- Soft card drop-shadow (mockup shadow token). Zero in values-night so dark theme
          stays flat (mockup shadow token is none for Casino Noir). -->
     <dimen name="card_elevation">4dp</dimen>
+
+    <!-- Stronger CTA drop-shadow (mockup .cta). Present in both themes (dark gets a
+         gold glow via @color/cta_shadow); zeroed in code while a CTA is locked. -->
+    <dimen name="cta_elevation">8dp</dimen>
 </resources>
