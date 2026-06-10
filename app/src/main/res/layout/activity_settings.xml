@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:paddingStart="17dp"
         android:paddingEnd="17dp"
         android:paddingTop="8dp"
@@ -58,6 +60,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@drawable/bg_segment"
+            android:elevation="@dimen/card_elevation"
+            android:outlineAmbientShadowColor="@color/card_shadow"
+            android:outlineSpotShadowColor="@color/card_shadow"
             android:padding="5dp">
 
             <!-- System -->
@@ -174,6 +179,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/bg_card"
+            android:elevation="@dimen/card_elevation"
+            android:outlineAmbientShadowColor="@color/card_shadow"
+            android:outlineSpotShadowColor="@color/card_shadow"
             android:padding="6dp">
 
             <!-- EN row -->
