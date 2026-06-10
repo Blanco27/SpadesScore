@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.Spades.Title"
-        android:layout_marginTop="22dp" />
+        android:layout_marginTop="38dp" />
 
     <!-- Progress bar -->
     <ProgressBar
