@@ -296,7 +296,7 @@
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.Spades.Body"
         android:textColor="?attr/appWarn"
-        android:visibility="gone"
+        android:visibility="invisible"
         tools:text="At least one player must miss" />
 
     <!-- Flex spacer pushes CTA to bottom -->

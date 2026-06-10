@@ -96,6 +96,10 @@ class DeclareTricksActivity : SpadesAppCompatActivity() {
             spinner.setOnValueChangedListener { updateCombinedTricksTextView() }
         }
 
+        // Set the warn text once up front; it stays INVISIBLE (not GONE) so reserving
+        // its space keeps the layout from jumping when the warning toggles on/off.
+        warnSubtitle.text = getString(R.string.tricks_sum_warning, cardAmount)
+
         render(state)
     }
 
@@ -136,7 +140,6 @@ class DeclareTricksActivity : SpadesAppCompatActivity() {
             // ── LOCKED: sum equals available tricks — bids must differ ──
             sumChip.background = ContextCompat.getDrawable(this, R.drawable.bg_chip_warn)
             sumChip.setTextColor(warnColor)
-            warnSubtitle.text = getString(R.string.tricks_sum_warning, cardAmount)
             warnSubtitle.visibility = View.VISIBLE
             startButton.isEnabled = false
             startButton.setTextColor(ctaMutedColor)
@@ -149,7 +152,7 @@ class DeclareTricksActivity : SpadesAppCompatActivity() {
             // ── OK: bids differ from tricks — play is allowed ──
             sumChip.background = ContextCompat.getDrawable(this, R.drawable.bg_chip)
             sumChip.setTextColor(accentColor)
-            warnSubtitle.visibility = View.GONE
+            warnSubtitle.visibility = View.INVISIBLE
             startButton.isEnabled = true
             startButton.setTextColor(ctaFgColor)
             if (!lastTricksAreValid) {

@@ -116,6 +116,10 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
         startButton.setTextColor(ctaFgColor)
         startButton.setOnClickListener { startNextRound() }
 
+        // Set the warn text once up front; it stays INVISIBLE (not GONE) so reserving
+        // its space keeps the layout from jumping when the warning toggles on/off.
+        warnSubtitle.text = getString(R.string.confirm_all_hit_warning)
+
         updateConfirmLockState()
     }
 
@@ -150,7 +154,6 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
 
         if (!isValid) {
             // ── LOCKED: everyone is a hit — impossible, force at least one miss ──
-            warnSubtitle.text = getString(R.string.confirm_all_hit_warning)
             warnSubtitle.visibility = View.VISIBLE
             startButton.isEnabled = false
             startButton.setTextColor(ctaMutedColor)
@@ -160,7 +163,7 @@ class ConfirmTicksActivity : SpadesAppCompatActivity() {
             }
         } else {
             // ── OK: at least one miss — round can be confirmed ──
-            warnSubtitle.visibility = View.GONE
+            warnSubtitle.visibility = View.INVISIBLE
             startButton.isEnabled = true
             startButton.setTextColor(ctaFgColor)
             if (!lastStateValid) {

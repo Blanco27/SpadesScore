@@ -185,7 +185,7 @@
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.Spades.Body"
             android:textColor="?attr/appWarn"
-            android:visibility="gone"
+            android:visibility="invisible"
             tools:text="Sum must differ from 5" />
 
         <!-- Flexible spacer: pushes CTA to bottom when content fits; min 16dp when scrolling -->
