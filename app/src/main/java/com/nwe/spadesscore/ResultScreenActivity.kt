@@ -6,14 +6,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.Space
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import kotlin.math.ceil
 import com.google.android.material.color.MaterialColors
 import com.nwe.spadesscore.ui.applyPersistedLocale
 import com.nwe.spadesscore.ui.applySystemBarInsetsAsPadding
@@ -73,7 +76,7 @@ class ResultScreenActivity : AppCompatActivity() {
         // it as plain grid rows — otherwise the final sum is shown twice.
         setRowVisibility(state.visibleRoundCount - 1)
         fillScores(state.scoresByPlayer)
-        applyRowSpacing()
+        applyRowSpacing(state.visibleRoundCount - 1)
         setPlayerNames(state.playerCount, state.playerNames)
 
         // ── New operations ─────────────────────────────────────────────
@@ -121,13 +124,40 @@ class ResultScreenActivity : AppCompatActivity() {
         }
     }
 
-    /** Adds vertical breathing room between score rows so the table uses more of the
-     *  screen height instead of looking compressed at the top (mockup rhythm). */
-    private fun applyRowSpacing() {
-        val pad = (14 * resources.displayMetrics.density).toInt()
-        scoreCells.forEach { playerRows ->
-            playerRows.forEach { cell ->
-                cell.setPaddingRelative(cell.paddingStart, pad, cell.paddingEnd, pad)
+    /**
+     * Vertical breathing room between score rows. Starts from an airy 14dp (mockup
+     * rhythm) but, when the table would overflow the viewport — long games run up to
+     * 16 rounds (4 players) or 20 (3 players) — shrinks the per-row padding just enough
+     * to fit, so the final result never needs scrolling. Measured on the first pre-draw
+     * (after every visibility change, incl. the hidden CTA on the final screen).
+     *
+     * @param visibleRows number of score rows actually shown (padding is what we tune).
+     */
+    private fun applyRowSpacing(visibleRows: Int) {
+        val density = resources.displayMetrics.density
+        val maxPad = (14 * density).toInt()
+        val minPad = (2 * density).toInt()
+
+        fun setRowPadding(pad: Int) {
+            scoreCells.forEach { playerRows ->
+                playerRows.forEach { cell ->
+                    cell.setPaddingRelative(cell.paddingStart, pad, cell.paddingEnd, pad)
+                }
+            }
+        }
+
+        setRowPadding(maxPad)
+        if (visibleRows <= 0) return
+
+        val scroll = findViewById<ScrollView>(R.id.result_scroll)
+        val content = findViewById<View>(R.id.result_content)
+        content.doOnPreDraw {
+            val viewport = scroll.height - scroll.paddingTop - scroll.paddingBottom
+            val overflow = content.height - viewport
+            if (overflow > 0) {
+                val reducePerSide = ceil(overflow.toFloat() / (2f * visibleRows)).toInt()
+                val fittedPad = (maxPad - reducePerSide).coerceAtLeast(minPad)
+                if (fittedPad != maxPad) setRowPadding(fittedPad)
             }
         }
     }
